@@ -1,122 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why PVC? | Florence Engineering</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Outfit', sans-serif; }
-        h1, h2, h3 { font-family: 'Inter', sans-serif; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-    </style>
-</head>
-<body class="bg-stone-50 text-slate-900 antialiased">
-
-    <nav class="fixed w-full z-50 glass-nav border-b border-stone-200">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase text-slate-900">Florence</a>
-            <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide uppercase">
-                <a href="index.html" class="hover:text-neutral-500 transition-colors">Home</a>
-                <a href="pricing.html" class="hover:text-neutral-500 transition-colors">Collections</a>
-                <a href="about.html" class="hover:text-neutral-500 transition-colors border-b-2 border-black">Why PVC?</a>
-                <a href="contact.html" class="hover:text-neutral-500 transition-colors">Contact</a>
-            </div>
-            <a href="https://wa.me/212661176190" target="_blank" class="bg-slate-900 text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Get a Quote</a>
-        </div>
-    </nav>
-
-    <section class="pt-40 pb-24 px-6">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-            <h1 class="text-5xl font-bold mb-4 uppercase tracking-tighter">Florence Engineering</h1>
-            <p class="text-slate-500 uppercase tracking-widest text-sm">Crafting Durability for the Modern Home</p>
-        </div>
-
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 mb-20">
-            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" 
-                 class="w-full h-[600px] object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700">
-            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=800" 
-                 class="w-full h-[600px] object-cover grayscale-[20%] hidden md:block">
-        </div>
-
-        <div class="max-w-4xl mx-auto">
-            <div class="prose prose-lg text-slate-600 space-y-8">
-                <p>Standard bathrooms suffer from a fundamental flaw: water and wood do not mix. Moisture leads to swelling, mold, and eventual structural failure. At Florence, we solved this by utilizing high-density PVC (Polyvinyl Chloride) technology.</p>
-                
-                <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">PVC vs. The Rest</h2>
-                <div class="grid md:grid-cols-2 gap-8 my-12">
-                    <div class="p-8 bg-white border border-stone-200">
-                        <h4 class="font-bold text-slate-900 mb-2">Wood/MDF</h4>
-                        <p class="text-sm">Absorbs humidity. Swells within 12-24 months. Attracts pests. Requires constant repainting.</p>
-                    </div>
-                    <div class="p-8 bg-slate-900 text-white border border-slate-900">
-                        <h4 class="font-bold mb-2">Florence PVC</h4>
-                        <p class="text-sm">100% Waterproof. Structural integrity for 20+ years. Termite-proof. Maintenance-free finish.</p>
-                    </div>
-                </div>
-
-                <p>Our products are engineered for the smart homeowner who values longevity. By choosing Florence, you are investing in a space that remains as crisp and elegant on day 5,000 as it was on day one.</p>
-            </div>
-
-            <div class="mt-20 py-16 border-t border-stone-200">
-                <h3 class="text-center text-xs font-bold uppercase tracking-[0.3em] text-slate-400 mb-10">Follow Our Craft</h3>
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-                    <a href="https://wa.me/212661176190" target="_blank" class="group flex flex-col items-center">
-                        <div class="w-14 h-14 bg-white border border-stone-200 flex items-center justify-center group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.503 1.441 5.451 1.442 5.891 0 10.689-4.798 10.692-10.689.001-2.856-1.111-5.54-3.131-7.561-2.02-2.022-4.704-3.134-7.56-3.135-5.892 0-10.69 4.798-10.693 10.69.001 1.954.512 3.861 1.482 5.461l-.985 3.597 3.694-.97zm11.332-6.505c-.312-.157-1.846-.911-2.132-1.015-.286-.104-.495-.157-.703.157-.208.312-.806 1.015-.988 1.223-.182.208-.364.234-.676.078-.312-.156-1.316-.484-2.507-1.547-.927-.827-1.552-1.849-1.734-2.16-.182-.313-.02-.482.137-.638.14-.14.312-.365.468-.547.156-.182.208-.312.312-.52.104-.209.052-.391-.026-.547-.078-.157-.703-1.693-.963-2.319-.253-.61-.51-.528-.703-.537-.181-.009-.39-.01-.599-.01-.208 0-.546.078-.832.39-.286.313-1.093 1.068-1.093 2.604s1.119 3.021 1.275 3.23c.156.208 2.201 3.361 5.331 4.712.744.321 1.325.512 1.777.656.748.237 1.429.204 1.967.124.6-.089 1.846-.755 2.106-1.485.26-.73.26-1.354.182-1.485-.077-.13-.285-.208-.597-.365z"/></svg>
-                        </div>
-                        <span class="text-[10px] mt-2 font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">WhatsApp</span>
-                    </a>
-                    <a href="https://www.instagram.com/brico.shop2" target="_blank" class="group flex flex-col items-center">
-                        <div class="w-14 h-14 bg-white border border-stone-200 flex items-center justify-center group-hover:bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 group-hover:text-white transition-all duration-300">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </div>
-                        <span class="text-[10px] mt-2 font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Instagram</span>
-                    </a>
-                    <a href="https://web.facebook.com/profile.php?id=100091613435811&sk=reels_tab" target="_blank" class="group flex flex-col items-center">
-                        <div class="w-14 h-14 bg-white border border-stone-200 flex items-center justify-center group-hover:bg-[#1877F2] group-hover:text-white transition-all duration-300">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </div>
-                        <span class="text-[10px] mt-2 font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Facebook</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@www.tiktok.touhami72?_r=1&_t=ZS-94DV6qrHGtj" target="_blank" class="group flex flex-col items-center">
-                        <div class="w-14 h-14 bg-white border border-stone-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.58-1.01V14.5c0 1.93-.64 3.66-1.83 5.12-1.38 1.71-3.4 2.9-5.59 3.22-2.31.33-4.81-.36-6.62-1.83-1.63-1.33-2.61-3.21-2.76-5.31-.15-2.09.47-4.42 1.83-6.06 1.43-1.74 3.6-2.85 5.86-3.03 1.14-.08 2.29.07 3.39.42V10.3c-.64-.26-1.35-.4-2.04-.39-1.14.02-2.33.46-3.08 1.31-.83.94-1.11 2.3-.84 3.5.23 1.05.9 2.05 1.81 2.58 1.12.65 2.56.68 3.73.09.91-.45 1.57-1.38 1.73-2.39.06-.33.07-.66.07-1V0z"/></svg>
-                        </div>
-                        <span class="text-[10px] mt-2 font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">TikTok</span>
-                    </a>
+<section class="py-24 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+        
+        <div class="group cursor-pointer" onclick="openColorModal('PVC Waterproof', 'https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg')">
+            <div class="overflow-hidden bg-stone-100 aspect-[4/5] mb-6 relative">
+                <img src="https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span class="bg-white text-slate-900 text-[10px] font-bold uppercase tracking-widest px-6 py-3 shadow-xl">Explore Finishes</span>
                 </div>
             </div>
-
-            <div class="py-12 border-t border-stone-200 text-center">
-                <h3 class="text-xl font-bold mb-6 uppercase tracking-widest text-slate-900">Ready for a lifetime upgrade?</h3>
-                <a href="contact.html" class="inline-block bg-slate-900 text-white px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-slate-800 transition-all">Speak to a Consultant</a>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-widest mb-1">PVC Waterproof</h3>
+                    <p class="text-xs text-slate-900 font-bold">300 MAD</p>
+                </div>
+                <span class="text-[10px] font-bold text-stone-300">01</span>
             </div>
         </div>
-    </section>
 
-    <footer class="bg-slate-900 text-white py-20 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-            <div class="col-span-2">
-                <h2 class="text-2xl font-bold mb-6 tracking-tighter uppercase">Florence</h2>
-                <p class="text-slate-400 max-w-sm mb-8">Redefining bathroom durability through modern PVC technology.</p>
+        <div class="group cursor-pointer" onclick="openColorModal('Rabat Series', 'https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg')">
+            <div class="overflow-hidden bg-stone-100 aspect-[4/5] mb-6 relative">
+                <img src="https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span class="bg-white text-slate-900 text-[10px] font-bold uppercase tracking-widest px-6 py-3 shadow-xl">Explore Finishes</span>
+                </div>
             </div>
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Links</h4>
-                <ul class="space-y-4 text-sm text-slate-400">
-                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
-                    <li><a href="pricing.html" class="hover:text-white transition-colors">Collections</a></li>
-                    <li><a href="about.html" class="hover:text-white transition-colors">Why PVC?</a></li>
-                    <li><a href="contact.html" class="hover:text-white transition-colors">Get a Quote</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Contact</h4>
-                <p class="text-sm text-slate-400 leading-relaxed">+212 661-176190<br>Morocco</p>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-widest mb-1">MDSB 1.20m double vasque</h3>
+                    <p class="text-xs text-slate-900 font-bold">300 MAD</p>
+                </div>
+                <span class="text-[10px] font-bold text-stone-300">02</span>
             </div>
         </div>
-    </footer>
 
-</body>
-</html>
+        <div class="group cursor-pointer" onclick="openColorModal('Oasis Series', 'https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800')">
+            <div class="overflow-hidden bg-stone-100 aspect-[4/5] mb-6 relative">
+                <img src="https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span class="bg-white text-slate-900 text-[10px] font-bold uppercase tracking-widest px-6 py-3 shadow-xl">Explore Finishes</span>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-widest mb-1">The Oasis Edition</h3>
+                    <p class="text-xs text-slate-900 font-bold">300 MAD</p>
+                </div>
+                <span class="text-[10px] font-bold text-stone-300">03</span>
+            </div>
+        </div>
+
+    </div>
+</section>
