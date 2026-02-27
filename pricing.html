@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections | Florence Bathroom Series</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+   <style>
+    body { 
+        font-family: 'Outfit', sans-serif; 
+        /* The Bathware Template Style Background */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
+                          url('https://demo.templatemonster.com/demo/261543.html'); /* Replace with your local path if needed */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+    h1, h2, h3 { font-family: 'Inter', sans-serif; }
+    
+    .glass-nav { 
+        background: rgba(255, 255, 255, 0.85); 
+        backdrop-filter: blur(15px); 
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* Card styling to look good over the marble background */
+    .product-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .product-card:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-8px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        border-color: #000;
+    }
+
+    /* Modal Styling */
+    .modal-enter { opacity: 0; transform: translateY(20px); }
+    .modal-active { opacity: 1; transform: translateY(0); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+</style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase text-slate-900">Florence</a>
+            <div class="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.2em] uppercase">
+                <a href="index.html" class="hover:text-neutral-400 transition-colors">Home</a>
+                <a href="pricing.html" class="text-neutral-400">Collections</a>
+                <a href="about.html" class="hover:text-neutral-400 transition-colors">Why PVC?</a>
+                <a href="contact.html" class="hover:text-neutral-400 transition-colors">Contact</a>
+            </div>
+            <a href="https://wa.me/#" class="border border-slate-900 px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">Get a Quote</a>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 bg-stone-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-4 block">The 2026 Series</span>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6 uppercase">The Collections</h1>
+            <p class="text-slate-500 max-w-xl mx-auto leading-relaxed italic">Click an edition to explore premium waterproof finishes.</p>
+        </div>
+    </header>
+
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+            
+            <div class="group cursor-pointer" onclick="openColorModal('PVC Waterproof', 'https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg')">
+                <div class="overflow-hidden bg-stone-100 aspect-[4/5] mb-6 relative">
+                    <img src="https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="bg-white text-slate-900 text-[10px] font-bold uppercase tracking-widest px-6 py-3 shadow-xl">Explore Finishes</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div><h3 class="text-sm font-bold uppercase tracking-widest mb-1">PVC Waterproof</h3><p class="text-xs text-slate-400 italic">Starting from $899</p></div>
+                    <span class="text-[10px] font-bold text-stone-300">01</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer" onclick="openColorModal('Rabat Series', 'https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg')">
+                <div class="overflow-hidden bg-stone-100 aspect-[4/5] mb-6 relative">
+                    <img src="https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="bg-white text-slate-900 text-[10px] font-bold uppercase tracking-widest px-6 py-3 shadow-xl">Explore Finishes</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div><h3 class="text-sm font-bold uppercase tracking-widest mb-1">MDSB 1.20m double vasque</h3><p class="text-xs text-slate-400 italic">Starting from $749</p></div>
+                    <span class="text-[10px] font-bold text-stone-300">02</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer" onclick="openColorModal('Oasis Series', 'https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800')">
+                <div class="overflow-hidden bg-stone-100 aspect-[4/5] mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="bg-white text-slate-900 text-[10px] font-bold uppercase tracking-widest px-6 py-3 shadow-xl">Explore Finishes</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div><h3 class="text-sm font-bold uppercase tracking-widest mb-1">The Oasis Edition</h3><p class="text-xs text-slate-400 italic">Starting from $599</p></div>
+                    <span class="text-[10px] font-bold text-stone-300">03</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="colorModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-6">
+        <div class="absolute inset-0 bg-stone-100/90 backdrop-blur-md" onclick="closeColorModal()"></div>
+        
+        <div id="modalBox" class="relative bg-white max-w-5xl w-full shadow-2xl rounded-sm modal-enter overflow-hidden flex flex-col md:flex-row">
+            <button onclick="closeColorModal()" class="absolute top-6 right-6 z-20 text-slate-400 hover:text-slate-900 transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+
+            <div class="md:w-3/5 bg-stone-50 p-12 flex items-center justify-center border-r border-stone-100">
+                <img id="previewImage" src="" alt="Color Preview" class="max-w-full h-auto object-contain">
+            </div>
+
+            <div class="md:w-2/5 p-12 flex flex-col justify-center">
+                <h4 id="modalTitle" class="text-2xl font-bold mb-2 uppercase tracking-tighter">Collection Finishes</h4>
+                <p class="text-slate-400 text-xs uppercase tracking-widest mb-10">Select a premium texture</p>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="group cursor-pointer" onclick="handleColorClick('gray')">
+                        <div class="w-full aspect-square bg-[#8e8e8e] mb-3 color-swatch transition-transform duration-300 border border-stone-100 shadow-sm"></div>
+                        <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-center">Steel Gray</p>
+                    </div>
+                    <div class="group cursor-pointer" onclick="handleColorClick('black')">
+                        <div class="w-full aspect-square bg-[#1a1a1a] mb-3 color-swatch transition-transform duration-300 border border-stone-100 shadow-sm"></div>
+                        <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-center">Obsidian</p>
+                    </div>
+                    <div class="group cursor-pointer" onclick="handleColorClick('white')">
+                        <div class="w-full aspect-square bg-white mb-3 color-swatch transition-transform duration-300 border border-stone-100 shadow-sm"></div>
+                        <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-center">Pure Matte</p>
+                    </div>
+                    <div class="group cursor-pointer" onclick="handleColorClick('chrome')">
+                        <div class="w-full aspect-square bg-gradient-to-br from-stone-200 to-stone-400 mb-3 color-swatch transition-transform duration-300 border border-stone-100 shadow-sm"></div>
+                        <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-center">Polished Chrome</p>
+                    </div>
+                </div>
+
+                <div class="mt-12">
+                    <a href="contact.html" class="block w-full bg-slate-900 text-white text-center py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-slate-800 transition-all">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSeries = "";
+
+        // Image mapping for Rabat Series
+        const rabatImages = {
+            'black': 'https://i.postimg.cc/rmgRKzbt/blackk.png',
+            'white': 'https://i.postimg.cc/8k0s98gK/whitew.png',
+            'chrome': 'https://i.postimg.cc/W1jD6Gvh/chrome-2.png',
+            'gray': 'https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg'
+        };
+
+        // Standard default mapping for other series
+        const defaultImages = {
+            'black': 'https://i.postimg.cc/1tCFtfnW/black.png',
+            'white': 'https://i.postimg.cc/0QB6vFFX/white.png',
+            'chrome': 'https://i.postimg.cc/ZqJvxr6N/chrome.png',
+            'gray': 'https://i.postimg.cc/7YTzHPx5/gray.png'
+        };
+
+        function updatePreview(url) {
+            const img = document.getElementById('previewImage');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = url;
+                img.style.opacity = '1';
+            }, 300);
+        }
+
+        function handleColorClick(colorKey) {
+            if (currentSeries === "Rabat Series") {
+                updatePreview(rabatImages[colorKey]);
+            } else {
+                updatePreview(defaultImages[colorKey]);
+            }
+        }
+
+        function openColorModal(title, featuredImageUrl) {
+            currentSeries = title; // Track which series is open
+            const modal = document.getElementById('colorModal');
+            const box = document.getElementById('modalBox');
+            
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('previewImage').src = featuredImageUrl;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                box.classList.remove('modal-enter');
+                box.classList.add('modal-active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeColorModal() {
+            const modal = document.getElementById('colorModal');
+            const box = document.getElementById('modalBox');
+            box.classList.remove('modal-active');
+            box.classList.add('modal-enter');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+    </script>
+
+    <footer class="bg-slate-900 text-white pt-24 pb-12 px-6 mt-20">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-left">
+        <div class="col-span-2">
+            <h2 class="text-3xl font-bold mb-6 tracking-tighter uppercase">Florence</h2>
+            <p class="text-slate-400 text-sm max-w-sm leading-relaxed italic">
+                Premium PVC Bathroom Excellence. Modern design meets lifetime durability. Experience the perfect balance of elegance and resilience.
+            </p>
+        </div>
+        
+        <div>
+            <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-stone-500">Connect With Us</h4>
+            <div class="flex space-x-6">
+                <a href="https://wa.me/212661176190" target="_blank" class="text-white hover:text-green-400 transition-colors" title="WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72,24,24,0,0,1,24-24,8,8,0,0,1,5,1.75l13.58,27.17L111,125a8,8,0,0,0-1,8.91,56.45,56.45,0,0,0,22,22,8,8,0,0,0,8.91-1l16.12-11.51L184.25,157a8,8,0,0,1,1.75,5A24,24,0,0,1,152,176Z"></path></svg>
+                </a>
+                <a href="https://web.facebook.com/profile.php?id=100091613435811&sk=reels_tab" target="_blank" class="text-white hover:text-blue-500 transition-colors" title="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,96H112v80a8,8,0,0,1-16,0V120H80a8,8,0,0,1,0-16h16V88a32,32,0,0,1,32-32h16a8,8,0,0,1,0,16H128a16,16,0,0,0-16,16v16h24a8,8,0,0,1,0,16Z"></path></svg>
+                </a>
+                <a href="https://www.instagram.com/brico.shop2" target="_blank" class="text-white hover:text-pink-500 transition-colors" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM172,32H84A52.06,52.06,0,0,0,32,84v88a52.06,52.06,0,0,0,52,52h88a52.06,52.06,0,0,0,52-52V84A52.06,52.06,0,0,0,172,32Zm36,140a36,36,0,0,1-36,36H84a36,36,0,0,1-36-36V84A36,36,0,0,1,84,48h88a36,36,0,0,1,36,36ZM192,72a12,12,0,1,1-12-12A12,12,0,0,1,192,72Z"></path></svg>
+                </a>
+                <a href="https://www.tiktok.com/@www.tiktok.touhami72?_r=1&_t=ZS-94DV6qrHGtj" target="_blank" class="text-white hover:text-cyan-400 transition-colors" title="TikTok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-stone-500">Contact</h4>
+            <ul class="space-y-4 text-xs uppercase tracking-widest text-slate-400">
+                <li>Showroom: Casablanca, Morocco</li>
+                <li>Tel: +212 661-176190</li>
+            </ul>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-slate-800 text-[9px] uppercase tracking-[0.4em] text-neutral-500 text-center">
+        © 2026 Florence Bathroom Excellence
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote | Florence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3 { font-family: 'Inter', sans-serif; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        input, select, textarea { outline: none; transition: border-color 0.3s ease; }
+        input:focus { border-color: #000 !important; }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-900 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase text-slate-900">Florence</a>
+            <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide uppercase">
+                <a href="index.html" class="hover:text-neutral-500 transition-colors">Home</a>
+                <a href="pricing.html" class="hover:text-neutral-500 transition-colors">Collections</a>
+                <a href="about.html" class="hover:text-neutral-500 transition-colors">Why PVC?</a>
+                <a href="contact.html" class="hover:text-neutral-500 transition-colors">Contact</a>
+            </div>
+            <a href="https://wa.me/#" class="bg-slate-900 text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Get a Quote</a>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-24 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+            <div>
+                <h1 class="text-4xl font-bold mb-8 uppercase tracking-tighter">Start Your <br>Transformation</h1>
+                <p class="text-lg text-slate-600 mb-12 leading-relaxed">Fill out the form for a detailed quote, or jump directly into a conversation with our specialists on WhatsApp.</p>
+                
+                <div class="space-y-8">
+                    <a href="https://wa.me/#" class="flex items-center gap-6 group">
+                        <div class="w-12 h-12 bg-slate-900 flex items-center justify-center text-white group-hover:scale-110 transition-all">
+                            <span class="text-lg font-bold">W</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">Fastest Response</p>
+                            <p class="font-bold">Chat on WhatsApp</p>
+                        </div>
+                    </a>
+                    <div class="flex items-center gap-6">
+                        <div class="w-12 h-12 border border-stone-200 flex items-center justify-center">
+                            <span class="text-lg font-bold text-slate-300">@</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">Email</p>
+                            <p class="font-bold">hello@florence.ma</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 shadow-sm border border-stone-200">
+                <form action="https://api.web3forms.com/submit" method="POST" id="form">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest mb-2">Full Name</label>
+                            <input type="text" name="name" required class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm focus:bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest mb-2">Phone Number</label>
+                            <input type="tel" name="phone" required class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm focus:bg-white">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-[10px] font-bold uppercase tracking-widest mb-2">Interested Collection</label>
+                        <select name="collection" class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm focus:bg-white appearance-none">
+                            <option>Atlas Series (Modern)</option>
+                            <option>Rabat Series (Minimal)</option>
+                            <option>Oasis Series (Compact)</option>
+                            <option>Custom Project</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-[10px] font-bold uppercase tracking-widest mb-2">Project Details (Approx Dimensions)</label>
+                        <textarea name="message" rows="4" class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm focus:bg-white"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 text-white py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-slate-800 transition-all">Submit Request</button>
+                    
+                    <p class="text-[10px] text-center text-slate-400 mt-6 uppercase tracking-widest">Typical response time: < 4 hours</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-stone-200 text-center">
+        <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400">Florence | Quality First PVC</p>
+    </footer>
+
+</body>
+</html>
