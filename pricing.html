@@ -20,6 +20,11 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Smooth transition for color swapping */
+        #aquatique-img {
+            transition: opacity 0.4s ease-in-out, transform 2s ease-out;
+        }
     </style>
 </head>
 <body class="bg-[#FCFAFA] text-slate-900 antialiased">
@@ -60,16 +65,23 @@
                                 Limited Edition
                             </span>
                         </div>
-                        <img src="https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg" 
-                             class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center backdrop-blur-[2px]">
-                            <span class="bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] px-10 py-5">Tailor This Piece</span>
+                        
+                        <img id="aquatique-img" src="https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg" 
+                             class="w-full h-full object-cover group-hover:scale-110">
+                        
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-4 bg-white/90 backdrop-blur-md px-5 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-lg">
+                            <button onclick="changeColor('black', event)" class="w-5 h-5 rounded-full bg-black border border-stone-300 hover:scale-125 transition-transform" title="Black"></button>
+                            <button onclick="changeColor('gray', event)" class="w-5 h-5 rounded-full bg-gray-500 border border-stone-300 hover:scale-125 transition-transform" title="Gray"></button>
+                            <button onclick="changeColor('white', event)" class="w-5 h-5 rounded-full bg-white border border-stone-300 hover:scale-125 transition-transform" title="White"></button>
+                            <button onclick="changeColor('chrome', event)" class="w-5 h-5 rounded-full bg-gradient-to-tr from-slate-400 via-slate-100 to-slate-400 border border-stone-300 hover:scale-125 transition-transform" title="Chrome"></button>
                         </div>
+
+                        <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"></div>
                     </div>
                     <div class="flex justify-between items-start">
                         <div class="space-y-2">
                             <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Aquatique Series</h3>
-                            <p class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Precision PVC • Marine Grade</p>
+                            <p id="aquatique-subtitle" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Precision PVC • Marine Grade</p>
                             <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
                         </div>
                         <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">01</span>
@@ -150,6 +162,36 @@
         </div>
     </footer>
 
+    <script>
+        function changeColor(color, event) {
+            // Prevent the parent click event if necessary
+            event.stopPropagation();
+
+            const mainImg = document.getElementById('aquatique-img');
+            const subtitle = document.getElementById('aquatique-subtitle');
+            
+            // Map colors to image URLs
+            // REPLACE THESE URLS with your actual product color images
+            const colorImages = {
+                'black': 'https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg',
+                'gray': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800',
+                'white': 'https://images.unsplash.com/photo-1620626011761-9963d7521576?auto=format&fit=crop&q=80&w=800',
+                'chrome': 'https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&q=80&w=800'
+            };
+
+            // Apply fade out
+            mainImg.style.opacity = '0';
+
+            setTimeout(() => {
+                // Change image source
+                mainImg.src = colorImages[color];
+                // Update text
+                subtitle.innerText = `Precision PVC • ${color.charAt(0).toUpperCase() + color.slice(1)} Edition`;
+                // Fade back in
+                mainImg.style.opacity = '1';
+            }, 300);
+        }
+    </script>
+
 </body>
 </html>
-
