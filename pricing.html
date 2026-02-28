@@ -9,28 +9,25 @@
     
     <style>
         body { font-family: 'Outfit', sans-serif; }
-        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
         
-        .reveal {
-            animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        /* Modal Animation */
+        #product-modal {
+            transition: opacity 0.3s ease, visibility 0.3s;
         }
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        #modal-content {
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-
-        .product-image {
-            transition: opacity 0.4s ease-in-out, transform 2s ease-out;
-        }
+        .modal-open #modal-content { transform: scale(1); }
+        .modal-closed #modal-content { transform: scale(0.95); }
     </style>
 </head>
 <body class="bg-[#FCFAFA] text-slate-900 antialiased">
 
-    <nav class="fixed w-full z-50 glass-nav border-b border-stone-200">
+    <nav class="fixed w-full z-40 glass-nav border-b border-stone-200">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase text-slate-900">Florence</a>
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Florence</a>
             <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide uppercase">
                 <a href="index.html" class="hover:text-neutral-500 transition-colors">Home</a>
                 <a href="pricing.html" class="text-slate-900 border-b border-black pb-1">Collections</a>
@@ -41,169 +38,171 @@
         </div>
     </nav>
 
-    <section class="pt-40 pb-32 px-6 reveal">
+    <section class="pt-40 pb-32 px-6">
         <div class="max-w-7xl mx-auto">
-            
-            <div class="max-w-2xl mb-24">
-                <h4 class="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold mb-6">The 2026 Selection</h4>
-                <h2 class="text-5xl md:text-7xl font-extralight tracking-tighter mb-8 leading-[1.1]">
-                    Refined Form. <br/>
-                    <span class="italic font-serif">Enduring Substance.</span>
-                </h2>
-                <p class="text-stone-500 text-lg leading-relaxed border-l border-stone-200 pl-8 max-w-lg">
-                    Designed in collaboration with master artisans, our series reimagines the bathroom as a sanctuary of quiet luxury. Every piece is crafted from 100% water-resistant PVC.
-                </p>
-            </div>
-
             <div class="grid md:grid-cols-3 gap-x-12 gap-y-24">
                 
-                <div class="group cursor-pointer">
+                <div class="group cursor-pointer" onclick="openModal(1)">
                     <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
-                        <div class="absolute top-6 left-6 z-10">
-                            <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">Limited Edition</span>
-                        </div>
-                        <img id="img-01" src="https://i.postimg.cc/8cBDjq5h/Whats-App-Image-2026-02-23-at-10-23-01-PM.jpg" class="product-image w-full h-full object-cover group-hover:scale-110">
-                        
-                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-xl">
-                            <button onclick="updateProduct(1, 'black', event)" class="w-4 h-4 rounded-full bg-black border border-stone-300 hover:scale-125 transition-transform" title="Black"></button>
-                            <button onclick="updateProduct(1, 'gray', event)" class="w-4 h-4 rounded-full bg-gray-500 border border-stone-300 hover:scale-125 transition-transform" title="Gray"></button>
-                            <button onclick="updateProduct(1, 'white', event)" class="w-4 h-4 rounded-full bg-white border border-stone-300 hover:scale-125 transition-transform" title="White"></button>
-                            <button onclick="updateProduct(1, 'chrome', event)" class="w-4 h-4 rounded-full bg-gradient-to-tr from-slate-400 to-slate-100 border border-stone-300 hover:scale-125 transition-transform" title="Chrome"></button>
+                        <img id="grid-img-1" src="https://i.postimg.cc/8cBDjq5h/Whats-App-Image-2026-02-23-at-10-23-01-PM.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 px-6 py-3 text-[10px] uppercase tracking-widest font-bold">Quick View</span>
                         </div>
                     </div>
-                    <div class="flex justify-between items-start">
-                        <div class="space-y-2">
-                            <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Aquatique Series</h3>
-                            <p id="sub-01" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Precision PVC • Black Edition</p>
-                            <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
-                        </div>
-                        <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">01</span>
-                    </div>
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Aquatique Series</h3>
+                    <p class="text-[11px] text-stone-400 uppercase italic font-serif">Precision PVC • Marine Grade</p>
                 </div>
 
-                <div class="group cursor-pointer">
+                <div class="group cursor-pointer" onclick="openModal(2)">
                     <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
-                        <div class="absolute top-6 left-6 z-10">
-                            <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">Artisan Favorite</span>
-                        </div>
-                        <img id="img-02" src="https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg" class="product-image w-full h-full object-cover group-hover:scale-110">
-                        
-                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-xl">
-                            <button onclick="updateProduct(2, 'black', event)" class="w-4 h-4 rounded-full bg-black border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(2, 'gray', event)" class="w-4 h-4 rounded-full bg-gray-500 border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(2, 'white', event)" class="w-4 h-4 rounded-full bg-white border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(2, 'chrome', event)" class="w-4 h-4 rounded-full bg-gradient-to-tr from-slate-400 to-slate-100 border border-stone-300 hover:scale-125 transition-transform"></button>
+                        <img id="grid-img-2" src="https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 px-6 py-3 text-[10px] uppercase tracking-widest font-bold">Quick View</span>
                         </div>
                     </div>
-                    <div class="flex justify-between items-start">
-                        <div class="space-y-2">
-                            <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Imperial Double</h3>
-                            <p id="sub-02" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">1.20m Master Suite Edition</p>
-                            <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
-                        </div>
-                        <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">02</span>
-                    </div>
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Imperial Double</h3>
+                    <p class="text-[11px] text-stone-400 uppercase italic font-serif">1.20m Master Suite Edition</p>
                 </div>
 
-                <div class="group cursor-pointer">
+                <div class="group cursor-pointer" onclick="openModal(3)">
                     <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
-                        <div class="absolute top-6 left-6 z-10">
-                            <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">New Arrival</span>
-                        </div>
-                        <img id="img-03" src="https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg" class="product-image w-full h-full object-cover group-hover:scale-110">
-                        
-                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-xl">
-                            <button onclick="updateProduct(3, 'style1', event)" class="w-4 h-4 rounded-full bg-stone-800 border border-stone-300 hover:scale-125 transition-transform" title="Style 1"></button>
-                            <button onclick="updateProduct(3, 'style2', event)" class="w-4 h-4 rounded-full bg-stone-600 border border-stone-300 hover:scale-125 transition-transform" title="Style 2"></button>
-                            <button onclick="updateProduct(3, 'style3', event)" class="w-4 h-4 rounded-full bg-stone-400 border border-stone-300 hover:scale-125 transition-transform" title="Style 3"></button>
-                            <button onclick="updateProduct(3, 'style4', event)" class="w-4 h-4 rounded-full bg-stone-200 border border-stone-300 hover:scale-125 transition-transform" title="Style 4"></button>
+                        <img id="grid-img-3" src="https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 px-6 py-3 text-[10px] uppercase tracking-widest font-bold">Quick View</span>
                         </div>
                     </div>
-                    <div class="flex justify-between items-start">
-                        <div class="space-y-2">
-                            <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Oasis Edition</h3>
-                            <p id="sub-03" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Sculptural Concept • Style 1</p>
-                            <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
-                        </div>
-                        <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">03</span>
-                    </div>
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Oasis Edition</h3>
+                    <p class="text-[11px] text-stone-400 uppercase italic font-serif">Sculptural Minimalist Concept</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-white py-20 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-            <div class="col-span-2">
-                <h2 class="text-2xl font-bold mb-6 tracking-tighter uppercase">Florence</h2>
-                <p class="text-slate-400 max-w-sm mb-8">Redefining bathroom durability through modern PVC technology.</p>
-                <a href="https://wa.me/#" class="inline-flex items-center text-sm font-bold uppercase tracking-widest hover:text-neutral-300 transition-colors">Chat on WhatsApp →</a>
+    <div id="product-modal" class="fixed inset-0 z-[60] invisible opacity-0 flex items-center justify-center px-4 md:px-0">
+        <div class="absolute inset-0 bg-stone-900/90 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <div id="modal-content" class="relative bg-white w-full max-w-5xl grid md:grid-cols-2 overflow-hidden shadow-2xl scale-95 transition-transform duration-500">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-50 text-stone-400 hover:text-black transition-colors text-2xl">&times;</button>
+            
+            <div class="bg-stone-100 aspect-square md:aspect-auto">
+                <img id="modal-img" src="" class="w-full h-full object-cover transition-opacity duration-300">
             </div>
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Links</h4>
-                <ul class="space-y-4 text-sm text-slate-400">
-                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
-                    <li><a href="about.html" class="hover:text-white transition-colors">Why PVC?</a></li>
-                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-stone-500">Showroom</h4>
-                <p class="text-sm text-slate-400">Rabt-Sale-kKenitra, Morocco</p>
+
+            <div class="p-12 flex flex-col justify-center space-y-8">
+                <div>
+                    <h4 id="modal-category" class="text-[10px] uppercase tracking-[0.4em] text-stone-400 mb-2">Collection 2026</h4>
+                    <h2 id="modal-title" class="text-3xl font-light tracking-tight mb-4">Product Name</h2>
+                    <p id="modal-desc" class="text-stone-500 text-sm leading-relaxed">Crafted with marine-grade PVC for ultimate durability and timeless aesthetic.</p>
+                </div>
+
+                <div class="space-y-4 border-t border-stone-100 pt-8">
+                    <span class="text-[10px] uppercase tracking-widest font-bold">Select Finish</span>
+                    <div id="modal-color-buttons" class="flex space-x-4">
+                        </div>
+                    <p id="modal-color-name" class="text-xs italic text-stone-400">Black Finish</p>
+                </div>
+
+                <div class="pt-8">
+                    <a id="modal-wa-link" href="#" class="inline-block w-full bg-slate-900 text-white text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">
+                        Inquire via WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script>
         const productData = {
             1: {
-                'black': 'https://i.postimg.cc/8cBDjq5h/Whats-App-Image-2026-02-23-at-10-23-01-PM.jpg',
-                'gray': 'https://i.postimg.cc/KjyxcZZb/Whats-App-Image-2026-02-23-at-10-23-01-PM-(2).jpg',
-                'white': 'https://i.postimg.cc/90jCXWW9/Whats-App-Image-2026-02-23-at-10-23-01-PM-(3).jpg',
-                'chrome': 'https://i.postimg.cc/Y9Ftw4Bb/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg'
+                title: "The Aquatique Series",
+                desc: "Precision engineered with waterproof PVC finishes, ideal for high-humidity luxury environments.",
+                colors: {
+                    'black': 'https://i.postimg.cc/8cBDjq5h/Whats-App-Image-2026-02-23-at-10-23-01-PM.jpg',
+                    'gray': 'https://i.postimg.cc/KjyxcZZb/Whats-App-Image-2026-02-23-at-10-23-01-PM-(2).jpg',
+                    'white': 'https://i.postimg.cc/90jCXWW9/Whats-App-Image-2026-02-23-at-10-23-01-PM-(3).jpg',
+                    'chrome': 'https://i.postimg.cc/Y9Ftw4Bb/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg'
+                }
             },
             2: {
-                'black': 'https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg',
-                'gray': 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=800',
-                'white': 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?auto=format&fit=crop&q=80&w=800',
-                'chrome': 'https://images.unsplash.com/photo-1621285853634-713b8dd6b5ee?auto=format&fit=crop&q=80&w=800'
+                title: "The Imperial Double",
+                desc: "A wide-format 1.20m masterpiece providing ample space and a commanding presence.",
+                colors: {
+                    'black': 'https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg',
+                    'gray': 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800',
+                    'white': 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?q=80&w=800',
+                    'chrome': 'https://images.unsplash.com/photo-1621285853634-713b8dd6b5ee?q=80&w=800'
+                }
             },
             3: {
-                'style1': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
-                'style2': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
-                'style3': 'https://i.postimg.cc/65fnXq9T/Whats-App-Image-2026-02-23-at-10-21-33-PM-(3).jpg',
-                'style4': 'https://i.postimg.cc/GtkY9hGg/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg'
+                title: "The Oasis Edition",
+                desc: "Sculptural minimalism meets daily utility. Choose from four distinct stylistic variants.",
+                colors: {
+                    'Style 1': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
+                    'Style 2': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
+                    'Style 3': 'https://i.postimg.cc/65fnXq9T/Whats-App-Image-2026-02-23-at-10-21-33-PM-(3).jpg',
+                    'Style 4': 'https://i.postimg.cc/GtkY9hGg/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg'
+                }
             }
         };
 
-        function updateProduct(productId, selection, event) {
-            event.stopPropagation();
+        function openModal(id) {
+            const product = productData[id];
+            const modal = document.getElementById('product-modal');
+            const colorContainer = document.getElementById('modal-color-buttons');
             
-            const mainImg = document.getElementById(`img-0${productId}`);
-            const subtitle = document.getElementById(`sub-0${productId}`);
+            // Set initial content
+            document.getElementById('modal-title').innerText = product.title;
+            document.getElementById('modal-desc').innerText = product.desc;
             
-            mainImg.style.opacity = '0';
+            // Clear and build color buttons
+            colorContainer.innerHTML = '';
+            Object.keys(product.colors).forEach((color, index) => {
+                const btn = document.createElement('button');
+                btn.className = `w-8 h-8 rounded-full border border-stone-200 transition-transform hover:scale-110`;
+                
+                // Set color preview
+                if(color === 'white') btn.style.backgroundColor = '#fff';
+                else if(color === 'black') btn.style.backgroundColor = '#000';
+                else if(color === 'gray') btn.style.backgroundColor = '#888';
+                else if(color === 'chrome') btn.style.background = 'linear-gradient(45deg, #bbb, #fff, #bbb)';
+                else btn.style.backgroundColor = '#d1d5db'; // Default for "Styles"
 
+                btn.onclick = () => updateModalImage(id, color);
+                colorContainer.appendChild(btn);
+
+                // Load first color by default
+                if(index === 0) updateModalImage(id, color);
+            });
+
+            modal.classList.remove('invisible', 'opacity-0');
+            modal.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('invisible', 'opacity-0');
+            modal.classList.remove('modal-open');
+        }
+
+        function updateModalImage(productId, colorName) {
+            const img = document.getElementById('modal-img');
+            const label = document.getElementById('modal-color-name');
+            const newSrc = productData[productId].colors[colorName];
+            
+            img.style.opacity = '0';
             setTimeout(() => {
-                mainImg.src = productData[productId][selection];
-                
-                let baseText = "";
-                let displayLabel = selection.charAt(0).toUpperCase() + selection.slice(1);
-                
-                if (productId === 1) baseText = "Precision PVC";
-                else if (productId === 2) baseText = "1.20m Master Suite";
-                else {
-                    baseText = "Sculptural Concept";
-                    // Format Style 1, Style 2, etc nicely
-                    displayLabel = selection.replace('style', 'Style ');
-                }
-                
-                subtitle.innerText = `${baseText} • ${displayLabel}`;
-                mainImg.style.opacity = '1';
-            }, 300);
+                img.src = newSrc;
+                label.innerText = colorName.toUpperCase() + " FINISH";
+                img.style.opacity = '1';
+                // Also update the grid image to match
+                document.getElementById(`grid-img-${productId}`).src = newSrc;
+            }, 200);
+
+            // Update WhatsApp Link
+            const message = encodeURIComponent(`Hi, I am interested in ${productData[productId].title} in ${colorName} finish.`);
+            document.getElementById('modal-wa-link').href = `https://wa.me/YOURNUMBER?text=${message}`;
         }
     </script>
-
 </body>
 </html>
