@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Collection | Luxury Bath Interiors</title>
+    <title>The Collection | Florence Luxury PVC</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         
-        /* Smooth fade-in for the luxury feel */
         .reveal {
             animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
         }
@@ -21,115 +22,133 @@
         }
     </style>
 </head>
-<body class="bg-[#FCFAFA]">
+<body class="bg-[#FCFAFA] text-slate-900 antialiased">
 
-<section class="py-32 px-6 text-slate-900 font-light reveal">
-    <div class="max-w-7xl mx-auto">
-        
-        <div class="max-w-2xl mb-24">
-            <h4 class="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold mb-6">The 2026 Selection</h4>
-            <h2 class="text-5xl md:text-7xl font-extralight tracking-tighter mb-8 leading-[1.1]">
-                Refined Form. <br/>
-                <span class="italic font-serif">Enduring Substance.</span>
-            </h2>
-            <p class="text-stone-500 text-lg leading-relaxed border-l border-stone-200 pl-8 max-w-lg">
-                Designed in collaboration with master artisans, our latest series reimagines the bathroom as a sanctuary of quiet luxury. Each piece is a testament to technical precision.
-            </p>
+    <nav class="fixed w-full z-50 glass-nav border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase text-slate-900">Florence</a>
+            <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide uppercase">
+                <a href="index.html" class="hover:text-neutral-500 transition-colors">Home</a>
+                <a href="pricing.html" class="text-slate-900 border-b border-black pb-1">Collections</a>
+                <a href="about.html" class="hover:text-neutral-500 transition-colors">Why PVC?</a>
+                <a href="contact.html" class="hover:text-neutral-500 transition-colors">Contact</a>
+            </div>
+            <a href="https://wa.me/#" class="bg-slate-900 text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Get a Quote</a>
         </div>
+    </nav>
 
-        <div class="grid md:grid-cols-3 gap-x-12 gap-y-24">
+    <section class="pt-40 pb-32 px-6 reveal">
+        <div class="max-w-7xl mx-auto">
             
-            <div class="group cursor-pointer" onclick="ProductGallery.open('The Aquatique Series', 'https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg', '300 MAD')">
-                <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
-                    <div class="absolute top-6 left-6 z-10">
-                        <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">
-                            Limited Edition
-                        </span>
-                    </div>
-                    
-                    <img src="https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg" 
-                         class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center backdrop-blur-[2px]">
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] px-10 py-5">
-                                Tailor This Piece
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-between items-start">
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Aquatique Series</h3>
-                        <p class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Precision PVC • Marine Grade</p>
-                        <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
-                    </div>
-                    <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">01</span>
-                </div>
+            <div class="max-w-2xl mb-24">
+                <h4 class="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold mb-6">The 2026 Selection</h4>
+                <h2 class="text-5xl md:text-7xl font-extralight tracking-tighter mb-8 leading-[1.1]">
+                    Refined Form. <br/>
+                    <span class="italic font-serif">Enduring Substance.</span>
+                </h2>
+                <p class="text-stone-500 text-lg leading-relaxed border-l border-stone-200 pl-8 max-w-lg">
+                    Designed in collaboration with master artisans, our series reimagines the bathroom as a sanctuary of quiet luxury. Every piece is crafted from 100% water-resistant PVC.
+                </p>
             </div>
 
-            <div class="group cursor-pointer" onclick="ProductGallery.open('The Imperial Double', 'https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg', '300 MAD')">
-                <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
-                    <div class="absolute top-6 left-6 z-10">
-                        <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">
-                            Artisan Favorite
-                        </span>
-                    </div>
-                    <img src="https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg" 
-                         class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center backdrop-blur-[2px]">
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] px-10 py-5">
-                                Tailor This Piece
+            <div class="grid md:grid-cols-3 gap-x-12 gap-y-24">
+                
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
+                        <div class="absolute top-6 left-6 z-10">
+                            <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">
+                                Limited Edition
                             </span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-between items-start">
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Imperial Double</h3>
-                        <p class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">1.20m Master Suite Edition</p>
-                        <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
-                    </div>
-                    <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">02</span>
-                </div>
-            </div>
-
-            <div class="group cursor-pointer" onclick="ProductGallery.open('The Oasis Edition', 'https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800', '300 MAD')">
-                <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
-                    <div class="absolute top-6 left-6 z-10">
-                        <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">
-                            New Arrival
-                        </span>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800" 
-                         class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center backdrop-blur-[2px]">
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] px-10 py-5">
-                                Tailor This Piece
-                            </span>
+                        <img src="https://i.postimg.cc/QdFqkMMY/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg" 
+                             class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center backdrop-blur-[2px]">
+                            <span class="bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] px-10 py-5">Tailor This Piece</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="flex justify-between items-start">
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Oasis Edition</h3>
-                        <p class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Sculptural Minimalist Concept</p>
-                        <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
+                    <div class="flex justify-between items-start">
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Aquatique Series</h3>
+                            <p class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Precision PVC • Marine Grade</p>
+                            <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
+                        </div>
+                        <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">01</span>
                     </div>
-                    <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">03</span>
                 </div>
-            </div>
 
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
+                        <div class="absolute top-6 left-6 z-10">
+                            <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">
+                                Artisan Favorite
+                            </span>
+                        </div>
+                        <img src="https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg" 
+                             class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center backdrop-blur-[2px]">
+                            <span class="bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] px-10 py-5">Tailor This Piece</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Imperial Double</h3>
+                            <p class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">1.20m Master Suite Edition</p>
+                            <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
+                        </div>
+                        <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">02</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
+                        <div class="absolute top-6 left-6 z-10">
+                            <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">
+                                New Arrival
+                            </span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800" 
+                             class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center backdrop-blur-[2px]">
+                            <span class="bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] px-10 py-5">Tailor This Piece</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Oasis Edition</h3>
+                            <p class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Sculptural Minimalist Concept</p>
+                            <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
+                        </div>
+                        <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">03</span>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div class="col-span-2">
+                <h2 class="text-2xl font-bold mb-6 tracking-tighter uppercase">Florence</h2>
+                <p class="text-slate-400 max-w-sm mb-8">Redefining bathroom durability through modern PVC technology.</p>
+                <a href="https://wa.me/#" class="inline-flex items-center text-sm font-bold uppercase tracking-widest hover:text-neutral-300 transition-colors">
+                    Chat on WhatsApp →
+                </a>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Links</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">Why PVC?</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-stone-500">Showroom</h4>
+                <p class="text-sm text-slate-400">Casablanca, Morocco</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
