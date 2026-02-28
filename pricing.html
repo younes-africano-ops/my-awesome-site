@@ -21,7 +21,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Smooth fade for image transitions */
         .product-image {
             transition: opacity 0.4s ease-in-out, transform 2s ease-out;
         }
@@ -66,16 +65,16 @@
                         <img id="img-01" src="https://i.postimg.cc/8cBDjq5h/Whats-App-Image-2026-02-23-at-10-23-01-PM.jpg" class="product-image w-full h-full object-cover group-hover:scale-110">
                         
                         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-xl">
-                            <button onclick="updateProduct(1, 'black', event)" class="w-4 h-4 rounded-full bg-black border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(1, 'gray', event)" class="w-4 h-4 rounded-full bg-gray-500 border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(1, 'white', event)" class="w-4 h-4 rounded-full bg-white border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(1, 'chrome', event)" class="w-4 h-4 rounded-full bg-gradient-to-tr from-slate-400 to-slate-100 border border-stone-300 hover:scale-125 transition-transform"></button>
+                            <button onclick="updateProduct(1, 'black', event)" class="w-4 h-4 rounded-full bg-black border border-stone-300 hover:scale-125 transition-transform" title="Black"></button>
+                            <button onclick="updateProduct(1, 'gray', event)" class="w-4 h-4 rounded-full bg-gray-500 border border-stone-300 hover:scale-125 transition-transform" title="Gray"></button>
+                            <button onclick="updateProduct(1, 'white', event)" class="w-4 h-4 rounded-full bg-white border border-stone-300 hover:scale-125 transition-transform" title="White"></button>
+                            <button onclick="updateProduct(1, 'chrome', event)" class="w-4 h-4 rounded-full bg-gradient-to-tr from-slate-400 to-slate-100 border border-stone-300 hover:scale-125 transition-transform" title="Chrome"></button>
                         </div>
                     </div>
                     <div class="flex justify-between items-start">
                         <div class="space-y-2">
                             <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Aquatique Series</h3>
-                            <p id="sub-01" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Precision PVC • Marine Grade</p>
+                            <p id="sub-01" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Precision PVC • Black Edition</p>
                             <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
                         </div>
                         <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">01</span>
@@ -111,19 +110,19 @@
                         <div class="absolute top-6 left-6 z-10">
                             <span class="bg-white/90 backdrop-blur-sm text-black text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 shadow-sm">New Arrival</span>
                         </div>
-                        <img id="img-03" src="https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800" class="product-image w-full h-full object-cover group-hover:scale-110">
+                        <img id="img-03" src="https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg" class="product-image w-full h-full object-cover group-hover:scale-110">
                         
                         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-xl">
-                            <button onclick="updateProduct(3, 'black', event)" class="w-4 h-4 rounded-full bg-black border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(3, 'gray', event)" class="w-4 h-4 rounded-full bg-gray-500 border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(3, 'white', event)" class="w-4 h-4 rounded-full bg-white border border-stone-300 hover:scale-125 transition-transform"></button>
-                            <button onclick="updateProduct(3, 'chrome', event)" class="w-4 h-4 rounded-full bg-gradient-to-tr from-slate-400 to-slate-100 border border-stone-300 hover:scale-125 transition-transform"></button>
+                            <button onclick="updateProduct(3, 'style1', event)" class="w-4 h-4 rounded-full bg-stone-800 border border-stone-300 hover:scale-125 transition-transform" title="Style 1"></button>
+                            <button onclick="updateProduct(3, 'style2', event)" class="w-4 h-4 rounded-full bg-stone-600 border border-stone-300 hover:scale-125 transition-transform" title="Style 2"></button>
+                            <button onclick="updateProduct(3, 'style3', event)" class="w-4 h-4 rounded-full bg-stone-400 border border-stone-300 hover:scale-125 transition-transform" title="Style 3"></button>
+                            <button onclick="updateProduct(3, 'style4', event)" class="w-4 h-4 rounded-full bg-stone-200 border border-stone-300 hover:scale-125 transition-transform" title="Style 4"></button>
                         </div>
                     </div>
                     <div class="flex justify-between items-start">
                         <div class="space-y-2">
                             <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Oasis Edition</h3>
-                            <p id="sub-03" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Sculptural Minimalist Concept</p>
+                            <p id="sub-03" class="text-[11px] text-stone-400 uppercase tracking-widest italic font-serif">Sculptural Concept • Style 1</p>
                             <p class="text-sm font-medium pt-2 text-stone-900">From 300 MAD</p>
                         </div>
                         <span class="text-4xl font-serif italic text-stone-100 group-hover:text-stone-200 transition-colors">03</span>
@@ -157,7 +156,6 @@
     </footer>
 
     <script>
-        // Updated Database with your new Aquatique Series links
         const productData = {
             1: {
                 'black': 'https://i.postimg.cc/8cBDjq5h/Whats-App-Image-2026-02-23-at-10-23-01-PM.jpg',
@@ -172,14 +170,14 @@
                 'chrome': 'https://images.unsplash.com/photo-1621285853634-713b8dd6b5ee?auto=format&fit=crop&q=80&w=800'
             },
             3: {
-                'black': 'https://images.unsplash.com/photo-1507652313519-d4511f7b4ad2?auto=format&fit=crop&q=80&w=800',
-                'gray': 'https://images.unsplash.com/photo-1553133303-34c897395066?auto=format&fit=crop&q=80&w=800',
-                'white': 'https://images.unsplash.com/photo-1595856417223-2294cd43a220?auto=format&fit=crop&q=80&w=800',
-                'chrome': 'https://images.unsplash.com/photo-1564540583246-933e4fe3ad53?auto=format&fit=crop&q=80&w=800'
+                'style1': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
+                'style2': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
+                'style3': 'https://i.postimg.cc/65fnXq9T/Whats-App-Image-2026-02-23-at-10-21-33-PM-(3).jpg',
+                'style4': 'https://i.postimg.cc/GtkY9hGg/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg'
             }
         };
 
-        function updateProduct(productId, color, event) {
+        function updateProduct(productId, selection, event) {
             event.stopPropagation();
             
             const mainImg = document.getElementById(`img-0${productId}`);
@@ -188,13 +186,20 @@
             mainImg.style.opacity = '0';
 
             setTimeout(() => {
-                // Update Image
-                mainImg.src = productData[productId][color];
+                mainImg.src = productData[productId][selection];
                 
-                // Update Subtitle Text
-                const baseText = productId === 1 ? 'Precision PVC' : (productId === 2 ? '1.20m Master Suite' : 'Sculptural Concept');
-                subtitle.innerText = `${baseText} • ${color.charAt(0).toUpperCase() + color.slice(1)} Edition`;
+                let baseText = "";
+                let displayLabel = selection.charAt(0).toUpperCase() + selection.slice(1);
                 
+                if (productId === 1) baseText = "Precision PVC";
+                else if (productId === 2) baseText = "1.20m Master Suite";
+                else {
+                    baseText = "Sculptural Concept";
+                    // Format Style 1, Style 2, etc nicely
+                    displayLabel = selection.replace('style', 'Style ');
+                }
+                
+                subtitle.innerText = `${baseText} • ${displayLabel}`;
                 mainImg.style.opacity = '1';
             }, 300);
         }
