@@ -11,11 +11,9 @@
         body { font-family: 'Outfit', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        
         #product-modal { transition: opacity 0.3s ease, visibility 0.3s; }
         #modal-content { transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
         .modal-open #modal-content { transform: scale(1); }
-        .modal-closed #modal-content { transform: scale(0.95); }
         .product-image { transition: opacity 0.4s ease-in-out; }
     </style>
 </head>
@@ -36,6 +34,12 @@
 
     <section class="pt-40 pb-32 px-6">
         <div class="max-w-7xl mx-auto">
+            
+            <div class="mb-16">
+                <h2 class="text-4xl font-light tracking-tight">The 2026 Selection</h2>
+                <p class="text-stone-400 mt-2">Premium PVC Bathroom Solutions</p>
+            </div>
+
             <div class="grid md:grid-cols-3 gap-x-12 gap-y-24">
                 
                 <div class="group cursor-pointer" onclick="openModal(1)">
@@ -71,37 +75,63 @@
                     <p class="text-[11px] text-stone-400 uppercase italic font-serif">Sculptural Minimalist Concept</p>
                 </div>
 
+                <div class="group cursor-pointer" onclick="openModal(4)">
+                    <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
+                        <img id="grid-img-4" src="https://images.unsplash.com/photo-1620626011761-9963d7521576?q=80&w=800" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 px-6 py-3 text-[10px] uppercase tracking-widest font-bold">Quick View</span>
+                        </div>
+                    </div>
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Serene Basin</h3>
+                    <p class="text-[11px] text-stone-400 uppercase italic font-serif">Compact Luxury • Single Vanity</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="openModal(5)">
+                    <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
+                        <img id="grid-img-5" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 px-6 py-3 text-[10px] uppercase tracking-widest font-bold">Quick View</span>
+                        </div>
+                    </div>
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Horizon Floating</h3>
+                    <p class="text-[11px] text-stone-400 uppercase italic font-serif">Modern Wall-Mount Design</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="openModal(6)">
+                    <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
+                        <img id="grid-img-6" src="https://images.unsplash.com/photo-1615529328331-f8917597711f?q=80&w=800" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 px-6 py-3 text-[10px] uppercase tracking-widest font-bold">Quick View</span>
+                        </div>
+                    </div>
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em]">The Azure Single</h3>
+                    <p class="text-[11px] text-stone-400 uppercase italic font-serif">Minimalist PVC Sculpture</p>
+                </div>
+
             </div>
         </div>
     </section>
 
     <div id="product-modal" class="fixed inset-0 z-[60] invisible opacity-0 flex items-center justify-center px-4 md:px-0">
         <div class="absolute inset-0 bg-stone-900/90 backdrop-blur-sm" onclick="closeModal()"></div>
-        
         <div id="modal-content" class="relative bg-white w-full max-w-5xl grid md:grid-cols-2 overflow-hidden shadow-2xl scale-95 transition-transform duration-500">
             <button onclick="closeModal()" class="absolute top-4 right-4 z-50 text-stone-400 hover:text-black transition-colors text-2xl">&times;</button>
-            
             <div class="bg-stone-100 aspect-square md:aspect-auto">
                 <img id="modal-img" src="" class="w-full h-full object-cover transition-opacity duration-300">
             </div>
-
             <div class="p-12 flex flex-col justify-center space-y-8">
                 <div>
                     <h4 class="text-[10px] uppercase tracking-[0.4em] text-stone-400 mb-2">Collection 2026</h4>
                     <h2 id="modal-title" class="text-3xl font-light tracking-tight mb-4">Product Name</h2>
                     <p id="modal-desc" class="text-stone-500 text-sm leading-relaxed">Luxury finishes in 100% water-resistant PVC.</p>
                 </div>
-
                 <div class="space-y-4 border-t border-stone-100 pt-8">
                     <span class="text-[10px] uppercase tracking-widest font-bold">Select Finish</span>
                     <div id="modal-color-buttons" class="flex flex-wrap gap-4"></div>
                     <p id="modal-color-name" class="text-xs italic text-stone-400 uppercase tracking-widest"></p>
                 </div>
-
                 <div class="pt-8">
-                    <a id="modal-wa-link" href="#" target="_blank" class="inline-block w-full bg-slate-900 text-white text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">
-                        Inquire via WhatsApp
-                    </a>
+                    <a id="modal-wa-link" href="#" target="_blank" class="inline-block w-full bg-slate-900 text-white text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Inquire via WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -111,7 +141,7 @@
         const productData = {
             1: {
                 title: "The Aquatique Series",
-                desc: "Precision engineered with waterproof PVC finishes, ideal for high-humidity luxury environments.",
+                desc: "Precision engineered with waterproof PVC finishes.",
                 colors: {
                     'black': 'https://i.postimg.cc/8cBDjq5h/Whats-App-Image-2026-02-23-at-10-23-01-PM.jpg',
                     'gray': 'https://i.postimg.cc/KjyxcZZb/Whats-App-Image-2026-02-23-at-10-23-01-PM-(2).jpg',
@@ -121,7 +151,7 @@
             },
             2: {
                 title: "The Imperial Double",
-                desc: "A wide-format 1.20m masterpiece providing ample space and a commanding presence in your master suite.",
+                desc: "A wide-format 1.20m masterpiece for master suites.",
                 colors: {
                     'black': 'https://i.postimg.cc/gjFL9XnP/Gemini-Generated-Image-3wh87f3wh87f3wh8.png',
                     'gray': 'https://i.postimg.cc/VLw0DCxr/Gemini-Generated-Image-3wh87f3wh87f3wh8-(2).png',
@@ -130,12 +160,34 @@
             },
             3: {
                 title: "The Oasis Edition",
-                desc: "Sculptural minimalism meets daily utility. Available in four distinct design variants.",
+                desc: "Sculptural minimalism meets daily utility.",
                 colors: {
                     'Style 1': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
                     'Style 2': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
                     'Style 3': 'https://i.postimg.cc/65fnXq9T/Whats-App-Image-2026-02-23-at-10-21-33-PM-(3).jpg',
                     'Style 4': 'https://i.postimg.cc/GtkY9hGg/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg'
+                }
+            },
+            4: {
+                title: "The Serene Basin",
+                desc: "Ideal for guest bathrooms, focusing on space-saving elegance.",
+                colors: {
+                    'white': 'https://images.unsplash.com/photo-1620626011761-9963d7521576?q=80&w=800',
+                    'gray': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800'
+                }
+            },
+            5: {
+                title: "The Horizon Floating",
+                desc: "A wall-mounted solution that creates a sense of openness.",
+                colors: {
+                    'white': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800'
+                }
+            },
+            6: {
+                title: "The Azure Single",
+                desc: "Hand-finished PVC with a focus on seamless curves.",
+                colors: {
+                    'white': 'https://images.unsplash.com/photo-1615529328331-f8917597711f?q=80&w=800'
                 }
             }
         };
@@ -144,26 +196,20 @@
             const product = productData[id];
             const modal = document.getElementById('product-modal');
             const colorContainer = document.getElementById('modal-color-buttons');
-            
             document.getElementById('modal-title').innerText = product.title;
             document.getElementById('modal-desc').innerText = product.desc;
-            
             colorContainer.innerHTML = '';
             Object.keys(product.colors).forEach((color, index) => {
                 const btn = document.createElement('button');
                 btn.className = `w-8 h-8 rounded-full border border-stone-200 transition-transform hover:scale-110`;
-                
                 if(color.toLowerCase() === 'white') btn.style.backgroundColor = '#fff';
                 else if(color.toLowerCase() === 'black') btn.style.backgroundColor = '#000';
                 else if(color.toLowerCase() === 'gray') btn.style.backgroundColor = '#888';
-                else if(color.toLowerCase() === 'chrome') btn.style.background = 'linear-gradient(45deg, #bbb, #fff, #bbb)';
-                else btn.style.backgroundColor = '#e5e7eb'; // Default for Styles
-
+                else btn.style.backgroundColor = '#e5e7eb';
                 btn.onclick = () => updateModalImage(id, color);
                 colorContainer.appendChild(btn);
                 if(index === 0) updateModalImage(id, color);
             });
-
             modal.classList.remove('invisible', 'opacity-0');
             modal.classList.add('modal-open');
         }
@@ -178,7 +224,6 @@
             const img = document.getElementById('modal-img');
             const label = document.getElementById('modal-color-name');
             const newSrc = productData[productId].colors[colorName];
-            
             img.style.opacity = '0';
             setTimeout(() => {
                 img.src = newSrc;
@@ -186,7 +231,6 @@
                 img.style.opacity = '1';
                 document.getElementById(`grid-img-${productId}`).src = newSrc;
             }, 200);
-
             const message = encodeURIComponent(`Hi, I'm interested in ${productData[productId].title} (${colorName}).`);
             document.getElementById('modal-wa-link').href = `https://wa.me/212600000000?text=${message}`;
         }
