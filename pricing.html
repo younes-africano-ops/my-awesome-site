@@ -12,15 +12,11 @@
         .font-serif { font-family: 'Playfair Display', serif; }
         .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
         
-        /* Modal Animation */
-        #product-modal {
-            transition: opacity 0.3s ease, visibility 0.3s;
-        }
-        #modal-content {
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+        #product-modal { transition: opacity 0.3s ease, visibility 0.3s; }
+        #modal-content { transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
         .modal-open #modal-content { transform: scale(1); }
         .modal-closed #modal-content { transform: scale(0.95); }
+        .product-image { transition: opacity 0.4s ease-in-out; }
     </style>
 </head>
 <body class="bg-[#FCFAFA] text-slate-900 antialiased">
@@ -55,7 +51,7 @@
 
                 <div class="group cursor-pointer" onclick="openModal(2)">
                     <div class="relative overflow-hidden aspect-[4/5] mb-8 bg-stone-200">
-                        <img id="grid-img-2" src="https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <img id="grid-img-2" src="https://i.postimg.cc/gjFL9XnP/Gemini-Generated-Image-3wh87f3wh87f3wh8.png" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <span class="bg-white/90 px-6 py-3 text-[10px] uppercase tracking-widest font-bold">Quick View</span>
                         </div>
@@ -91,20 +87,19 @@
 
             <div class="p-12 flex flex-col justify-center space-y-8">
                 <div>
-                    <h4 id="modal-category" class="text-[10px] uppercase tracking-[0.4em] text-stone-400 mb-2">Collection 2026</h4>
+                    <h4 class="text-[10px] uppercase tracking-[0.4em] text-stone-400 mb-2">Collection 2026</h4>
                     <h2 id="modal-title" class="text-3xl font-light tracking-tight mb-4">Product Name</h2>
-                    <p id="modal-desc" class="text-stone-500 text-sm leading-relaxed">Crafted with marine-grade PVC for ultimate durability and timeless aesthetic.</p>
+                    <p id="modal-desc" class="text-stone-500 text-sm leading-relaxed">Luxury finishes in 100% water-resistant PVC.</p>
                 </div>
 
                 <div class="space-y-4 border-t border-stone-100 pt-8">
                     <span class="text-[10px] uppercase tracking-widest font-bold">Select Finish</span>
-                    <div id="modal-color-buttons" class="flex space-x-4">
-                        </div>
-                    <p id="modal-color-name" class="text-xs italic text-stone-400">Black Finish</p>
+                    <div id="modal-color-buttons" class="flex flex-wrap gap-4"></div>
+                    <p id="modal-color-name" class="text-xs italic text-stone-400 uppercase tracking-widest"></p>
                 </div>
 
                 <div class="pt-8">
-                    <a id="modal-wa-link" href="#" class="inline-block w-full bg-slate-900 text-white text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">
+                    <a id="modal-wa-link" href="#" target="_blank" class="inline-block w-full bg-slate-900 text-white text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">
                         Inquire via WhatsApp
                     </a>
                 </div>
@@ -126,19 +121,18 @@
             },
             2: {
                 title: "The Imperial Double",
-                desc: "A wide-format 1.20m masterpiece providing ample space and a commanding presence.",
+                desc: "A wide-format 1.20m masterpiece providing ample space and a commanding presence in your master suite.",
                 colors: {
-                    'black': 'https://i.postimg.cc/R031H194/Whats-App-Image-2026-02-23-at-10-20-17-PM.jpg',
-                    'gray': 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800',
-                    'white': 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?q=80&w=800',
-                    'chrome': 'https://images.unsplash.com/photo-1621285853634-713b8dd6b5ee?q=80&w=800'
+                    'black': 'https://i.postimg.cc/gjFL9XnP/Gemini-Generated-Image-3wh87f3wh87f3wh8.png',
+                    'gray': 'https://i.postimg.cc/VLw0DCxr/Gemini-Generated-Image-3wh87f3wh87f3wh8-(2).png',
+                    'white': 'https://i.postimg.cc/MZVj7Dr3/Gemini-Generated-Image-3wh87f3wh87f3wh8-(1).png'
                 }
             },
             3: {
                 title: "The Oasis Edition",
-                desc: "Sculptural minimalism meets daily utility. Choose from four distinct stylistic variants.",
+                desc: "Sculptural minimalism meets daily utility. Available in four distinct design variants.",
                 colors: {
-                    'Style 1': 'https://i.postimg.cc/QdstjJf4/Whats-App-Image-2026-02-23-at-10-21-53-PM.jpg',
+                    'Style 1': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
                     'Style 2': 'https://i.postimg.cc/x8SNrDhv/Whats-App-Image-2026-02-23-at-10-21-33-PM-(1).jpg',
                     'Style 3': 'https://i.postimg.cc/65fnXq9T/Whats-App-Image-2026-02-23-at-10-21-33-PM-(3).jpg',
                     'Style 4': 'https://i.postimg.cc/GtkY9hGg/Whats-App-Image-2026-02-23-at-10-21-33-PM.jpg'
@@ -151,27 +145,22 @@
             const modal = document.getElementById('product-modal');
             const colorContainer = document.getElementById('modal-color-buttons');
             
-            // Set initial content
             document.getElementById('modal-title').innerText = product.title;
             document.getElementById('modal-desc').innerText = product.desc;
             
-            // Clear and build color buttons
             colorContainer.innerHTML = '';
             Object.keys(product.colors).forEach((color, index) => {
                 const btn = document.createElement('button');
                 btn.className = `w-8 h-8 rounded-full border border-stone-200 transition-transform hover:scale-110`;
                 
-                // Set color preview
-                if(color === 'white') btn.style.backgroundColor = '#fff';
-                else if(color === 'black') btn.style.backgroundColor = '#000';
-                else if(color === 'gray') btn.style.backgroundColor = '#888';
-                else if(color === 'chrome') btn.style.background = 'linear-gradient(45deg, #bbb, #fff, #bbb)';
-                else btn.style.backgroundColor = '#d1d5db'; // Default for "Styles"
+                if(color.toLowerCase() === 'white') btn.style.backgroundColor = '#fff';
+                else if(color.toLowerCase() === 'black') btn.style.backgroundColor = '#000';
+                else if(color.toLowerCase() === 'gray') btn.style.backgroundColor = '#888';
+                else if(color.toLowerCase() === 'chrome') btn.style.background = 'linear-gradient(45deg, #bbb, #fff, #bbb)';
+                else btn.style.backgroundColor = '#e5e7eb'; // Default for Styles
 
                 btn.onclick = () => updateModalImage(id, color);
                 colorContainer.appendChild(btn);
-
-                // Load first color by default
                 if(index === 0) updateModalImage(id, color);
             });
 
@@ -193,15 +182,13 @@
             img.style.opacity = '0';
             setTimeout(() => {
                 img.src = newSrc;
-                label.innerText = colorName.toUpperCase() + " FINISH";
+                label.innerText = colorName + " FINISH";
                 img.style.opacity = '1';
-                // Also update the grid image to match
                 document.getElementById(`grid-img-${productId}`).src = newSrc;
             }, 200);
 
-            // Update WhatsApp Link
-            const message = encodeURIComponent(`Hi, I am interested in ${productData[productId].title} in ${colorName} finish.`);
-            document.getElementById('modal-wa-link').href = `https://wa.me/YOURNUMBER?text=${message}`;
+            const message = encodeURIComponent(`Hi, I'm interested in ${productData[productId].title} (${colorName}).`);
+            document.getElementById('modal-wa-link').href = `https://wa.me/212600000000?text=${message}`;
         }
     </script>
 </body>
