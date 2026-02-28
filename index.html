@@ -8,129 +8,152 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Outfit', sans-serif; -webkit-tap-highlight-color: transparent; }
-        h1, h2, h3 { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         
-        .glass-nav { 
-            background: rgba(255, 255, 255, 0.9); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        /* Smooth Mobile Menu Transition */
-        #mobile-menu {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
-        }
-        #mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Luxury Reveal Animation */
-        .reveal {
-            animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-        }
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* Smooth Mobile Nav scrollbar hide */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .reveal { animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-900 antialiased">
 
     <nav class="fixed w-full z-[100] glass-nav border-b border-stone-200">
-        <div class="max-w-7xl mx-auto px-5 md:px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase text-slate-900">Florence</a>
-            
-            <div class="hidden lg:flex space-x-10 text-[11px] font-bold tracking-[0.2em] uppercase">
-                <a href="index.html" class="hover:text-neutral-400 transition-colors">Home</a>
-                <a href="pricing.html" class="hover:text-neutral-400 transition-colors">Collections</a>
-                <a href="about.html" class="hover:text-neutral-400 transition-colors">Why PVC?</a>
-                <a href="contact.html" class="hover:text-neutral-400 transition-colors">Contact</a>
+        <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter uppercase">Florence</a>
+            <div class="hidden md:flex space-x-10 text-[11px] font-bold tracking-[0.2em] uppercase">
+                <a href="index.html" class="text-slate-900 border-b border-black pb-1">Home</a>
+                <a href="pricing.html" class="hover:text-stone-400 transition-colors">Collections</a>
+                <a href="about.html" class="hover:text-stone-400 transition-colors">Why PVC?</a>
+                <a href="contact.html" class="hover:text-stone-400 transition-colors">Contact</a>
             </div>
-
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/#" class="bg-slate-900 text-white px-5 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-slate-800 transition-all active:scale-95">
-                    <span class="hidden sm:inline">Get a Quote</span>
-                    <span class="sm:hidden">Quote</span>
-                </a>
-                
-                <button onclick="toggleMenu()" class="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-[110]">
-                    <span id="bar1" class="w-6 h-0.5 bg-slate-900 transition-transform duration-300"></span>
-                    <span id="bar2" class="w-6 h-0.5 bg-slate-900 transition-opacity duration-300"></span>
-                    <span id="bar3" class="w-6 h-0.5 bg-slate-900 transition-transform duration-300"></span>
-                </button>
-            </div>
+            <a href="https://wa.me/#" class="bg-slate-900 text-white px-5 py-2.5 text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all">Quote</a>
         </div>
-
-        <div id="mobile-menu" class="fixed inset-0 h-screen bg-white z-[105] flex flex-col items-center justify-center lg:hidden">
-            <div class="flex flex-col items-center space-y-8 text-center">
-                <a href="index.html" onclick="toggleMenu()" class="text-2xl font-bold tracking-widest uppercase">Home</a>
-                <a href="pricing.html" onclick="toggleMenu()" class="text-2xl font-bold tracking-widest uppercase">Collections</a>
-                <a href="about.html" onclick="toggleMenu()" class="text-2xl font-bold tracking-widest uppercase">Why PVC?</a>
-                <a href="contact.html" onclick="toggleMenu()" class="text-2xl font-bold tracking-widest uppercase">Contact</a>
-                
-                <div class="pt-10">
-                    <p class="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-4">Inquiries</p>
-                    <p class="text-sm font-medium text-slate-900">+212 5XX-XXXXXX</p>
-                </div>
+        <div class="md:hidden w-full overflow-x-auto no-scrollbar border-t border-stone-100 bg-white/50">
+            <div class="flex whitespace-nowrap px-6 py-3 space-x-8 text-[10px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-slate-900 border-b-2 border-slate-900">Home</a>
+                <a href="pricing.html" class="text-stone-400">Collections</a>
+                <a href="about.html" class="text-stone-400">Why PVC?</a>
+                <a href="contact.html" class="text-stone-400">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-32 pb-16 lg:pt-52 lg:pb-32 px-6 reveal">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div class="order-2 lg:order-1 text-center lg:text-left">
+    <section class="relative pt-40 pb-20 lg:pt-52 lg:pb-32 px-6 reveal">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="text-center lg:text-left">
                 <span class="inline-block py-1.5 px-4 bg-stone-200 text-[9px] font-bold uppercase tracking-[0.3em] mb-6">Attainable Luxury</span>
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 lg:mb-8 tracking-tight text-slate-900">
-                    Modern Bathrooms, <br><span class="text-neutral-400">Built for Water.</span>
-                </h1>
-                <p class="text-base md:text-lg text-slate-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                    Upgrade to 100% water-resistant PVC cabinetry. Elegant, durable, and designed to never swell, rot, or fade.
-                </p>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-8 tracking-tight">Modern Bathrooms, <br><span class="text-neutral-400">Built for Water.</span></h1>
+                <p class="text-lg text-slate-600 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">Upgrade to 100% water-resistant PVC cabinetry. Elegant, durable, and designed to never swell, rot, or fade.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="pricing.html" class="bg-slate-900 text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-slate-800 transition-all shadow-xl">Explore Collections</a>
-                    <a href="#proof" class="border border-stone-300 px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-stone-100 transition-all">The Science</a>
+                    <a href="pricing.html" class="bg-slate-900 text-white px-10 py-5 text-xs font-bold uppercase tracking-widest shadow-xl active:bg-slate-800">Explore Collections</a>
+                    <a href="#details" class="border border-stone-300 px-10 py-5 text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors">Technical Proof</a>
                 </div>
             </div>
-            
-            <div class="order-1 lg:order-2 relative px-4 sm:px-0">
-                <div class="overflow-hidden bg-stone-200 aspect-square md:aspect-video lg:aspect-square">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200" alt="Modern Bathroom" class="w-full h-full object-cover grayscale-[20%]">
-                </div>
-                <div class="absolute -bottom-4 -left-2 md:-bottom-6 md:-left-6 bg-white p-6 md:p-8 shadow-2xl">
-                    <p class="text-2xl md:text-3xl font-bold">100%</p>
-                    <p class="text-[9px] uppercase tracking-widest text-neutral-500 font-bold">Water Resistant</p>
+            <div class="relative group">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200" class="w-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000">
+                <div class="absolute -bottom-6 -left-6 bg-white p-8 shadow-2xl hidden md:block">
+                    <p class="text-3xl font-bold tracking-tighter">100%</p>
+                    <p class="text-[9px] uppercase tracking-widest text-neutral-400 font-bold">Water Resistant</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const bar1 = document.getElementById('bar1');
-            const bar2 = document.getElementById('bar2');
-            const bar3 = document.getElementById('bar3');
-            
-            menu.classList.toggle('active');
-            
-            // Hamburger Animation
-            if (menu.classList.contains('active')) {
-                bar1.style.transform = 'translateY(8px) rotate(45deg)';
-                bar2.style.opacity = '0';
-                bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
-                document.body.style.overflow = 'hidden'; // Lock background scroll
-            } else {
-                bar1.style.transform = 'none';
-                bar2.style.opacity = '1';
-                bar3.style.transform = 'none';
-                document.body.style.overflow = ''; // Unlock scroll
-            }
-        }
-    </script>
+    <section id="details" class="py-24 bg-white px-6 border-t border-stone-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center mb-32">
+                <div>
+                    <h4 class="text-[10px] uppercase tracking-[0.4em] text-stone-400 font-bold mb-6">Material Science</h4>
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tighter mb-8 leading-tight">Marine-Grade Engineering <br/> For your Bathroom</h2>
+                    <p class="text-slate-600 mb-8 leading-relaxed">At Florence, we replaced the fragile standards of the past. Our proprietary High-Density PVC is a non-porous polymer engineered to remain structurally inert even in the most humid environments.</p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900 mt-2"></span>
+                            <div>
+                                <h4 class="text-sm font-bold uppercase tracking-widest">Termite & Pest Immunity</h4>
+                                <p class="text-sm text-slate-500">Synthetic composition makes it naturally unattractive to pests, ensuring zero internal damage over time.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-900 mt-2"></span>
+                            <div>
+                                <h4 class="text-sm font-bold uppercase tracking-widest">National Availability</h4>
+                                <p class="text-sm text-slate-500">We provide white-glove delivery and service exclusively within the country.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-stone-50 p-12 border border-stone-100">
+                    <h4 class="text-[10px] uppercase tracking-[0.4em] text-stone-400 font-bold mb-8">The Bespoke Process</h4>
+                    <div class="space-y-12">
+                        <div class="relative pl-12">
+                            <span class="absolute left-0 top-0 text-2xl font-serif italic text-stone-200">01</span>
+                            <h5 class="text-xs font-bold uppercase tracking-widest mb-2">Design Consultation</h5>
+                            <p class="text-sm text-slate-500">Customize dimensions to fit your specific bathroom layout perfectly.</p>
+                        </div>
+                        <div class="relative pl-12">
+                            <span class="absolute left-0 top-0 text-2xl font-serif italic text-stone-200">02</span>
+                            <h5 class="text-xs font-bold uppercase tracking-widest mb-2">Finish Selection</h5>
+                            <p class="text-sm text-slate-500">Choose from stone textures, obsidian matte, or artisan wood-grains.</p>
+                        </div>
+                        <div class="relative pl-12">
+                            <span class="absolute left-0 top-0 text-2xl font-serif italic text-stone-200">03</span>
+                            <h5 class="text-xs font-bold uppercase tracking-widest mb-2">Precision Craft</h5>
+                            <p class="text-sm text-slate-500">CNC-machined in our national facility for a millimeter-perfect fit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-stone-100 pt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <p class="text-2xl font-bold mb-1">100%</p>
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold">Waterproof</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold mb-1">0%</p>
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold">Swelling</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold mb-1">Fire</p>
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold">Retardant</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold mb-1">National</p>
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold">Shipping Only</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div class="col-span-2">
+                <h2 class="text-2xl font-bold mb-6 tracking-tighter uppercase">Florence</h2>
+                <p class="text-slate-400 max-w-sm mb-8">Premium PVC cabinetry meeting artisan aesthetics. 100% water-resistant solutions for modern homes.</p>
+                <a href="https://wa.me/#" class="text-sm font-bold uppercase tracking-widest hover:text-stone-300 transition-colors">WhatsApp Inquiries →</a>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-stone-500">Links</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li><a href="pricing.html" class="hover:text-white transition-colors">Collections</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">Why PVC?</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-stone-500">Contact</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li>Showroom: Casablanca</li>
+                    <li>Email: info@florence.ma</li>
+                    <li class="text-stone-500 italic">Delivery: Nationwide Only</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
