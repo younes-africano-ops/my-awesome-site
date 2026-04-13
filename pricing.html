@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Collection | Florence Luxury PVC</title>
+    <title>The Collection | Bricoshop Luxury PVC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
     
     <style>
        #product-modal { 
     transition: opacity 0.3s ease, visibility 0.3s; 
-    /* This is the key: it lets you click through the hidden modal */
     pointer-events: none; 
     visibility: hidden;
     opacity: 0;
@@ -27,14 +26,14 @@
 
     <nav class="fixed w-full z-40 glass-nav border-b border-stone-200">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Florence</a>
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a>
             <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide uppercase">
                 <a href="index.html" class="hover:text-neutral-500 transition-colors">Home</a>
                 <a href="pricing.html" class="text-slate-900 border-b border-black pb-1">Collections</a>
                 <a href="about.html" class="hover:text-neutral-500 transition-colors">Why PVC?</a>
                 <a href="contact.html" class="hover:text-neutral-500 transition-colors">Contact</a>
             </div>
-            <a href="https://wa.me/#" class="bg-slate-900 text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Get a Quote</a>
+            <a href="https://wa.me/212661176190" target="_blank" class="bg-slate-900 text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all">Get a Quote</a>
         </div>
     </nav>
 
@@ -238,7 +237,7 @@
                 document.getElementById(`grid-img-${productId}`).src = newSrc;
             }, 200);
             const message = encodeURIComponent(`Hi, I'm interested in ${productData[productId].title} (${colorName}).`);
-            document.getElementById('modal-wa-link').href = `https://wa.me/212600000000?text=${message}`;
+            document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${message}`;
         }
     </script>
 </body>
