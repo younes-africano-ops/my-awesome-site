@@ -8,13 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Outfit', sans-serif; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        #product-modal { transition: opacity 0.3s ease, visibility 0.3s; }
-        #modal-content { transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        .modal-open #modal-content { transform: scale(1); }
-        .product-image { transition: opacity 0.4s ease-in-out; }
+       #product-modal { 
+    transition: opacity 0.3s ease, visibility 0.3s; 
+    /* This is the key: it lets you click through the hidden modal */
+    pointer-events: none; 
+    visibility: hidden;
+    opacity: 0;
+}
+
+#product-modal.modal-open { 
+    pointer-events: auto; 
+    visibility: visible; 
+    opacity: 1; 
+}
     </style>
 </head>
 <body class="bg-[#FCFAFA] text-slate-900 antialiased">
