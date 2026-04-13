@@ -2,66 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Professional Catalog | Bricoshop Luxury PVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Why PVC | Bricoshop Luxury Engineering</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #fcfcfc; }
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); }
-        
-        /* Smooth Drawer Animation */
-        .category-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.4s ease;
-        }
-        .category-section.active .category-content {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .market-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
-        }
-        .market-card:hover {
-            border-color: #e5e7eb;
-            background: #fff;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
-        }
-
-        .category-banner {
-            background-size: cover;
-            background-position: center;
-            height: 120px;
-            position: relative;
-        }
-        .category-banner::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, rgba(0,0,0,0.7), transparent);
-        }
-
-        #product-modal { 
-            transition: all 0.3s ease;
-            pointer-events: none; 
-            visibility: hidden;
-            opacity: 0;
-            z-index: 100;
-        }
-        #product-modal.active { 
-            pointer-events: auto; 
-            visibility: visible; 
-            opacity: 1; 
-        }
-        
-        .badge-stock { background: #ecfdf5; color: #059669; padding: 2px 8px; border-radius: 4px; font-size: 8px; font-weight: 700; text-transform: uppercase; }
+        .hero-zoom { overflow: hidden; }
+        .hero-zoom img { transition: transform 20s linear; transform: scale(1); }
+        .hero-zoom:hover img { transform: scale(1.1); }
+        .stat-card { background: white; border: 1px solid #f1f1f1; transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); border-color: #e5e7eb; }
     </style>
 </head>
 <body class="text-slate-900 antialiased">
@@ -70,10 +23,12 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-12">
                 <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a>
-                <div class="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
-                    <a href="index.html" class="hover:text-black">Home</a>
-                    <a href="about.html" class="hover:text-black">Why PVC?</a>
-                    <a href="pricing.html" class="text-black border-b border-black pb-1">Collections</a>
+                <div class="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
+                    <a href="index.html" class="hover:text-black transition-colors">Home</a>
+                    <a href="pricing.html" class="hover:text-black transition-colors">Collections</a>
+                    <a href="about.html" class="text-black border-b border-black pb-1">Why PVC?</a>
+                    <a href="#company" class="hover:text-black transition-colors">About</a>
+                    <a href="contact.html" class="hover:text-black transition-colors">Contact</a>
                 </div>
             </div>
             <a href="https://wa.me/212661176190" target="_blank" class="bg-slate-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-black transition-all">
@@ -82,190 +37,78 @@
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 px-6 max-w-5xl mx-auto">
-        
-        <header class="mb-12 border-b border-stone-100 pb-8">
-            <h1 class="text-3xl font-bold uppercase tracking-tighter mb-2">The 2026 Collection</h1>
-            <p class="text-stone-400 text-sm uppercase tracking-widest">Select a category to browse our industrial-grade PVC solutions</p>
+    <main class="pt-40 pb-24 px-6 max-w-6xl mx-auto">
+        <header class="max-w-3xl mb-20">
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-4 block">Material Excellence</span>
+            <h1 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-6 leading-[0.9]">Engineering for <br><span class="text-stone-400 text-3xl md:text-5xl">the Coastal Climate.</span></h1>
+            <p class="text-stone-500 text-sm uppercase tracking-[0.2em] leading-loose">Wood fails. MDF swells. Our high-density PVC technology remains physically unchanged by humidity.</p>
         </header>
 
-        <div id="market-container" class="space-y-6">
-            
+        <div class="grid md:grid-cols-2 gap-8 mb-32 items-center">
+            <div class="hero-zoom rounded-[2rem] h-[550px] shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale-[30%]">
             </div>
+            <div class="p-4 md:p-12">
+                <h2 class="text-2xl font-bold uppercase tracking-tight mb-8">The 100% Waterproof Standard</h2>
+                <p class="text-stone-600 leading-relaxed mb-10 text-lg font-light">
+                    In Morocco, humidity is the greatest challenge for home interiors. Our PVC solutions are chemically inert. They do not absorb moisture, they do not attract termites, and they never peel.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="stat-card p-6 rounded-2xl">
+                        <i class="fas fa-shield-virus text-xl mb-4 text-stone-300"></i>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest">Pest Proof</h4>
+                    </div>
+                    <div class="stat-card p-6 rounded-2xl">
+                        <i class="fas fa-fire-extinguisher text-xl mb-4 text-stone-300"></i>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest">Fire Rated</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <section id="company" class="pt-24 border-t border-stone-100">
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="md:col-span-1">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-stone-400 mb-4">Our Heritage</h3>
+                    <h2 class="text-3xl font-bold uppercase tracking-tighter italic">Florence by Bricoshop</h2>
+                </div>
+                <div class="md:col-span-2 space-y-8">
+                    <p class="text-xl text-stone-700 leading-relaxed font-light italic">
+                        "Redefining the expectation of what a bathroom cabinet can be."
+                    </p>
+                    <p class="text-stone-500 leading-relaxed">
+                        Based in Morocco, Bricoshop provides professional-grade PVC manufacturing for both residential and commercial projects. Our flagship **Florence Collection** was born from a need for aesthetics that survive the test of time and water. We don't just sell cabinets; we provide peace of mind.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="h-[1px] w-12 bg-slate-900 mt-3"></div>
+                        <p class="text-[11px] font-bold uppercase tracking-widest">Est. 2026 | Rabat-Sale-Kenitra</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <section class="bg-white border-t border-stone-100 py-16">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
-            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-300 mb-8">Official Channels</span>
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-300 mb-8">Follow Our Work</span>
             <div class="flex gap-12">
                 <a href="https://www.instagram.com/brico.shop2/" target="_blank" class="text-stone-400 hover:text-black text-2xl transition-all"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100091613435811" target="_blank" class="text-stone-400 hover:text-black text-2xl transition-all"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://web.facebook.com/profile.php?id=100091613435811" target="_blank" class="text-stone-400 hover:text-black text-2xl transition-all"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.tiktok.com/@www.tiktok.touhami72" target="_blank" class="text-stone-400 hover:text-black text-2xl transition-all"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
     </section>
 
     <footer class="bg-slate-950 text-white py-12 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <div>
                 <h4 class="text-lg font-bold uppercase tracking-tighter mb-1">Bricoshop Morocco</h4>
-                <p class="text-slate-500 text-[10px] uppercase tracking-widest">Premium PVC Manufacturing & Distribution</p>
+                <p class="text-slate-500 text-[10px] uppercase tracking-widest">Luxury PVC Engineering</p>
             </div>
-            <p class="text-slate-600 text-[9px] uppercase tracking-[0.3em]">© 2026 All Rights Reserved</p>
+            <p class="text-slate-600 text-[9px] uppercase tracking-[0.3em]">© 2026 Florence Line. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <div id="product-modal" class="fixed inset-0 flex items-end sm:items-center justify-center">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeModal()"></div>
-        <div class="relative bg-white w-full max-w-xl h-[85vh] sm:h-auto overflow-y-auto rounded-t-[2.5rem] sm:rounded-2xl p-8">
-            <div class="w-12 h-1.5 bg-stone-100 rounded-full mx-auto mb-8 sm:hidden"></div>
-            
-            <div class="flex flex-col sm:flex-row gap-8">
-                <div class="w-full sm:w-1/2 aspect-square rounded-xl overflow-hidden bg-stone-50">
-                    <img id="modal-img" src="" class="w-full h-full object-cover">
-                </div>
-                
-                <div class="w-full sm:w-1/2 flex flex-col justify-center">
-                    <span class="badge-stock w-fit mb-4">Industrial Grade</span>
-                    <h2 id="modal-title" class="text-2xl font-bold uppercase tracking-tighter mb-2"></h2>
-                    <p id="modal-id" class="text-xs text-stone-400 font-mono mb-6"></p>
-                    
-                    <div class="mb-8">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-4">Select Finish</label>
-                        <div id="modal-color-swatches" class="flex gap-4"></div>
-                    </div>
-
-                    <a id="modal-wa-link" href="#" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white text-center py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
-                        Check Availability
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const colorOptions = [
-            { name: 'Arctic White', hex: '#ffffff', img: 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=800' },
-            { name: 'Onyx Matte', hex: '#1a1a1a', img: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=800' },
-            { name: 'Brushed Chrome', hex: '#cbd5e1', img: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800' },
-            { name: 'Natural Stone', hex: '#71717a', img: 'https://images.unsplash.com/photo-1560440021-33f9b867899d?w=800' }
-        ];
-
-        const catalogData = [
-            { 
-                name: 'Premium Sinks', 
-                id: 'sinks', 
-                prefix: 'SK', 
-                banner: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1200',
-                desc: 'Anti-scratch surface / Waterproof'
-            },
-            { 
-                name: 'Bathroom Vanities', 
-                id: 'bathrooms', 
-                prefix: 'BT', 
-                banner: 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=1200',
-                desc: '100% Humidity Proof / Solid PVC'
-            },
-            { 
-                name: 'High-Density PVC Sheets', 
-                id: 'pvc', 
-                prefix: 'PV', 
-                banner: 'https://images.unsplash.com/photo-1560440021-33f9b867899d?w=1200',
-                desc: 'Industrial Grade / UV Protected'
-            },
-            { 
-                name: 'Luxury Accessories', 
-                id: 'accessories', 
-                prefix: 'AC', 
-                banner: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=1200',
-                desc: 'PVD Coated / Corrosion Resistant'
-            }
-        ];
-
-        const container = document.getElementById('market-container');
-
-        catalogData.forEach(cat => {
-            const section = document.createElement('div');
-            section.className = "category-section bg-white border border-stone-100 rounded-3xl overflow-hidden shadow-sm";
-            
-            section.innerHTML = `
-                <div class="category-banner flex items-center px-8 cursor-pointer group" style="background-image: url('${cat.banner}')" onclick="this.parentElement.classList.toggle('active')">
-                    <div class="relative z-10 flex items-center justify-between w-full">
-                        <div>
-                            <h2 class="text-white text-xl font-bold uppercase tracking-tighter">${cat.name}</h2>
-                            <p class="text-stone-300 text-[9px] uppercase tracking-widest font-medium">${cat.desc}</p>
-                        </div>
-                        <div class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all">
-                            <i class="fas fa-plus text-xs chevron"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="category-content p-6">
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6" id="grid-${cat.id}"></div>
-                </div>
-            `;
-            container.appendChild(section);
-
-            const grid = document.getElementById(`grid-${cat.id}`);
-            for(let i=1; i<=8; i++) {
-                const num = i < 10 ? `0${i}` : i;
-                const ref = `${cat.prefix}-${num}`;
-                const title = `${cat.name.split(' ')[0]} Series ${num}`;
-                const img = colorOptions[i % 4].img;
-
-                const card = document.createElement('div');
-                card.className = "market-card p-3 rounded-2xl cursor-pointer";
-                card.onclick = (e) => { e.stopPropagation(); openModal(ref, title, img); };
-                card.innerHTML = `
-                    <div class="aspect-square rounded-xl overflow-hidden bg-stone-50 mb-4">
-                        <img src="${img}" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-1">
-                        <h3 class="text-[10px] font-bold uppercase tracking-tight truncate w-3/4">${title}</h3>
-                        <span class="text-[8px] font-bold text-stone-300 uppercase">${ref}</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="badge-stock">Active Item</span>
-                    </div>
-                `;
-                grid.appendChild(card);
-            }
-        });
-
-        function openModal(ref, title, currentImg) {
-            const modal = document.getElementById('product-modal');
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-id').innerText = `Catalog Reference: ${ref}`;
-            document.getElementById('modal-img').src = currentImg;
-            
-            const swatchContainer = document.getElementById('modal-color-swatches');
-            swatchContainer.innerHTML = '';
-            colorOptions.forEach(color => {
-                const btn = document.createElement('button');
-                btn.className = "swatch w-10 h-10 rounded-full shadow-inner ring-2 ring-transparent hover:ring-stone-200 transition-all";
-                btn.style.backgroundColor = color.hex;
-                btn.title = color.name;
-                btn.onclick = () => {
-                    document.getElementById('modal-img').src = color.img;
-                    Array.from(swatchContainer.children).forEach(s => s.classList.remove('ring-black'));
-                    btn.classList.add('ring-black');
-                    const msg = encodeURIComponent(`Inquiry for: ${title} (${ref}) in ${color.name} finish.`);
-                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${msg}`;
-                };
-                swatchContainer.appendChild(btn);
-            });
-            // Select first by default
-            swatchContainer.firstChild.click();
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('product-modal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    </script>
 </body>
 </html>
