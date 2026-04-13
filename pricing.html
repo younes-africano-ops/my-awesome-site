@@ -70,9 +70,10 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-12">
                 <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a>
-                <div class="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
-                    <a href="index.html" class="hover:text-black">Home</a>
-                    <a href="about.html" class="hover:text-black">Why PVC?</a>
+                <div class="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
+                    <a href="index.html" class="hover:text-black transition-colors">Home</a>
+                    <a href="about.html" class="hover:text-black transition-colors">Why PVC?</a>
+                    <a href="about.html#company" class="hover:text-black transition-colors">About</a>
                     <a href="pricing.html" class="text-black border-b border-black pb-1">Collections</a>
                 </div>
             </div>
@@ -90,7 +91,6 @@
         </header>
 
         <div id="market-container" class="space-y-6">
-            
             </div>
 
     </main>
@@ -255,7 +255,6 @@
                 };
                 swatchContainer.appendChild(btn);
             });
-            // Select first by default
             swatchContainer.firstChild.click();
             
             modal.classList.add('active');
