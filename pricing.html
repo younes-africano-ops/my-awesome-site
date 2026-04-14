@@ -126,7 +126,6 @@
     </div>
 
     <script>
-        // GLOBAL COLORS CONFIGURATION
         const colorOptions = [
             { name: 'Arctic White', hex: '#ffffff' },
             { name: 'Onyx Black', hex: '#1a1a1a' },
@@ -134,7 +133,6 @@
             { name: 'Stone Gray', hex: '#808080' }
         ];
 
-        // PRODUCT-SPECIFIC IMAGE COLLECTIONS
         const sk01Images = {
             'Arctic White': 'https://i.postimg.cc/DZtnmXgz/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg',
             'Onyx Black': 'https://i.postimg.cc/rpskJJZq/Gemini-Generated-Image-40513v40513v4051.png',
@@ -149,18 +147,25 @@
             'Stone Gray': 'https://i.postimg.cc/2y7SKNg3/Gemini-Generated-Image-c1wj2hc1wj2hc1wj.png'
         };
 
-        const bt02Images = {
+        const bt02Images = { // Now KW-T003B-
+            'Arctic White': 'https://i.postimg.cc/Xq5L0pxQ/Gemini-Generated-Image-8j5nn08j5nn08j5n.png',
+            'Onyx Black': 'https://i.postimg.cc/sXkPK3yv/Gemini-Generated-Image-n5tcjsn5tcjsn5tc.png',
+            'Luxury Beige': 'https://i.postimg.cc/zvqvqQFQ/Gemini-Generated-Image-mm2oinmm2oinmm2o.png',
+            'Stone Gray': 'https://i.postimg.cc/1tqw8b65/Gemini-Generated-Image-69msvc69msvc69ms.png'
+        };
+
+        const bt03Images = { // Now KW-9003W
             'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png',
             'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png',
             'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png',
             'Stone Gray': 'https://i.postimg.cc/dt0KRFHF/Gemini-Generated-Image-y7l59ry7l59ry7l5.png'
         };
 
-        const bt03Images = {
-            'Arctic White': 'https://i.postimg.cc/Xq5L0pxQ/Gemini-Generated-Image-8j5nn08j5nn08j5n.png',
-            'Onyx Black': 'https://i.postimg.cc/sXkPK3yv/Gemini-Generated-Image-n5tcjsn5tcjsn5tc.png',
-            'Luxury Beige': 'https://i.postimg.cc/zvqvqQFQ/Gemini-Generated-Image-mm2oinmm2oinmm2o.png',
-            'Stone Gray': 'https://i.postimg.cc/1tqw8b65/Gemini-Generated-Image-69msvc69msvc69ms.png'
+        const bt04Images = {
+            'Arctic White': 'https://i.postimg.cc/L5BSvkwQ/Untitled-design.png',
+            'Onyx Black': 'https://i.postimg.cc/ZKbz4d1R/Gemini-Generated-Image-monuismonuismonu.png',
+            'Luxury Beige': 'https://i.postimg.cc/fRQXVMfW/Gemini-Generated-Image-ou47g1ou47g1ou47.png',
+            'Stone Gray': 'https://i.postimg.cc/yNBFb7J4/Gemini-Generated-Image-ltbjkgltbjkgltbj.png'
         };
 
         const catalogData = [
@@ -202,18 +207,10 @@
 
                 if (ref === 'SK-01') defaultImg = sk01Images['Arctic White'];
                 
-                if (ref === 'BT-01') { 
-                    defaultImg = bt01Images['Arctic White']; 
-                    title = "KW-T004B-"; 
-                }
-                if (ref === 'BT-02') { 
-                    defaultImg = bt02Images['Arctic White']; 
-                    title = "KW-9003W"; 
-                }
-                if (ref === 'BT-03') { 
-                    defaultImg = bt03Images['Arctic White']; 
-                    title = "KW-T003B-"; 
-                }
+                if (ref === 'BT-01') { defaultImg = bt01Images['Arctic White']; title = "KW-T004B-"; }
+                if (ref === 'BT-02') { defaultImg = bt02Images['Arctic White']; title = "KW-T003B-"; }
+                if (ref === 'BT-03') { defaultImg = bt03Images['Arctic White']; title = "KW-9003W"; }
+                if (ref === 'BT-04') { defaultImg = bt04Images['Arctic White']; title = "KW-9004W"; }
 
                 const card = document.createElement('div');
                 card.className = "market-card p-3 rounded-2xl cursor-pointer";
@@ -252,6 +249,7 @@
                     else if (ref === 'BT-01') modalImg.src = bt01Images[color.name];
                     else if (ref === 'BT-02') modalImg.src = bt02Images[color.name];
                     else if (ref === 'BT-03') modalImg.src = bt03Images[color.name];
+                    else if (ref === 'BT-04') modalImg.src = bt04Images[color.name];
                     else modalImg.src = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
                     
                     Array.from(swatchContainer.children).forEach(s => s.classList.remove('ring-black', 'scale-110'));
