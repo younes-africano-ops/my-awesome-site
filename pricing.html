@@ -147,14 +147,14 @@
             'Stone Gray': 'https://i.postimg.cc/2y7SKNg3/Gemini-Generated-Image-c1wj2hc1wj2hc1wj.png'
         };
 
-        const bt02Images = { // Now KW-T003B-
+        const bt02Images = {
             'Arctic White': 'https://i.postimg.cc/Xq5L0pxQ/Gemini-Generated-Image-8j5nn08j5nn08j5n.png',
             'Onyx Black': 'https://i.postimg.cc/sXkPK3yv/Gemini-Generated-Image-n5tcjsn5tcjsn5tc.png',
             'Luxury Beige': 'https://i.postimg.cc/zvqvqQFQ/Gemini-Generated-Image-mm2oinmm2oinmm2o.png',
             'Stone Gray': 'https://i.postimg.cc/1tqw8b65/Gemini-Generated-Image-69msvc69msvc69ms.png'
         };
 
-        const bt03Images = { // Now KW-9003W
+        const bt03Images = {
             'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png',
             'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png',
             'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png',
@@ -192,8 +192,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="category-content p-6">
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6" id="grid-${cat.id}"></div>
+                <div class="category-content p-4 sm:p-6">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="grid-${cat.id}"></div>
                 </div>`;
             container.appendChild(section);
 
@@ -219,8 +219,8 @@
                     <div class="aspect-square rounded-xl overflow-hidden bg-stone-50 mb-4 p-2">
                         <img src="${defaultImg}" class="w-full h-full object-contain">
                     </div>
-                    <div class="flex justify-between items-start mb-1">
-                        <h3 class="text-[10px] font-bold uppercase tracking-tight truncate w-3/4">${title}</h3>
+                    <div class="flex flex-col mb-1">
+                        <h3 class="text-[10px] font-bold uppercase tracking-tight truncate">${title}</h3>
                         <span class="text-[8px] font-bold text-stone-300 uppercase">${ref}</span>
                     </div>
                     <div class="flex items-center gap-2">
