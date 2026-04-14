@@ -22,13 +22,13 @@
         }
         .btn-brico:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.2); }
 
-        /* Smooth Language Transition */
         [data-key] { transition: opacity 0.2s ease; }
         
         .lang-btn {
             display: flex; align-items: center; gap: 8px;
             padding: 8px 16px; border-radius: 99px;
             border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -165,8 +165,7 @@
                 "f2-d": "Non-porous surfaces mean mold and bacteria cannot grow. A simple wipe keeps your bathroom furniture looking brand new for years.",
                 "f3-t": "Luxury Finish",
                 "f3-d": "We combine industrial strength with high-end Italian aesthetics. Matte, Glossy, and Textured finishes available.",
-                "footer-about": "Morocco's leading provider of professional PVC bathroom solutions. Durable, elegant, and forever waterproof.",
-                langSwitch: "العربية"
+                "footer-about": "Morocco's leading provider of professional PVC bathroom solutions. Durable, elegant, and forever waterproof."
             },
             ar: {
                 brand: "بريكوشوب",
@@ -189,37 +188,54 @@
                 "f2-d": "الأسطح غير المسامية تمنع نمو العفن والبكتيريا. مسحة بسيطة تحافظ على أثاث حمامك جديداً لسنوات.",
                 "f3-t": "لمسة فاخرة",
                 "f3-d": "نجمع بين القوة الصناعية والجماليات الإيطالية الراقية. متوفر بلمسات مطفية، لامعة، ومزخرفة.",
-                "footer-about": "المزود الرائد في المغرب لحلول حمامات PVC الاحترافية. متينة وأنيقة ومقاومة للماء للأبد.",
-                langSwitch: "English"
+                "footer-about": "المزود الرائد في المغرب لحلول حمامات PVC الاحترافية. متينة وأنيقة ومقاومة للماء للأبد."
             }
         };
 
-        let currentLang = 'en';
+        // Initialize language from localStorage or default to 'en'
+        let currentLang = localStorage.getItem('selectedLang') || 'en';
+
+        // Apply language on initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage(currentLang);
+        });
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ar' : 'en';
+            localStorage.setItem('selectedLang', currentLang); // Save choice
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
             const htmlTag = document.getElementById('main-html');
             const langLabel = document.getElementById('lang-label');
+            const navLinks = document.getElementById('nav-links');
             
-            htmlTag.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-            langLabel.innerText = translations[currentLang].langSwitch;
+            // 1. Update Layout Attributes
+            if (lang === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'ar');
+                langLabel.innerText = "English"; 
+                if (navLinks) {
+                    navLinks.classList.remove('space-x-10');
+                    navLinks.classList.add('space-x-reverse', 'space-x-10');
+                }
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'en');
+                langLabel.innerText = "العربية"; 
+                if (navLinks) {
+                    navLinks.classList.remove('space-x-reverse');
+                }
+            }
 
+            // 2. Update Content
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (translations[currentLang][key]) {
-                    el.innerHTML = translations[currentLang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
                 }
             });
-
-            // Handle Flex Direction for Nav
-            const navLinks = document.getElementById('nav-links');
-            if (currentLang === 'ar') {
-                navLinks.classList.remove('space-x-10');
-                navLinks.classList.add('space-x-reverse', 'space-x-10');
-            } else {
-                navLinks.classList.add('space-x-10');
-                navLinks.classList.remove('space-x-reverse');
-            }
         }
     </script>
 </body>
