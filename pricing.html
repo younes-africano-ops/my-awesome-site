@@ -29,6 +29,9 @@
         .market-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid transparent;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 220px;
         }
         .market-card:hover {
             border-color: #e5e7eb;
@@ -47,10 +50,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(0,0,0,0.7), transparent);
-        }
-        html[dir="rtl"] .category-banner::after {
-            background: linear-gradient(to left, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
         }
 
         #product-modal { 
@@ -80,17 +80,18 @@
 
     <nav class="fixed w-full z-50 glass-nav border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-12">
+            <div class="flex-1">
                 <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase" data-key="brand">Bricoshop</a>
-                <div class="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500" id="nav-links">
-                    <a href="index.html" class="hover:text-black transition-colors" data-key="nav-home">Home</a>
-                    <a href="about.html" class="hover:text-black transition-colors" data-key="nav-about">Why PVC?</a>
-                    <a href="pricing.html" class="text-black border-b border-black pb-1" data-key="nav-catalog">Collections</a>
-                    <a href="contact.html" class="hover:text-black transition-colors" data-key="nav-contact">Contact</a>
-                </div>
             </div>
             
-            <div class="flex items-center gap-4">
+            <div class="hidden md:flex flex-1 justify-center items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500" id="nav-links">
+                <a href="index.html" class="hover:text-black transition-colors" data-key="nav-home">Home</a>
+                <a href="pricing.html" class="text-black border-b border-black pb-1" data-key="nav-catalog">Collections</a>
+                <a href="about.html" class="hover:text-black transition-colors" data-key="nav-about">Why PVC?</a>
+                <a href="contact.html" class="hover:text-black transition-colors" data-key="nav-contact">Contact</a>
+            </div>
+            
+            <div class="flex-1 flex items-center justify-end gap-4">
                 <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50">
                     <i class="fas fa-globe text-brico-accent"></i>
                     <span id="lang-label">العربية</span>
@@ -103,7 +104,7 @@
     </nav>
 
     <main class="pt-32 pb-24 px-6 max-w-5xl mx-auto">
-        <header class="mb-12 border-b border-stone-100 pb-8">
+        <header class="mb-12 border-b border-stone-100 pb-8 text-center">
             <h1 class="text-3xl font-bold uppercase tracking-tighter mb-2" data-key="page-title">The 2026 Collection</h1>
             <p class="text-stone-400 text-sm uppercase tracking-widest" data-key="page-subtitle">Select a category to browse our luxury solutions</p>
         </header>
@@ -121,23 +122,25 @@
         </div>
     </footer>
 
-    <div id="product-modal" class="fixed inset-0 flex items-end sm:items-center justify-center">
+    <div id="product-modal" class="fixed inset-0 flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeModal()"></div>
-        <div class="relative bg-white w-full max-w-xl h-[85vh] sm:h-auto overflow-y-auto rounded-t-[2.5rem] sm:rounded-2xl p-8">
-            <div class="w-12 h-1.5 bg-stone-100 rounded-full mx-auto mb-8 sm:hidden"></div>
-            <div class="flex flex-col sm:flex-row gap-8">
-                <div class="w-full sm:w-1/2 aspect-square rounded-xl overflow-hidden bg-stone-50 p-4">
-                    <img id="modal-img" src="" class="w-full h-full object-contain">
+        <div class="relative bg-white w-full max-w-2xl overflow-hidden rounded-[2.5rem] p-8 md:p-12">
+            <div class="flex flex-col items-center text-center gap-8">
+                <div class="w-full max-w-[300px] aspect-square rounded-xl overflow-hidden bg-stone-50 p-6 flex items-center justify-center">
+                    <img id="modal-img" src="" class="max-h-full max-w-full object-contain">
                 </div>
-                <div class="w-full sm:w-1/2 flex flex-col justify-center">
+                
+                <div class="w-full flex flex-col items-center">
                     <span class="badge-stock w-fit mb-4" data-key="modal-badge">Industrial Grade</span>
-                    <h2 id="modal-title" class="text-2xl font-bold uppercase tracking-tighter mb-2"></h2>
-                    <p id="modal-id" class="text-[11px] text-stone-500 font-medium mb-6 leading-relaxed whitespace-pre-line"></p>
-                    <div class="mb-8">
+                    <h2 id="modal-title" class="text-3xl font-bold uppercase tracking-tighter mb-2"></h2>
+                    <p id="modal-id" class="text-[11px] text-stone-500 font-medium mb-8 leading-relaxed whitespace-pre-line"></p>
+                    
+                    <div class="mb-10 w-full">
                         <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-4" data-key="modal-finish">Select Finish</label>
-                        <div id="modal-color-swatches" class="flex gap-4"></div>
+                        <div id="modal-color-swatches" class="flex gap-4 justify-center"></div>
                     </div>
-                    <a id="modal-wa-link" href="#" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white text-center py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all" data-key="modal-cta">
+                    
+                    <a id="modal-wa-link" href="#" target="_blank" class="w-full max-w-sm bg-green-600 hover:bg-green-700 text-white text-center py-5 rounded-2xl text-[11px] font-bold uppercase tracking-widest transition-all" data-key="modal-cta">
                         Check Availability
                     </a>
                 </div>
@@ -146,43 +149,20 @@
     </div>
 
     <script>
-        // TRANSLATIONS DATA
         const translations = {
             en: {
-                brand: "Bricoshop",
-                "nav-home": "Home",
-                "nav-about": "Why PVC?",
-                "nav-catalog": "Collections",
-                "nav-contact": "Contact",
-                "cta-inquiry": "Order Inquiries",
-                "page-title": "The 2026 Collection",
-                "page-subtitle": "Select a category to browse our luxury solutions",
-                "brand-footer": "Bricoshop Morocco",
-                "brand-sub": "Premium PVC Manufacturing",
-                "copyright": "© 2026 All Rights Reserved",
-                "modal-badge": "Industrial Grade",
-                "modal-finish": "Select Finish",
-                "modal-cta": "Check Availability",
-                "in-stock": "In Stock",
-                "ref-label": "Catalog Reference: "
+                brand: "Bricoshop", "nav-home": "Home", "nav-about": "Why PVC?", "nav-catalog": "Collections", "nav-contact": "Contact",
+                "cta-inquiry": "Order Inquiries", "page-title": "The 2026 Collection", "page-subtitle": "Select a category to browse our luxury solutions",
+                "brand-footer": "Bricoshop Morocco", "brand-sub": "Premium PVC Manufacturing", "copyright": "© 2026 All Rights Reserved",
+                "modal-badge": "Industrial Grade", "modal-finish": "Select Finish", "modal-cta": "Check Availability",
+                "in-stock": "In Stock", "ref-label": "Catalog Reference: "
             },
             ar: {
-                brand: "بريكوشوب",
-                "nav-home": "الرئيسية",
-                "nav-about": "لماذا PVC؟",
-                "nav-catalog": "المجموعات",
-                "nav-contact": "اتصل بنا",
-                "cta-inquiry": "استفسارات الطلب",
-                "page-title": "مجموعة 2026",
-                "page-subtitle": "اختر فئة لتصفح حلولنا الفاخرة",
-                "brand-footer": "بريكوشوب المغرب",
-                "brand-sub": "تصنيع PVC متميز",
-                "copyright": "© 2026 جميع الحقوق محفوظة",
-                "modal-badge": "درجة صناعية",
-                "modal-finish": "اختر اللون",
-                "modal-cta": "التحقق من التوفر",
-                "in-stock": "متوفر",
-                "ref-label": "مرجع الكتالوج: "
+                brand: "بريكوشوب", "nav-home": "الرئيسية", "nav-about": "لماذا PVC؟", "nav-catalog": "المجموعات", "nav-contact": "اتصل بنا",
+                "cta-inquiry": "استفسارات الطلب", "page-title": "مجموعة 2026", "page-subtitle": "اختر فئة لتصفح حلولنا الفاخرة",
+                "brand-footer": "بريكوشوب المغرب", "brand-sub": "تصنيع PVC متميز", "copyright": "© 2026 جميع الحقوق محفوظة",
+                "modal-badge": "درجة صناعية", "modal-finish": "اختر اللون", "modal-cta": "التحقق من التوفر",
+                "in-stock": "متوفر", "ref-label": "مرجع الكتالوج: "
             }
         };
 
@@ -201,11 +181,10 @@
             ]
         };
 
-        // LANGUAGE LOGIC
         let currentLang = localStorage.getItem('selectedLang') || 'en';
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderCatalog(); // Initial Render
+            renderCatalog();
             applyLanguage(currentLang);
         });
 
@@ -213,7 +192,7 @@
             currentLang = currentLang === 'en' ? 'ar' : 'en';
             localStorage.setItem('selectedLang', currentLang);
             applyLanguage(currentLang);
-            renderCatalog(); // Re-render catalog to update category names
+            renderCatalog();
         }
 
         function applyLanguage(lang) {
@@ -225,23 +204,20 @@
                 htmlTag.setAttribute('dir', 'rtl');
                 htmlTag.setAttribute('lang', 'ar');
                 langLabel.innerText = "English";
-                if (navLinks) navLinks.classList.add('gap-x-reverse');
+                if (navLinks) navLinks.classList.add('flex-row-reverse');
             } else {
                 htmlTag.setAttribute('dir', 'ltr');
                 htmlTag.setAttribute('lang', 'en');
                 langLabel.innerText = "العربية";
-                if (navLinks) navLinks.classList.remove('gap-x-reverse');
+                if (navLinks) navLinks.classList.remove('flex-row-reverse');
             }
 
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
             });
         }
 
-        // CATALOG RENDERING
         const colorOptions = [
             { name: 'Arctic White', hex: '#ffffff' },
             { name: 'Onyx Black', hex: '#1a1a1a' },
@@ -258,7 +234,6 @@
         function renderCatalog() {
             const container = document.getElementById('market-container');
             container.innerHTML = '';
-            
             const prefixes = ['BT', 'SK', 'PV', 'AC'];
             const banners = [
                 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=1200',
@@ -271,19 +246,15 @@
                 const section = document.createElement('div');
                 section.className = "category-section bg-white border border-stone-100 rounded-3xl overflow-hidden shadow-sm mb-6";
                 section.innerHTML = `
-                    <div class="category-banner flex items-center px-8 cursor-pointer group" style="background-image: url('${banners[idx]}')" onclick="this.parentElement.classList.toggle('active')">
-                        <div class="relative z-10 flex items-center justify-between w-full">
-                            <div>
-                                <h2 class="text-white text-xl font-bold uppercase tracking-tighter">${cat.name}</h2>
-                                <p class="text-stone-300 text-[9px] uppercase tracking-widest font-medium">${cat.desc}</p>
-                            </div>
-                            <div class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all">
-                                <i class="fas fa-plus text-xs"></i>
-                            </div>
+                    <div class="category-banner flex items-center justify-center px-8 cursor-pointer group" style="background-image: url('${banners[idx]}')" onclick="this.parentElement.classList.toggle('active')">
+                        <div class="relative z-10 text-center">
+                            <h2 class="text-white text-xl font-bold uppercase tracking-tighter">${cat.name}</h2>
+                            <p class="text-stone-300 text-[9px] uppercase tracking-widest font-medium">${cat.desc}</p>
+                            <i class="fas fa-plus text-white mt-2 block text-xs"></i>
                         </div>
                     </div>
-                    <div class="category-content p-4 sm:p-6">
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="grid-${prefixes[idx]}"></div>
+                    <div class="category-content p-6">
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center" id="grid-${prefixes[idx]}"></div>
                     </div>`;
                 container.appendChild(section);
 
@@ -295,25 +266,21 @@
                     let defaultImg = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
 
                     if (ref === 'SK-01') defaultImg = sk01Images['Arctic White'];
-                    if (ref === 'BT-01') { defaultImg = bt01Images['Arctic White']; title = "KW-T004B-"; }
-                    if (ref === 'BT-02') { defaultImg = bt02Images['Arctic White']; title = "KW-T003B-"; }
+                    if (ref === 'BT-01') { defaultImg = bt01Images['Arctic White']; title = "KW-T004B"; }
+                    if (ref === 'BT-02') { defaultImg = bt02Images['Arctic White']; title = "KW-T003B"; }
                     if (ref === 'BT-03') { defaultImg = bt03Images['Arctic White']; title = "KW-9003W"; }
                     if (ref === 'BT-04') { defaultImg = bt04Images['Arctic White']; title = "KW-9004W"; }
 
                     const card = document.createElement('div');
-                    card.className = "market-card p-3 rounded-2xl cursor-pointer";
+                    card.className = "market-card p-4 rounded-2xl cursor-pointer text-center";
                     card.onclick = (e) => { e.stopPropagation(); openModal(ref, title, defaultImg); };
                     card.innerHTML = `
-                        <div class="aspect-square rounded-xl overflow-hidden bg-stone-50 mb-4 p-2">
-                            <img src="${defaultImg}" class="w-full h-full object-contain">
+                        <div class="aspect-square rounded-xl overflow-hidden bg-stone-50 mb-4 p-2 flex items-center justify-center">
+                            <img src="${defaultImg}" class="max-h-full max-w-full object-contain">
                         </div>
-                        <div class="flex flex-col mb-1">
-                            <h3 class="text-[10px] font-bold uppercase tracking-tight truncate">${title}</h3>
-                            <span class="text-[8px] font-bold text-stone-300 uppercase">${ref}</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="badge-stock">${translations[currentLang]['in-stock']}</span>
-                        </div>`;
+                        <h3 class="text-[10px] font-bold uppercase tracking-tight truncate">${title}</h3>
+                        <span class="text-[8px] font-bold text-stone-300 uppercase block mb-2">${ref}</span>
+                        <span class="badge-stock mx-auto">${translations[currentLang]['in-stock']}</span>`;
                     grid.appendChild(card);
                 }
             });
@@ -343,8 +310,7 @@
                     Array.from(swatchContainer.children).forEach(s => s.classList.remove('ring-black', 'scale-110'));
                     btn.classList.add('ring-black', 'scale-110');
                     const msgText = currentLang === 'ar' ? `استفسار عن: ${title} (${ref}) بلون ${color.name}` : `Inquiry for: ${title} (${ref}) in ${color.name} finish.`;
-                    const msg = encodeURIComponent(msgText);
-                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${msg}`;
+                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${encodeURIComponent(msgText)}`;
                 };
                 swatchContainer.appendChild(btn);
                 if(index === 0) btn.click();
