@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="main-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About & Why PVC | Bricoshop Luxury Engineering</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #fcfcfc; }
+        body { font-family: 'Outfit', sans-serif; background-color: #fcfcfc; transition: background 0.3s ease; }
+        html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
+        
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); }
         .hero-zoom { overflow: hidden; }
         .hero-zoom img { transition: transform 20s linear; transform: scale(1); }
         .hero-zoom:hover img { transform: scale(1.1); }
         .stat-card { background: white; border: 1px solid #f1f1f1; transition: all 0.3s ease; }
         .stat-card:hover { transform: translateY(-5px); border-color: #e5e7eb; }
+
+        .lang-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 99px;
+            border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700;
+            cursor: pointer;
+        }
+        .text-brico-accent { color: #0d9488; }
     </style>
 </head>
 <body class="text-slate-900 antialiased">
@@ -22,26 +32,32 @@
     <nav class="fixed w-full z-50 glass-nav border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-12">
-                <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a>
-                <div class="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
-                    <a href="index.html" class="hover:text-black transition-colors">Home</a>
-                    <a href="pricing.html" class="hover:text-black transition-colors">Collections</a>
-                    <a href="about.html" class="text-black border-b border-black pb-1">Why PVC?</a>
-                    <a href="#company" class="hover:text-black transition-colors">About</a>
-                    <a href="contact.html" class="hover:text-black transition-colors">Contact</a>
+                <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase" data-key="brand">Bricoshop</a>
+                <div class="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500" id="nav-links">
+                    <a href="index.html" class="hover:text-black transition-colors" data-key="nav-home">Home</a>
+                    <a href="pricing.html" class="hover:text-black transition-colors" data-key="nav-catalog">Collections</a>
+                    <a href="about.html" class="text-black border-b border-black pb-1" data-key="nav-about">Why PVC?</a>
+                    <a href="contact.html" class="hover:text-black transition-colors" data-key="nav-contact">Contact</a>
                 </div>
             </div>
-            <a href="https://wa.me/212661176190" target="_blank" class="bg-slate-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-black transition-all">
-                Order Inquiries
-            </a>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50">
+                    <i class="fas fa-globe text-brico-accent"></i>
+                    <span id="lang-label">العربية</span>
+                </button>
+                <a href="https://wa.me/212661176190" target="_blank" class="bg-slate-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-black transition-all" data-key="cta-inquiry">
+                    Order Inquiries
+                </a>
+            </div>
         </div>
     </nav>
 
     <main class="pt-40 pb-24 px-6 max-w-6xl mx-auto">
         <header class="max-w-3xl mb-20">
-            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-4 block">Material Excellence</span>
-            <h1 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-6 leading-[0.9]">Engineering for <br><span class="text-stone-400 text-3xl md:text-5xl">the Coastal Climate.</span></h1>
-            <p class="text-stone-500 text-sm uppercase tracking-[0.2em] leading-loose">Wood fails. MDF swells. Our high-density PVC technology remains physically unchanged by humidity.</p>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-4 block" data-key="hero-sub">Material Excellence</span>
+            <h1 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-6 leading-[0.9]" data-key="hero-title">Engineering for <br><span class="text-stone-400 text-3xl md:text-5xl">the Coastal Climate.</span></h1>
+            <p class="text-stone-500 text-sm uppercase tracking-[0.2em] leading-loose" data-key="hero-desc">Wood fails. MDF swells. Our high-density PVC technology remains physically unchanged by humidity.</p>
         </header>
 
         <div class="grid md:grid-cols-2 gap-8 mb-32 items-center">
@@ -49,19 +65,19 @@
                 <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale-[30%]">
             </div>
             <div class="p-4 md:p-12">
-                <h2 class="text-2xl font-bold uppercase tracking-tight mb-8">The 100% Waterproof Standard</h2>
-                <p class="text-stone-600 leading-relaxed mb-10 text-lg font-light">
+                <h2 class="text-2xl font-bold uppercase tracking-tight mb-8" data-key="sec-title">The 100% Waterproof Standard</h2>
+                <p class="text-stone-600 leading-relaxed mb-10 text-lg font-light" data-key="sec-desc">
                     In Morocco, humidity is the greatest challenge for home interiors. Our PVC solutions are chemically inert. They do not absorb moisture, they do not attract termites, and they never peel.
                 </p>
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div class="stat-card p-6 rounded-2xl">
                         <i class="fas fa-shield-virus text-xl mb-4 text-stone-300"></i>
-                        <h4 class="text-[10px] font-bold uppercase tracking-widest">Pest Proof</h4>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest" data-key="stat-pest">Pest Proof</h4>
                     </div>
                     <div class="stat-card p-6 rounded-2xl">
                         <i class="fas fa-fire-extinguisher text-xl mb-4 text-stone-300"></i>
-                        <h4 class="text-[10px] font-bold uppercase tracking-widest">Fire Rated</h4>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest" data-key="stat-fire">Fire Rated</h4>
                     </div>
                 </div>
             </div>
@@ -70,19 +86,19 @@
         <section id="company" class="pt-24 border-t border-stone-100">
             <div class="grid md:grid-cols-3 gap-16">
                 <div class="md:col-span-1">
-                    <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-stone-400 mb-4">Our Heritage</h3>
-                    <h2 class="text-3xl font-bold uppercase tracking-tighter italic">Florence by Bricoshop</h2>
+                    <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-stone-400 mb-4" data-key="heritage-sub">Our Heritage</h3>
+                    <h2 class="text-3xl font-bold uppercase tracking-tighter italic" data-key="heritage-title">Florence by Bricoshop</h2>
                 </div>
                 <div class="md:col-span-2 space-y-8">
-                    <p class="text-xl text-stone-700 leading-relaxed font-light italic">
+                    <p class="text-xl text-stone-700 leading-relaxed font-light italic" data-key="heritage-quote">
                         "Redefining the expectation of what a bathroom cabinet can be."
                     </p>
-                    <p class="text-stone-500 leading-relaxed">
+                    <p class="text-stone-500 leading-relaxed" data-key="heritage-desc">
                         Based in Morocco, Bricoshop provides professional-grade PVC manufacturing for both residential and commercial projects. Our flagship **Florence Collection** was born from a need for aesthetics that survive the test of time and water. We don't just sell cabinets; we provide peace of mind.
                     </p>
                     <div class="flex gap-4">
                         <div class="h-[1px] w-12 bg-slate-900 mt-3"></div>
-                        <p class="text-[11px] font-bold uppercase tracking-widest">Est. 2026 | Rabat-Sale-Kenitra</p>
+                        <p class="text-[11px] font-bold uppercase tracking-widest" data-key="heritage-meta">Est. 2026 | Rabat-Sale-Kenitra</p>
                     </div>
                 </div>
             </div>
@@ -91,7 +107,7 @@
 
     <section class="bg-white border-t border-stone-100 py-16">
         <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
-            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-300 mb-8">Follow Our Work</span>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-300 mb-8" data-key="social-badge">Follow Our Work</span>
             <div class="flex gap-12">
                 <a href="https://www.instagram.com/brico.shop2/" target="_blank" class="text-stone-400 hover:text-black text-2xl transition-all"><i class="fab fa-instagram"></i></a>
                 <a href="https://web.facebook.com/profile.php?id=100091613435811" target="_blank" class="text-stone-400 hover:text-black text-2xl transition-all"><i class="fab fa-facebook-f"></i></a>
@@ -103,12 +119,106 @@
     <footer class="bg-slate-950 text-white py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
             <div>
-                <h4 class="text-lg font-bold uppercase tracking-tighter mb-1">Bricoshop Morocco</h4>
-                <p class="text-slate-500 text-[10px] uppercase tracking-widest">Luxury PVC Engineering</p>
+                <h4 class="text-lg font-bold uppercase tracking-tighter mb-1" data-key="footer-brand">Bricoshop Morocco</h4>
+                <p class="text-slate-500 text-[10px] uppercase tracking-widest" data-key="footer-sub">Luxury PVC Engineering</p>
             </div>
-            <p class="text-slate-600 text-[9px] uppercase tracking-[0.3em]">© 2026 Florence Line. All Rights Reserved.</p>
+            <p class="text-slate-600 text-[9px] uppercase tracking-[0.3em]" data-key="footer-copy">© 2026 Florence Line. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <script>
+        const translations = {
+            en: {
+                brand: "Bricoshop",
+                "nav-home": "Home",
+                "nav-catalog": "Collections",
+                "nav-about": "Why PVC?",
+                "nav-contact": "Contact",
+                "cta-inquiry": "Order Inquiries",
+                "hero-sub": "Material Excellence",
+                "hero-title": "Engineering for <br><span class='text-stone-400 text-3xl md:text-5xl'>the Coastal Climate.</span>",
+                "hero-desc": "Wood fails. MDF swells. Our high-density PVC technology remains physically unchanged by humidity.",
+                "sec-title": "The 100% Waterproof Standard",
+                "sec-desc": "In Morocco, humidity is the greatest challenge for home interiors. Our PVC solutions are chemically inert. They do not absorb moisture, they do not attract termites, and they never peel.",
+                "stat-pest": "Pest Proof",
+                "stat-fire": "Fire Rated",
+                "heritage-sub": "Our Heritage",
+                "heritage-title": "Florence by Bricoshop",
+                "heritage-quote": "\"Redefining the expectation of what a bathroom cabinet can be.\"",
+                "heritage-desc": "Based in Morocco, Bricoshop provides professional-grade PVC manufacturing for both residential and commercial projects. Our flagship **Florence Collection** was born from a need for aesthetics that survive the test of time and water. We don't just sell cabinets; we provide peace of mind.",
+                "heritage-meta": "Est. 2026 | Rabat-Sale-Kenitra",
+                "social-badge": "Follow Our Work",
+                "footer-brand": "Bricoshop Morocco",
+                "footer-sub": "Luxury PVC Engineering",
+                "footer-copy": "© 2026 Florence Line. All Rights Reserved."
+            },
+            ar: {
+                brand: "بريكوشوب",
+                "nav-home": "الرئيسية",
+                "nav-catalog": "المجموعات",
+                "nav-about": "لماذا PVC؟",
+                "nav-contact": "اتصل بنا",
+                "cta-inquiry": "استفسارات الطلب",
+                "hero-sub": "التميز في المواد",
+                "hero-title": "هندسة من أجل <br><span class='text-stone-400 text-3xl md:text-5xl'>المناخ الساحلي.</span>",
+                "hero-desc": "الخشب يفشل. الـ MDF ينتفخ. تقنية PVC عالية الكثافة لدينا تظل ثابتة فيزيائياً ولا تتأثر بالرطوبة.",
+                "sec-title": "معيار مقاومة الماء 100٪",
+                "sec-desc": "في المغرب، تعتبر الرطوبة أكبر تحدٍ للديكورات الداخلية للمنازل. حلول الـ PVC لدينا خاملة كيميائياً؛ لا تمتص الرطوبة، ولا تجذب النمل الأبيض، ولا تتقشر أبداً.",
+                "stat-pest": "مقاوم للحشرات",
+                "stat-fire": "مقاوم للحريق",
+                "heritage-sub": "تراثنا",
+                "heritage-title": "فلورنس من بريكوشوب",
+                "heritage-quote": "\"إعادة تعريف التوقعات لما يمكن أن تكون عليه خزانة الحمام.\"",
+                "heritage-desc": "يقع مقر بريكوشوب في المغرب، ويقدم تصنيع PVC بدرجة احترافية للمشاريع السكنية والتجارية. ولدت مجموعة **فلورنس** الرائدة من الحاجة إلى جماليات تصمد أمام اختبار الزمن والماء. نحن لا نبيع الخزائن فحسب؛ بل نقدم راحة البال.",
+                "heritage-meta": "تأسس عام 2026 | الرباط-سلا-القنيطرة",
+                "social-badge": "تابع أعمالنا",
+                "footer-brand": "بريكوشوب المغرب",
+                "footer-sub": "هندسة PVC فاخرة",
+                "footer-copy": "© 2026 خط فلورنس. جميع الحقوق محفوظة."
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLang') || 'en';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage(currentLang);
+        });
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            localStorage.setItem('selectedLang', currentLang);
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            const htmlTag = document.getElementById('main-html');
+            const langLabel = document.getElementById('lang-label');
+            const navLinks = document.getElementById('nav-links');
+            
+            if (lang === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'ar');
+                langLabel.innerText = "English";
+                if (navLinks) {
+                    navLinks.classList.remove('gap-12');
+                    navLinks.classList.add('gap-x-reverse', 'gap-12');
+                }
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'en');
+                langLabel.innerText = "العربية";
+                if (navLinks) {
+                    navLinks.classList.remove('gap-x-reverse');
+                }
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+    </script>
 </body>
 </html>
