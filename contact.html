@@ -23,6 +23,26 @@
             border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700;
             cursor: pointer;
         }
+
+        /* Unified Social Icon Style */
+        .social-link {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #e5e7eb;
+            color: #1e293b;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .social-link:hover {
+            background: #f8fafc;
+            border-color: #0d9488;
+            color: #0d9488;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-900 antialiased">
@@ -56,16 +76,24 @@
                 <h1 class="text-4xl font-bold mb-8 uppercase tracking-tighter" data-key="hero-title">Start Your <br>Transformation</h1>
                 <p class="text-lg text-slate-600 mb-12 leading-relaxed" data-key="hero-desc">Fill out the form for a detailed quote, or jump directly into a conversation with our specialists.</p>
                 
-                <div class="space-y-6">
-                    <a href="https://wa.me/212661176190" target="_blank" class="flex items-center gap-6 group">
-                        <div class="w-12 h-12 bg-green-600 flex items-center justify-center text-white rounded-sm shadow-md group-hover:scale-110 transition-all">
-                            <i class="fab fa-whatsapp text-2xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold" data-key="social-wa-tag">Fastest Response</p>
-                            <p class="font-bold">+212 661-176190</p>
-                        </div>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="https://wa.me/212661176190" target="_blank" class="social-link" title="WhatsApp">
+                        <i class="fab fa-whatsapp text-2xl"></i>
                     </a>
+                    <a href="https://www.instagram.com/brico.shop2/" target="_blank" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="https://web.facebook.com/profile.php?id=100091613435811" target="_blank" class="social-link" title="Facebook">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@www.tiktok.touhami72" target="_blank" class="social-link" title="TikTok">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="mt-12">
+                   <p class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-2" data-key="social-wa-tag">Fastest Response</p>
+                   <p class="font-bold text-xl">+212 661-176190</p>
                 </div>
             </div>
 
@@ -129,7 +157,6 @@
             htmlTag.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             document.getElementById('lang-label').innerText = lang === 'ar' ? "English" : "العربية";
 
-            // Fix for Arabic spacing
             if (lang === 'ar') {
                 navLinks.classList.add('flex-row-reverse');
             } else {
