@@ -126,29 +126,42 @@
     </div>
 
     <script>
-        // 1. UPDATED COLORS: WHITE, BLACK, BEIGE, GRAY
+        // GLOBAL COLORS CONFIGURATION
         const colorOptions = [
-            { 
-                name: 'Arctic White', 
-                hex: '#ffffff', 
-                img: 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png' 
-            },
-            { 
-                name: 'Onyx Black', 
-                hex: '#1a1a1a', 
-                img: 'https://i.postimg.cc/jSjYhcLj/Whats-App-Image-2026-04-13-at-6-19-54-PM.jpg' 
-            },
-            { 
-                name: 'Luxury Beige', 
-                hex: '#f5f5dc', 
-                img: 'https://i.postimg.cc/m2bvbj3S/Whats-App-Image-2026-04-10-at-15-26-49-(6).jpg' 
-            },
-            { 
-                name: 'Stone Gray', 
-                hex: '#808080', 
-                img: 'https://images.unsplash.com/photo-1560440021-33f9b867899d?w=800' 
-            }
+            { name: 'Arctic White', hex: '#ffffff' },
+            { name: 'Onyx Black', hex: '#1a1a1a' },
+            { name: 'Luxury Beige', hex: '#f5f5dc' },
+            { name: 'Stone Gray', hex: '#808080' }
         ];
+
+        // PRODUCT-SPECIFIC IMAGE COLLECTIONS
+        const sk01Images = {
+            'Arctic White': 'https://i.postimg.cc/DZtnmXgz/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg',
+            'Onyx Black': 'https://i.postimg.cc/rpskJJZq/Gemini-Generated-Image-40513v40513v4051.png',
+            'Luxury Beige': 'https://i.postimg.cc/1Xh1yZmK/Gemini-Generated-Image-y8esl5y8esl5y8es.png',
+            'Stone Gray': 'https://i.postimg.cc/qqsVRZq5/Gemini-Generated-Image-oicpiuoicpiuoicp.png'
+        };
+
+        const bt01Images = {
+            'Arctic White': 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png',
+            'Onyx Black': 'https://i.postimg.cc/WbVD6XxV/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png',
+            'Luxury Beige': 'https://i.postimg.cc/YSvjqVLY/Gemini-Generated-Image-2095us2095us2095.png',
+            'Stone Gray': 'https://i.postimg.cc/2y7SKNg3/Gemini-Generated-Image-c1wj2hc1wj2hc1wj.png'
+        };
+
+        const bt02Images = {
+            'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png',
+            'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png',
+            'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png',
+            'Stone Gray': 'https://i.postimg.cc/dt0KRFHF/Gemini-Generated-Image-y7l59ry7l59ry7l5.png'
+        };
+
+        const bt03Images = {
+            'Arctic White': 'https://i.postimg.cc/Xq5L0pxQ/Gemini-Generated-Image-8j5nn08j5nn08j5n.png',
+            'Onyx Black': 'https://i.postimg.cc/sXkPK3yv/Gemini-Generated-Image-n5tcjsn5tcjsn5tc.png',
+            'Luxury Beige': 'https://i.postimg.cc/zvqvqQFQ/Gemini-Generated-Image-mm2oinmm2oinmm2o.png',
+            'Stone Gray': 'https://i.postimg.cc/1tqw8b65/Gemini-Generated-Image-69msvc69msvc69ms.png'
+        };
 
         const catalogData = [
             { name: 'Bathroom Vanities', id: 'bathrooms', prefix: 'BT', banner: 'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=1200', desc: '100% Humidity Proof / Solid PVC' },
@@ -184,12 +197,22 @@
                 const num = i < 10 ? `0${i}` : i;
                 let ref = `${cat.prefix}-${num}`;
                 let title = `${cat.name.split(' ')[0]} Series ${num}`;
-                let defaultImg = colorOptions[0].img; 
+                let defaultImg = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
                 let customDesc = "";
 
-                if (cat.id === 'bathrooms' && i === 1) {
-                    title = "KW-T004B-R";
-                    customDesc = ". Two Piece Toilet\n. flushing system : Washdown\n. Size : 630*360*820mm\n. P-trap 180mm\n. S-trap 150-250mm";
+                if (ref === 'SK-01') defaultImg = sk01Images['Arctic White'];
+                
+                if (ref === 'BT-01') { 
+                    defaultImg = bt01Images['Arctic White']; 
+                    title = "KW-T004B-"; 
+                }
+                if (ref === 'BT-02') { 
+                    defaultImg = bt02Images['Arctic White']; 
+                    title = "KW-9003W"; 
+                }
+                if (ref === 'BT-03') { 
+                    defaultImg = bt03Images['Arctic White']; 
+                    title = "KW-T003B-"; 
                 }
 
                 const card = document.createElement('div');
@@ -213,8 +236,7 @@
         function openModal(ref, title, initialImg, description) {
             const modal = document.getElementById('product-modal');
             document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-id').innerText = description ? description : `Catalog Reference: ${ref}`;
-            
+            document.getElementById('modal-id').innerText = description || `Catalog Reference: ${ref}`;
             const modalImg = document.getElementById('modal-img');
             modalImg.src = initialImg;
             
@@ -225,10 +247,13 @@
                 const btn = document.createElement('button');
                 btn.className = "swatch w-10 h-10 rounded-full shadow-inner ring-2 ring-transparent hover:ring-stone-400 transition-all";
                 btn.style.backgroundColor = color.hex;
-                btn.title = color.name;
-                
                 btn.onclick = () => {
-                    modalImg.src = color.img;
+                    if (ref === 'SK-01') modalImg.src = sk01Images[color.name];
+                    else if (ref === 'BT-01') modalImg.src = bt01Images[color.name];
+                    else if (ref === 'BT-02') modalImg.src = bt02Images[color.name];
+                    else if (ref === 'BT-03') modalImg.src = bt03Images[color.name];
+                    else modalImg.src = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
+                    
                     Array.from(swatchContainer.children).forEach(s => s.classList.remove('ring-black', 'scale-110'));
                     btn.classList.add('ring-black', 'scale-110');
                     const msg = encodeURIComponent(`Inquiry for: ${title} (${ref}) in ${color.name} finish.`);
