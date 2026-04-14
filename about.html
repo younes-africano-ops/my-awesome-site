@@ -31,17 +31,18 @@
 
     <nav class="fixed w-full z-50 glass-nav border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-12">
+            <div class="flex-1">
                 <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase" data-key="brand">Bricoshop</a>
-                <div class="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500" id="nav-links">
-                    <a href="index.html" class="hover:text-black transition-colors" data-key="nav-home">Home</a>
-                    <a href="pricing.html" class="hover:text-black transition-colors" data-key="nav-catalog">Collections</a>
-                    <a href="about.html" class="text-black border-b border-black pb-1" data-key="nav-about">Why PVC?</a>
-                    <a href="contact.html" class="hover:text-black transition-colors" data-key="nav-contact">Contact</a>
-                </div>
             </div>
             
-            <div class="flex items-center gap-4">
+            <div class="hidden md:flex flex-1 justify-center items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500" id="nav-links">
+                <a href="index.html" class="hover:text-black transition-colors" data-key="nav-home">Home</a>
+                <a href="pricing.html" class="hover:text-black transition-colors" data-key="nav-catalog">Collections</a>
+                <a href="about.html" class="text-black border-b border-black pb-1" data-key="nav-about">Why PVC?</a>
+                <a href="contact.html" class="hover:text-black transition-colors" data-key="nav-contact">Contact</a>
+            </div>
+            
+            <div class="flex-1 flex items-center justify-end gap-4">
                 <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50">
                     <i class="fas fa-globe text-brico-accent"></i>
                     <span id="lang-label">العربية</span>
@@ -200,15 +201,14 @@
                 htmlTag.setAttribute('lang', 'ar');
                 langLabel.innerText = "English";
                 if (navLinks) {
-                    navLinks.classList.remove('gap-12');
-                    navLinks.classList.add('gap-x-reverse', 'gap-12');
+                    navLinks.classList.add('flex-row-reverse');
                 }
             } else {
                 htmlTag.setAttribute('dir', 'ltr');
                 htmlTag.setAttribute('lang', 'en');
                 langLabel.innerText = "العربية";
                 if (navLinks) {
-                    navLinks.classList.remove('gap-x-reverse');
+                    navLinks.classList.remove('flex-row-reverse');
                 }
             }
 
