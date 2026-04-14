@@ -13,17 +13,18 @@
         html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
         
         .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); }
-        .text-brico-accent { color: #0d9488; }
-        .bg-brico-soft { background-color: #f8fafc; }
+        
+        /* LUXURY COLOR PALETTE */
+        .text-brico-accent { color: #c5a059; } /* Golden Bronze */
+        .bg-brico-accent { background-color: #c5a059; }
+        .bg-brico-soft { background-color: #fcfaf7; }
         
         .btn-brico { 
-            background: #0f172a;
+            background: #1e293b; /* Deep Slate Blue */
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn-brico:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.2); }
+        .btn-brico:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(30, 41, 59, 0.3); background: #0f172a; }
 
-        [data-key] { transition: opacity 0.2s ease; }
-        
         .lang-btn {
             display: flex; align-items: center; gap: 8px;
             padding: 8px 16px; border-radius: 99px;
@@ -31,7 +32,6 @@
             cursor: pointer;
         }
 
-        /* FIX: CENTERED NAVIGATION */
         .nav-container {
             display: flex;
             align-items: center;
@@ -87,7 +87,7 @@
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
             <div class="space-y-8">
                 <div class="inline-flex items-center gap-3 bg-stone-100 px-4 py-2 rounded-full">
-                    <span class="w-2 h-2 bg-teal-600 rounded-full animate-pulse"></span>
+                    <span class="w-2 h-2 bg-slate-400 rounded-full animate-pulse"></span>
                     <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600" data-key="hero-badge">2026 Architectural Series</span>
                 </div>
                 <h1 class="text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tighter text-slate-900" data-key="hero-title">
@@ -119,22 +119,22 @@
             </div>
             <div class="grid md:grid-cols-3 gap-12">
                 <div class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-teal-50 text-brico-accent rounded-2xl flex items-center justify-center mb-8 text-xl">
-                        <i class="fas fa-shield-halved"></i>
+                    <div class="w-12 h-12 bg-stone-50 text-brico-accent rounded-2xl flex items-center justify-center mb-8 text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-4 uppercase" data-key="f1-t">Extreme Durability</h3>
                     <p class="text-slate-500 text-sm leading-relaxed" data-key="f1-d">Unlike MDF or Wood, our PVC does not swell, rot, or attract termites. It is the strongest material for high-humidity areas.</p>
                 </div>
                 <div class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-teal-50 text-brico-accent rounded-2xl flex items-center justify-center mb-8 text-xl">
-                        <i class="fas fa-droplet-slash"></i>
+                    <div class="w-12 h-12 bg-stone-50 text-brico-accent rounded-2xl flex items-center justify-center mb-8 text-xl">
+                        <i class="fa-solid fa-droplet-slash"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-4 uppercase" data-key="f2-t">Easy to Clean</h3>
                     <p class="text-slate-500 text-sm leading-relaxed" data-key="f2-d">Non-porous surfaces mean mold and bacteria cannot grow. A simple wipe keeps your bathroom furniture looking brand new for years.</p>
                 </div>
                 <div class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-teal-50 text-brico-accent rounded-2xl flex items-center justify-center mb-8 text-xl">
-                        <i class="fas fa-gem"></i>
+                    <div class="w-12 h-12 bg-stone-50 text-brico-accent rounded-2xl flex items-center justify-center mb-8 text-xl">
+                        <i class="fa-solid fa-gem"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-4 uppercase" data-key="f3-t">Luxury Finish</h3>
                     <p class="text-slate-500 text-sm leading-relaxed" data-key="f3-d">We combine industrial strength with high-end Italian aesthetics. Matte, Glossy, and Textured finishes available.</p>
@@ -160,8 +160,8 @@
             <div class="space-y-6">
                 <h4 class="text-[10px] font-bold uppercase tracking-widest text-brico-accent">Follow Us</h4>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/212661176190" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center hover:bg-green-500 hover:border-green-500 transition-all"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/brico.shop2/" target="_blank" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/212661176190" class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center hover:bg-green-600 hover:border-green-600 transition-all"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
