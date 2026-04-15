@@ -10,333 +10,184 @@
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #fcfcfc; transition: background 0.3s ease; }
         html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
-        
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); }
-        .text-brico-accent { color: #0d9488; }
-
-        .category-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.4s ease;
-        }
-        .category-section.active .category-content {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .category-content { display: none; opacity: 0; transform: translateY(-10px); transition: all 0.4s ease; }
+        .category-section.active .category-content { display: block; opacity: 1; transform: translateY(0); }
         
-        /* Enlarged market cards */
-        .market-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 320px; /* Increased from 220px */
-        }
-        .market-card:hover {
-            border-color: #e5e7eb;
-            background: #fff;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.08);
-        }
-
-        .category-banner {
-            background-size: cover;
-            background-position: center;
-            background-color: #27272a;
-            height: 180px; /* Increased height */
-            position: relative;
-        }
-        .category-banner::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        }
-
-        #product-modal { 
-            transition: all 0.3s ease;
-            pointer-events: none; 
-            visibility: hidden;
-            opacity: 0;
-            z-index: 100;
-        }
-        #product-modal.active { 
-            pointer-events: auto; 
-            visibility: visible; 
-            opacity: 1; 
-        }
+        .market-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; margin: 0 auto; width: 100%; max-width: 320px; }
+        .market-card:hover { border-color: #e5e7eb; background: #fff; transform: translateY(-4px); box-shadow: 0 15px 30px -10px rgba(0,0,0,0.08); }
         
+        .category-banner { background-size: cover; background-position: center; background-color: #27272a; height: 160px; position: relative; }
+        .category-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); }
+        
+        #product-modal { transition: all 0.3s ease; pointer-events: none; visibility: hidden; opacity: 0; z-index: 100; }
+        #product-modal.active { pointer-events: auto; visibility: visible; opacity: 1; }
+        
+        #modal-img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        #product-modal.active #modal-img { transform: scale(1.02); }
+
         .badge-stock { background: #ecfdf5; color: #059669; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
-        
-        .lang-btn {
-            display: flex; align-items: center; gap: 8px;
-            padding: 8px 16px; border-radius: 99px;
-            border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700;
-            cursor: pointer;
-        }
+        .lang-btn { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 99px; border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700; cursor: pointer; }
     </style>
 </head>
 <body class="text-slate-900 antialiased">
 
     <nav class="fixed w-full z-50 glass-nav border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex-1">
-                <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase" data-key="brand">Bricoshop</a>
-            </div>
-            
-            <div class="hidden md:flex flex-1 justify-center items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500" id="nav-links">
-                <a href="index.html" class="hover:text-black transition-colors" data-key="nav-home">Home</a>
-                <a href="pricing.html" class="text-black border-b border-black pb-1" data-key="nav-catalog">Collections</a>
-                <a href="about.html" class="hover:text-black transition-colors" data-key="nav-about">Why PVC?</a>
-                <a href="contact.html" class="hover:text-black transition-colors" data-key="nav-contact">Contact</a>
-            </div>
-            
-            <div class="flex-1 flex items-center justify-end gap-4">
-                <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50">
-                    <i class="fas fa-globe text-brico-accent"></i>
-                    <span id="lang-label">العربية</span>
-                </button>
-                <a href="https://wa.me/212661176190" target="_blank" class="bg-slate-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-black transition-all" data-key="cta-inquiry">
-                    Order Inquiries
-                </a>
-            </div>
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a>
+            <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50"><i class="fas fa-globe text-teal-600"></i><span id="lang-label">العربية</span></button>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto"> <header class="mb-16 border-b border-stone-100 pb-10 text-center">
+    <main class="pt-32 pb-12 px-6 max-w-7xl mx-auto">
+        <header class="mb-12 text-center">
             <h1 class="text-4xl font-bold uppercase tracking-tighter mb-2" data-key="page-title">The 2026 Collection</h1>
-            <p class="text-stone-400 text-sm uppercase tracking-widest" data-key="page-subtitle">Select a category to browse our luxury solutions</p>
         </header>
-
-        <div id="market-container" class="space-y-10"></div>
+        <div id="market-container" class="space-y-8"></div>
     </main>
 
-    <footer class="bg-slate-950 text-white py-12 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <h4 class="text-lg font-bold uppercase tracking-tighter mb-1" data-key="brand-footer">Bricoshop Morocco</h4>
-                <p class="text-slate-500 text-[10px] uppercase tracking-widest" data-key="brand-sub">Premium PVC Manufacturing</p>
+    <section class="bg-stone-50 py-20 px-6 border-t border-stone-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-teal-600 mb-4 block" data-key="info-label">Visit Our Showroom</span>
+                <h2 class="text-3xl font-bold uppercase tracking-tighter mb-6" data-key="info-title">Luxury Meets Durability</h2>
+                <p class="text-stone-500 leading-relaxed mb-8 max-w-md" data-key="info-desc">Bricoshop is Morocco's leading specialist in high-end PVC bathroom furniture. Industrial grade materials with luxury aesthetic.</p>
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-location-dot mt-1 text-stone-400"></i>
+                    <p class="text-sm font-medium" data-key="info-loc">Casablanca, Morocco — Industrial District Zone A</p>
+                </div>
             </div>
-            <p class="text-slate-600 text-[9px] uppercase tracking-[0.3em]" data-key="copyright">© 2026 All Rights Reserved</p>
+            <div class="rounded-[2.5rem] overflow-hidden h-80 bg-stone-200">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200" class="w-full h-full object-cover">
+            </div>
         </div>
-    </footer>
+    </section>
 
     <div id="product-modal" class="fixed inset-0 flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeModal()"></div>
-        <div class="relative bg-white w-full max-w-3xl overflow-hidden rounded-[2.5rem] p-10 md:p-14"> <div class="flex flex-col items-center text-center gap-10">
-                <div class="w-full max-w-[450px] aspect-square rounded-2xl overflow-hidden bg-stone-50 p-8 flex items-center justify-center shadow-inner"> <img id="modal-img" src="" class="max-h-full max-w-full object-contain">
-                </div>
+        <div class="absolute inset-0 bg-black/95 backdrop-blur-2xl" onclick="closeModal()"></div>
+        <div class="relative bg-white w-full max-w-7xl overflow-hidden rounded-[3rem] p-6 md:p-12 lg:p-16">
+            <div class="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-20 min-h-[60vh]">
                 
-                <div class="w-full flex flex-col items-center">
-                    <span class="badge-stock w-fit mb-4" data-key="modal-badge">Industrial Grade</span>
-                    <h2 id="modal-title" class="text-4xl font-bold uppercase tracking-tighter mb-2"></h2>
-                    <p id="modal-id" class="text-xs text-stone-500 font-medium mb-10 leading-relaxed whitespace-pre-line"></p>
-                    
-                    <div class="mb-12 w-full">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-6" data-key="modal-finish">Select Finish</label>
-                        <div id="modal-color-swatches" class="flex gap-6 justify-center"></div>
+                <div class="w-full lg:w-2/3 rounded-[2.5rem] overflow-hidden bg-stone-50 flex items-center justify-center shadow-inner relative">
+                    <img id="modal-img" src="" class="max-h-full max-w-full w-full h-full object-contain p-2">
+                </div>
+
+                <div class="w-full lg:w-1/3 flex flex-col justify-center">
+                    <div class="text-center lg:text-left">
+                        <span class="badge-stock w-fit mb-4">Official Collection</span>
+                        <h2 id="modal-title" class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4 leading-none text-slate-950"></h2>
+                        <p id="modal-id" class="text-[12px] font-bold tracking-[0.3em] text-stone-300 mb-10"></p>
+                        
+                        <div class="mb-10">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-6">Explore Finish Options</p>
+                            <div id="modal-color-swatches" class="flex gap-6 justify-center lg:justify-start"></div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <a id="modal-wa-link" href="#" target="_blank" class="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white py-5 rounded-2xl transition-all transform hover:scale-[1.02] shadow-xl">
+                                <i class="fab fa-whatsapp text-3xl"></i>
+                            </a>
+                            
+                            <a href="contact.html" class="block w-full border-2 border-slate-950 text-slate-950 hover:bg-slate-950 hover:text-white py-5 rounded-2xl text-[12px] font-bold uppercase tracking-[0.25em] transition-all text-center" data-key="submit-req">
+                                Submit Request
+                            </a>
+                        </div>
                     </div>
-                    
-                    <a id="modal-wa-link" href="#" target="_blank" class="w-full max-w-sm bg-green-600 hover:bg-green-700 text-white text-center py-6 rounded-2xl text-[12px] font-bold uppercase tracking-widest transition-all" data-key="modal-cta">
-                        Check Availability
-                    </a>
                 </div>
             </div>
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-stone-300 hover:text-black transition-colors"><i class="fas fa-times text-2xl"></i></button>
         </div>
     </div>
 
     <script>
         const translations = {
-            en: {
-                brand: "Bricoshop", "nav-home": "Home", "nav-about": "Why PVC?", "nav-catalog": "Collections", "nav-contact": "Contact",
-                "cta-inquiry": "Order Inquiries", "page-title": "The 2026 Collection", "page-subtitle": "Select a category to browse our luxury solutions",
-                "brand-footer": "Bricoshop Morocco", "brand-sub": "Premium PVC Manufacturing", "copyright": "© 2026 All Rights Reserved",
-                "modal-badge": "Industrial Grade", "modal-finish": "Select Finish", "modal-cta": "Check Availability",
-                "in-stock": "In Stock", "ref-label": "Catalog Reference: "
-            },
-            ar: {
-                brand: "بريكوشوب", "nav-home": "الرئيسية", "nav-about": "لماذا PVC؟", "nav-catalog": "المجموعات", "nav-contact": "اتصل بنا",
-                "cta-inquiry": "استفسارات الطلب", "page-title": "مجموعة 2026", "page-subtitle": "اختر فئة لتصفح حلولنا الفاخرة",
-                "brand-footer": "بريكوشوب المغرب", "brand-sub": "تصنيع PVC متميز", "copyright": "© 2026 جميع الحقوق محفوظة",
-                "modal-badge": "درجة صناعية", "modal-finish": "اختر اللون", "modal-cta": "التحقق من التوفر",
-                "in-stock": "متوفر", "ref-label": "مرجع الكتالوج: "
-            }
+            en: { "page-title": "The 2026 Collection", "in-stock": "In Stock", "ref-label": "REF: ", "info-label": "Visit Our Showroom", "info-title": "Luxury Meets Durability", "info-desc": "Bricoshop is Morocco's leading specialist in high-end PVC bathroom furniture.", "info-loc": "Casablanca, Morocco — Industrial District Zone A", "submit-req": "Submit Request" },
+            ar: { "page-title": "مجموعة 2026", "in-stock": "متوفر", "ref-label": "المرجع: ", "info-label": "قم بزيارة صالة العرض الخاصة بنا", "info-title": "الفخامة تلتقي مع المتانة", "info-desc": "بريكوشوب هو المتخصص الرائد في المغرب في أثاث الحمامات عالي الجودة من مادة PVC.", "info-loc": "الدار البيضاء، المغرب - المنطقة الصناعية أ", "submit-req": "تقديم طلب" }
         };
 
-        const categoryTranslations = {
-            en: [
-                { name: 'Bathroom Vanities', desc: '100% Humidity Proof / Solid PVC' },
-                { name: 'Premium Sinks', desc: 'Anti-scratch surface / Waterproof' },
-                { name: 'High-Density PVC Sheets', desc: 'Industrial Grade / UV Protected' },
-                { name: 'Luxury Accessories', desc: 'PVD Coated / Corrosion Resistant' }
-            ],
-            ar: [
-                { name: 'خزائن الحمامات', desc: 'مقاومة للرطوبة 100٪ / PVC صلب' },
-                { name: 'أحواض متميزة', desc: 'سطح مضاد للخدش / مقاوم للماء' },
-                { name: 'ألواح PVC عالية الكثافة', desc: 'درجة صناعية / محمية من الأشعة فوق البنفسجية' },
-                { name: 'إكسسوارات فاخرة', desc: 'مطلية بـ PVD / مقاومة للتآكل' }
-            ]
-        };
+        const categories = [
+            { id: 'BT', en: 'Bathroom Vanities', ar: 'خزائن الحمامات', banner: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1200' },
+            { id: 'SK', en: 'Premium Sinks', ar: 'أحواض متميزة', banner: 'https://images.unsplash.com/photo-1620626011761-9963d7521476?q=80&w=1200' },
+            { id: 'PV', en: 'High-Density PVC Sheets', ar: 'ألواح PVC عالية الكثافة', banner: 'https://images.unsplash.com/photo-1562254492-377a3ac576f4?q=80&w=1200' },
+            { id: 'AC', en: 'Luxury Accessories', ar: 'إكسسوارات فاخرة', banner: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200' }
+        ];
+
+        const pv01Images = { 'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg', 'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg', 'Luxury Beige': 'https://i.postimg.cc/zXN0kR9c/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg' };
+        const bt03Images = { 'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png', 'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png', 'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png' };
+        const colors_lib = { white: { name: 'Arctic White', hex: '#ffffff' }, black: { name: 'Onyx Black', hex: '#1a1a1a' }, beige: { name: 'Luxury Beige', hex: '#f5f5dc' }, gray: { name: 'Stone Gray', hex: '#78716c' } };
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCatalog();
-            applyLanguage(currentLang);
-        });
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            localStorage.setItem('selectedLang', currentLang);
-            applyLanguage(currentLang);
-            renderCatalog();
-        }
-
-        function applyLanguage(lang) {
-            const htmlTag = document.getElementById('main-html');
-            const langLabel = document.getElementById('lang-label');
-            const navLinks = document.getElementById('nav-links');
-            
-            if (lang === 'ar') {
-                htmlTag.setAttribute('dir', 'rtl');
-                htmlTag.setAttribute('lang', 'ar');
-                langLabel.innerText = "English";
-                if (navLinks) navLinks.classList.add('flex-row-reverse');
-            } else {
-                htmlTag.setAttribute('dir', 'ltr');
-                htmlTag.setAttribute('lang', 'en');
-                langLabel.innerText = "العربية";
-                if (navLinks) navLinks.classList.remove('flex-row-reverse');
-            }
-
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.innerHTML = translations[lang][key];
-            });
-        }
-
-        const arcticWhite = { name: 'Arctic White', hex: '#ffffff' };
-        const onyxBlack = { name: 'Onyx Black', hex: '#1a1a1a' };
-        const luxuryBeige = { name: 'Luxury Beige', hex: '#f5f5dc' };
-        const stoneGray = { name: 'Stone Gray', hex: '#78716c' };
-
-        const defaultColors = [arcticWhite, onyxBlack, luxuryBeige];
-        const sheetsColors = [arcticWhite, onyxBlack, stoneGray, luxuryBeige];
-
-        const sk01Images = { 'Arctic White': 'https://i.postimg.cc/DZtnmXgz/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/rpskJJZq/Gemini-Generated-Image-40513v40513v4051.png', 'Luxury Beige': 'https://i.postimg.cc/1Xh1yZmK/Gemini-Generated-Image-y8esl5y8esl5y8es.png' };
-        const bt01Images = { 'Arctic White': 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png', 'Onyx Black': 'https://i.postimg.cc/WbVD6XxV/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/YSvjqVLY/Gemini-Generated-Image-2095us2095us2095.png' };
-        const bt02Images = { 'Arctic White': 'https://i.postimg.cc/Xq5L0pxQ/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/sXkPK3yv/Gemini-Generated-Image-n5tcjsn5tcjsn5tc.png', 'Luxury Beige': 'https://i.postimg.cc/zvqvqQFQ/Gemini-Generated-Image-mm2oinmm2oinmm2o.png' };
-        const bt03Images = { 'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png', 'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png', 'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png' };
-        const bt04Images = { 'Arctic White': 'https://i.postimg.cc/L5BSvkwQ/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/ZKbz4d1R/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/fRQXVMfW/Gemini-Generated-Image-ou47g1ou47g1ou47.png' };
-        
-        const pv01Images = {
-            'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg',
-            'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg',
-            'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg',
-            'Luxury Beige': 'https://i.postimg.cc/zXN0kR9c/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg'
-        };
 
         function renderCatalog() {
             const container = document.getElementById('market-container');
             container.innerHTML = '';
-            const prefixes = ['BT', 'SK', 'PV', 'AC'];
-            
-            const banners = [
-                'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1200&auto=format&fit=crop',
-                'https://images.unsplash.com/photo-1620626011761-9963d7521476?q=80&w=1200&auto=format&fit=crop',
-                'https://images.unsplash.com/photo-1562254492-377a3ac576f4?q=80&w=1200&auto=format&fit=crop',
-                'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200&auto=format&fit=crop'
-            ];
-
-            categoryTranslations[currentLang].forEach((cat, idx) => {
-                const prefix = prefixes[idx];
+            categories.forEach((cat) => {
                 const section = document.createElement('div');
-                section.className = "category-section bg-white border border-stone-100 rounded-[2.5rem] overflow-hidden shadow-sm mb-10";
+                section.className = "category-section bg-white border border-stone-100 rounded-[2rem] overflow-hidden shadow-sm";
                 section.innerHTML = `
-                    <div class="category-banner flex items-center justify-center px-8 cursor-pointer group" style="background-image: url('${banners[idx]}')" onclick="this.parentElement.classList.toggle('active')">
-                        <div class="relative z-10 text-center">
-                            <h2 class="text-white text-2xl font-bold uppercase tracking-tighter">${cat.name}</h2>
-                            <p class="text-stone-300 text-[10px] uppercase tracking-widest font-medium">${cat.desc}</p>
-                            <i class="fas fa-chevron-down text-white mt-4 block text-sm transition-transform duration-300"></i>
-                        </div>
+                    <div class="category-banner flex items-center justify-center cursor-pointer" style="background-image: url('${cat.banner}')" onclick="this.parentElement.classList.toggle('active')">
+                        <h2 class="text-white text-xl font-bold uppercase tracking-widest">${currentLang === 'ar' ? cat.ar : cat.en}</h2>
                     </div>
-                    <div class="category-content p-10">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center" id="grid-${prefix}"></div>
+                    <div class="category-content p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center" id="grid-${cat.id}"></div>
                     </div>`;
                 container.appendChild(section);
-
-                const grid = document.getElementById(`grid-${prefix}`);
-                for(let i=1; i<=6; i++) { // Slightly reduced count per row for focus
+                const grid = document.getElementById(`grid-${cat.id}`);
+                for(let i=1; i<=6; i++) {
                     const num = i < 10 ? `0${i}` : i;
-                    let ref = `${prefix}-${num}`;
-                    let title = currentLang === 'ar' ? `${cat.name.split(' ')[0]} سلسلة ${num}` : `${cat.name.split(' ')[0]} Series ${num}`;
-                    let defaultImg = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
-                    
-                    const currentProductColors = prefix === 'PV' ? sheetsColors : defaultColors;
-
-                    if (ref === 'SK-01') defaultImg = sk01Images['Arctic White'];
-                    if (ref === 'BT-01') { defaultImg = bt01Images['Arctic White']; title = "KW-T004B"; }
-                    if (ref === 'BT-02') { defaultImg = bt02Images['Arctic White']; title = "KW-T003B"; }
-                    if (ref === 'BT-03') { defaultImg = bt03Images['Arctic White']; title = "KW-9003W"; }
-                    if (ref === 'BT-04') { defaultImg = bt04Images['Arctic White']; title = "KW-9004W"; }
-                    if (ref === 'PV-01') { defaultImg = pv01Images['Arctic White']; title = "PV-HD800-Pro"; }
-
+                    let ref = `${cat.id}-${num}`;
+                    let title = currentLang === 'ar' ? `سلسلة ${num}` : `Series ${num}`;
+                    let img = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
+                    if (ref === 'BT-03') { img = bt03Images['Arctic White']; title = "KW-9003W"; }
+                    if (ref === 'PV-01') { img = pv01Images['Arctic White']; title = "PV-HD800-Pro"; }
                     const card = document.createElement('div');
-                    card.className = "market-card p-6 rounded-3xl cursor-pointer text-center";
-                    card.onclick = (e) => { e.stopPropagation(); openModal(ref, title, defaultImg, currentProductColors); };
-                    card.innerHTML = `
-                        <div class="aspect-square rounded-2xl overflow-hidden bg-stone-50 mb-6 p-6 flex items-center justify-center shadow-inner">
-                            <img src="${defaultImg}" class="max-h-full max-w-full object-contain transform group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <h3 class="text-sm font-bold uppercase tracking-tight truncate mb-1">${title}</h3>
-                        <span class="text-[10px] font-bold text-stone-300 uppercase block mb-4">${ref}</span>
-                        <span class="badge-stock mx-auto">${translations[currentLang]['in-stock']}</span>`;
+                    card.className = "market-card p-6 rounded-2xl cursor-pointer text-center";
+                    card.onclick = () => openModal(ref, title, img, cat.id === 'PV' ? [colors_lib.white, colors_lib.black, colors_lib.gray, colors_lib.beige] : [colors_lib.white, colors_lib.black, colors_lib.beige]);
+                    card.innerHTML = `<div class="aspect-square rounded-xl overflow-hidden bg-stone-50 mb-4 flex items-center justify-center"><img src="${img}" class="max-h-[85%] max-w-[85%] object-contain"></div><h3 class="text-sm font-bold uppercase">${title}</h3><span class="text-[10px] text-stone-300 block mb-2">${ref}</span><span class="badge-stock mx-auto">${translations[currentLang]['in-stock']}</span>`;
                     grid.appendChild(card);
                 }
             });
         }
 
-        function openModal(ref, title, initialImg, colorLibrary) {
+        function openModal(ref, title, initialImg, colors) {
             const modal = document.getElementById('product-modal');
+            const modalImg = document.getElementById('modal-img');
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-id').innerText = `${translations[currentLang]['ref-label']}${ref}`;
-            const modalImg = document.getElementById('modal-img');
             modalImg.src = initialImg;
-            
             const swatchContainer = document.getElementById('modal-color-swatches');
             swatchContainer.innerHTML = '';
-            
-            colorLibrary.forEach((color, index) => {
+            colors.forEach((color, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "swatch w-12 h-12 rounded-full shadow-inner ring-2 ring-transparent hover:ring-stone-400 transition-all";
+                btn.className = "w-12 h-12 rounded-full border-2 border-stone-100 transition-all shadow-md active:scale-90";
                 btn.style.backgroundColor = color.hex;
                 btn.onclick = () => {
-                    if (ref === 'SK-01') modalImg.src = sk01Images[color.name];
-                    else if (ref === 'BT-01') modalImg.src = bt01Images[color.name];
-                    else if (ref === 'BT-02') modalImg.src = bt02Images[color.name];
-                    else if (ref === 'BT-03') modalImg.src = bt03Images[color.name];
-                    else if (ref === 'BT-04') modalImg.src = bt04Images[color.name];
-                    else if (ref === 'PV-01') modalImg.src = pv01Images[color.name];
-                    
-                    Array.from(swatchContainer.children).forEach(s => s.classList.remove('ring-black', 'scale-110'));
-                    btn.classList.add('ring-black', 'scale-110');
-                    const msgText = currentLang === 'ar' ? `استفسار عن: ${title} (${ref}) بلون ${color.name}` : `Inquiry for: ${title} (${ref}) in ${color.name} finish.`;
-                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${encodeURIComponent(msgText)}`;
+                    if (ref === 'PV-01') modalImg.src = pv01Images[color.name];
+                    else if (ref === 'BT-03') modalImg.src = bt03Images[color.name] || bt03Images['Arctic White'];
+                    Array.from(swatchContainer.children).forEach(s => s.classList.remove('scale-125', 'ring-4', 'ring-teal-500'));
+                    btn.classList.add('scale-125', 'ring-4', 'ring-teal-500');
+                    const msg = currentLang === 'ar' ? `استفسار عن: ${title} (${ref}) بلون ${color.name}` : `Inquiry for: ${title} (${ref}) in ${color.name} finish.`;
+                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${encodeURIComponent(msg)}`;
                 };
                 swatchContainer.appendChild(btn);
-                if(index === 0) btn.click();
+                if(idx === 0) btn.click();
             });
-            
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('product-modal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        function closeModal() { document.getElementById('product-modal').classList.remove('active'); document.body.style.overflow = ''; }
+        function toggleLanguage() { currentLang = currentLang === 'en' ? 'ar' : 'en'; localStorage.setItem('selectedLang', currentLang); location.reload(); }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('main-html').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.getElementById('lang-label').innerText = currentLang === 'en' ? "العربية" : "English";
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang][key]) el.innerText = translations[currentLang][key];
+            });
+            renderCatalog();
+        });
     </script>
 </body>
 </html>
