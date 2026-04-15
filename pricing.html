@@ -13,18 +13,21 @@
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); }
         .category-content { display: none; opacity: 0; transform: translateY(-10px); transition: all 0.4s ease; }
         .category-section.active .category-content { display: block; opacity: 1; transform: translateY(0); }
-        
-        .market-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; margin: 0 auto; width: 100%; max-width: 320px; }
+        .market-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; margin: 0 auto; width: 100%; max-width: 320px; cursor: pointer; }
         .market-card:hover { border-color: #e5e7eb; background: #fff; transform: translateY(-4px); box-shadow: 0 15px 30px -10px rgba(0,0,0,0.08); }
-        
-        .category-banner { background-size: cover; background-position: center; background-color: #27272a; height: 160px; position: relative; }
+        .category-banner { background-size: cover; background-position: center; background-color: #27272a; height: 160px; position: relative; cursor: pointer; }
         .category-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); }
         
         #product-modal { transition: all 0.3s ease; pointer-events: none; visibility: hidden; opacity: 0; z-index: 100; }
         #product-modal.active { pointer-events: auto; visibility: visible; opacity: 1; }
-        
         #modal-img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        #product-modal.active #modal-img { transform: scale(1.02); }
+        
+        .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.2s; z-index: 10; }
+        .nav-arrow:hover { background: #f8f8f8; scale: 1.1; }
+        .arrow-left { left: -25px; }
+        .arrow-right { right: -25px; }
+        /* Adjust arrows for mobile */
+        @media (max-width: 768px) { .arrow-left { left: 10px; } .arrow-right { right: 10px; } }
 
         .badge-stock { background: #ecfdf5; color: #059669; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
         .lang-btn { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 99px; border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700; cursor: pointer; }
@@ -46,48 +49,30 @@
         <div id="market-container" class="space-y-8"></div>
     </main>
 
-    <section class="bg-stone-50 py-20 px-6 border-t border-stone-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-teal-600 mb-4 block" data-key="info-label">Visit Our Showroom</span>
-                <h2 class="text-3xl font-bold uppercase tracking-tighter mb-6" data-key="info-title">Luxury Meets Durability</h2>
-                <p class="text-stone-500 leading-relaxed mb-8 max-w-md" data-key="info-desc">Bricoshop is Morocco's leading specialist in high-end PVC bathroom furniture. Industrial grade materials with luxury aesthetic.</p>
-                <div class="flex items-start gap-4">
-                    <i class="fas fa-location-dot mt-1 text-stone-400"></i>
-                    <p class="text-sm font-medium" data-key="info-loc">Casablanca, Morocco — Industrial District Zone A</p>
-                </div>
-            </div>
-            <div class="rounded-[2.5rem] overflow-hidden h-80 bg-stone-200">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </section>
-
     <div id="product-modal" class="fixed inset-0 flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/95 backdrop-blur-2xl" onclick="closeModal()"></div>
-        <div class="relative bg-white w-full max-w-7xl overflow-hidden rounded-[3rem] p-6 md:p-12 lg:p-16">
+        
+        <div class="relative bg-white w-full max-w-7xl overflow-visible rounded-[3rem] p-6 md:p-12 lg:p-16">
+            <button class="nav-arrow arrow-left" onclick="navigateProduct(-1)"><i class="fas fa-chevron-left text-slate-900"></i></button>
+            <button class="nav-arrow arrow-right" onclick="navigateProduct(1)"><i class="fas fa-chevron-right text-slate-900"></i></button>
+
             <div class="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-20 min-h-[60vh]">
-                
                 <div class="w-full lg:w-2/3 rounded-[2.5rem] overflow-hidden bg-stone-50 flex items-center justify-center shadow-inner relative">
                     <img id="modal-img" src="" class="max-h-full max-w-full w-full h-full object-contain p-2">
                 </div>
-
                 <div class="w-full lg:w-1/3 flex flex-col justify-center">
                     <div class="text-center lg:text-left">
                         <span class="badge-stock w-fit mb-4">Official Collection</span>
                         <h2 id="modal-title" class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4 leading-none text-slate-950"></h2>
                         <p id="modal-id" class="text-[12px] font-bold tracking-[0.3em] text-stone-300 mb-10"></p>
-                        
                         <div class="mb-10">
                             <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-6">Explore Finish Options</p>
                             <div id="modal-color-swatches" class="flex gap-6 justify-center lg:justify-start"></div>
                         </div>
-                        
                         <div class="space-y-4">
                             <a id="modal-wa-link" href="#" target="_blank" class="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white py-5 rounded-2xl transition-all transform hover:scale-[1.02] shadow-xl">
                                 <i class="fab fa-whatsapp text-3xl"></i>
                             </a>
-                            
                             <a href="contact.html" class="block w-full border-2 border-slate-950 text-slate-950 hover:bg-slate-950 hover:text-white py-5 rounded-2xl text-[12px] font-bold uppercase tracking-[0.25em] transition-all text-center" data-key="submit-req">
                                 Submit Request
                             </a>
@@ -101,8 +86,8 @@
 
     <script>
         const translations = {
-            en: { "page-title": "The 2026 Collection", "in-stock": "In Stock", "ref-label": "REF: ", "info-label": "Visit Our Showroom", "info-title": "Luxury Meets Durability", "info-desc": "Bricoshop is Morocco's leading specialist in high-end PVC bathroom furniture.", "info-loc": "Casablanca, Morocco — Industrial District Zone A", "submit-req": "Submit Request" },
-            ar: { "page-title": "مجموعة 2026", "in-stock": "متوفر", "ref-label": "المرجع: ", "info-label": "قم بزيارة صالة العرض الخاصة بنا", "info-title": "الفخامة تلتقي مع المتانة", "info-desc": "بريكوشوب هو المتخصص الرائد في المغرب في أثاث الحمامات عالي الجودة من مادة PVC.", "info-loc": "الدار البيضاء، المغرب - المنطقة الصناعية أ", "submit-req": "تقديم طلب" }
+            en: { "page-title": "The 2026 Collection", "in-stock": "In Stock", "ref-label": "REF: ", "submit-req": "Submit Request" },
+            ar: { "page-title": "مجموعة 2026", "in-stock": "متوفر", "ref-label": "المرجع: ", "submit-req": "تقديم طلب" }
         };
 
         const categories = [
@@ -112,11 +97,51 @@
             { id: 'AC', en: 'Luxury Accessories', ar: 'إكسسوارات فاخرة', banner: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200' }
         ];
 
+        // Image Libraries
+        const bt01Images = { 'Arctic White': 'https://i.postimg.cc/BQfd5zgm/Gemini-Generated-Image-4tehav4tehav4teh.png', 'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' };
+        const bt02Images = { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' };
+        const bt03Images = { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' };
+        const bt04Images = { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' };
+        const sk01Images = { 'Arctic White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/8zQfqqdQ/Gemini-Generated-Image-40513v40513v4051.png', 'Luxury Beige': 'https://i.postimg.cc/5tfYtLkv/Gemini-Generated-Image-y8esl5y8esl5y8es.png' };
         const pv01Images = { 'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg', 'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg', 'Luxury Beige': 'https://i.postimg.cc/zXN0kR9c/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg' };
-        const bt03Images = { 'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png', 'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png', 'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png' };
+        
         const colors_lib = { white: { name: 'Arctic White', hex: '#ffffff' }, black: { name: 'Onyx Black', hex: '#1a1a1a' }, beige: { name: 'Luxury Beige', hex: '#f5f5dc' }, gray: { name: 'Stone Gray', hex: '#78716c' } };
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
+        let currentOpenRef = null; // Track which product is open for swiping
+
+        function getProductData(ref) {
+            const parts = ref.split('-');
+            const catId = parts[0];
+            const slotNum = parseInt(parts[1]);
+            let title = currentLang === 'ar' ? `سلسلة ${parts[1]}` : `Series ${parts[1]}`;
+            let colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige];
+            let img = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
+
+            if (ref === 'BT-01') { img = bt01Images['Arctic White']; title = "KW-T004B"; }
+            if (ref === 'BT-02') { img = bt02Images['Arctic White']; title = "KW-T003B"; }
+            if (ref === 'BT-03') { img = bt03Images['Arctic White']; title = "KW-9004W"; }
+            if (ref === 'BT-04') { img = bt04Images['Arctic White']; title = "KW-9003W"; }
+            if (ref === 'SK-01') { img = sk01Images['Arctic White']; title = "Ceramic Series 01"; }
+            if (ref === 'PV-01') { img = pv01Images['Arctic White']; title = "PV-HD800-Pro"; colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige, colors_lib.gray]; }
+
+            return { ref, title, img, colors: colorSet };
+        }
+
+        function navigateProduct(direction) {
+            const parts = currentOpenRef.split('-');
+            const catId = parts[0];
+            let currentNum = parseInt(parts[1]);
+            let nextNum = currentNum + direction;
+            
+            // Loop logic (1 to 6 products per category)
+            if (nextNum > 6) nextNum = 1;
+            if (nextNum < 1) nextNum = 6;
+
+            const nextRef = `${catId}-${nextNum < 10 ? '0' + nextNum : nextNum}`;
+            const data = getProductData(nextRef);
+            openModal(data.ref, data.title, data.img, data.colors);
+        }
 
         function renderCatalog() {
             const container = document.getElementById('market-container');
@@ -124,32 +149,23 @@
             categories.forEach((cat) => {
                 const section = document.createElement('div');
                 section.className = "category-section bg-white border border-stone-100 rounded-[2rem] overflow-hidden shadow-sm";
-                section.innerHTML = `
-                    <div class="category-banner flex items-center justify-center cursor-pointer" style="background-image: url('${cat.banner}')" onclick="this.parentElement.classList.toggle('active')">
-                        <h2 class="text-white text-xl font-bold uppercase tracking-widest">${currentLang === 'ar' ? cat.ar : cat.en}</h2>
-                    </div>
-                    <div class="category-content p-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center" id="grid-${cat.id}"></div>
-                    </div>`;
+                section.innerHTML = `<div class="category-banner flex items-center justify-center" style="background-image: url('${cat.banner}')" onclick="this.parentElement.classList.toggle('active')"><h2 class="text-white text-xl font-bold uppercase tracking-widest">${currentLang === 'ar' ? cat.ar : cat.en}</h2></div><div class="category-content p-8"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center" id="grid-${cat.id}"></div></div>`;
                 container.appendChild(section);
                 const grid = document.getElementById(`grid-${cat.id}`);
                 for(let i=1; i<=6; i++) {
-                    const num = i < 10 ? `0${i}` : i;
-                    let ref = `${cat.id}-${num}`;
-                    let title = currentLang === 'ar' ? `سلسلة ${num}` : `Series ${num}`;
-                    let img = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
-                    if (ref === 'BT-03') { img = bt03Images['Arctic White']; title = "KW-9003W"; }
-                    if (ref === 'PV-01') { img = pv01Images['Arctic White']; title = "PV-HD800-Pro"; }
+                    const ref = `${cat.id}-${i < 10 ? '0' + i : i}`;
+                    const data = getProductData(ref);
                     const card = document.createElement('div');
-                    card.className = "market-card p-6 rounded-2xl cursor-pointer text-center";
-                    card.onclick = () => openModal(ref, title, img, cat.id === 'PV' ? [colors_lib.white, colors_lib.black, colors_lib.gray, colors_lib.beige] : [colors_lib.white, colors_lib.black, colors_lib.beige]);
-                    card.innerHTML = `<div class="aspect-square rounded-xl overflow-hidden bg-stone-50 mb-4 flex items-center justify-center"><img src="${img}" class="max-h-[85%] max-w-[85%] object-contain"></div><h3 class="text-sm font-bold uppercase">${title}</h3><span class="text-[10px] text-stone-300 block mb-2">${ref}</span><span class="badge-stock mx-auto">${translations[currentLang]['in-stock']}</span>`;
+                    card.className = "market-card p-6 rounded-2xl text-center";
+                    card.onclick = () => openModal(data.ref, data.title, data.img, data.colors);
+                    card.innerHTML = `<div class="aspect-square rounded-xl overflow-hidden bg-stone-50 mb-4 flex items-center justify-center"><img src="${data.img}" class="max-h-[85%] max-w-[85%] object-contain"></div><h3 class="text-sm font-bold uppercase">${data.title}</h3><span class="text-[10px] text-stone-300 block mb-2">${ref}</span><span class="badge-stock mx-auto">${translations[currentLang]['in-stock']}</span>`;
                     grid.appendChild(card);
                 }
             });
         }
 
         function openModal(ref, title, initialImg, colors) {
+            currentOpenRef = ref;
             const modal = document.getElementById('product-modal');
             const modalImg = document.getElementById('modal-img');
             document.getElementById('modal-title').innerText = title;
@@ -157,13 +173,19 @@
             modalImg.src = initialImg;
             const swatchContainer = document.getElementById('modal-color-swatches');
             swatchContainer.innerHTML = '';
+            
             colors.forEach((color, idx) => {
                 const btn = document.createElement('button');
                 btn.className = "w-12 h-12 rounded-full border-2 border-stone-100 transition-all shadow-md active:scale-90";
                 btn.style.backgroundColor = color.hex;
                 btn.onclick = () => {
-                    if (ref === 'PV-01') modalImg.src = pv01Images[color.name];
-                    else if (ref === 'BT-03') modalImg.src = bt03Images[color.name] || bt03Images['Arctic White'];
+                    if (ref === 'BT-01') modalImg.src = bt01Images[color.name];
+                    else if (ref === 'BT-02') modalImg.src = bt02Images[color.name];
+                    else if (ref === 'BT-03') modalImg.src = bt03Images[color.name];
+                    else if (ref === 'BT-04') modalImg.src = bt04Images[color.name];
+                    else if (ref === 'SK-01') modalImg.src = sk01Images[color.name];
+                    else if (ref === 'PV-01') modalImg.src = pv01Images[color.name];
+                    
                     Array.from(swatchContainer.children).forEach(s => s.classList.remove('scale-125', 'ring-4', 'ring-teal-500'));
                     btn.classList.add('scale-125', 'ring-4', 'ring-teal-500');
                     const msg = currentLang === 'ar' ? `استفسار عن: ${title} (${ref}) بلون ${color.name}` : `Inquiry for: ${title} (${ref}) in ${color.name} finish.`;
@@ -182,10 +204,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('main-html').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
             document.getElementById('lang-label').innerText = currentLang === 'en' ? "العربية" : "English";
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[currentLang][key]) el.innerText = translations[currentLang][key];
-            });
             renderCatalog();
         });
     </script>
