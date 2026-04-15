@@ -11,38 +11,19 @@
         body { font-family: 'Outfit', sans-serif; transition: background 0.3s ease; }
         h1, h2, h3 { font-family: 'Inter', sans-serif; }
         html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
-        
         .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); }
-        
         .text-brico-accent { color: #c5a059; } 
         .bg-brico-accent { background-color: #c5a059; }
         .bg-brico-soft { background-color: #fcfaf7; }
-        
-        .btn-brico { 
-            background: #1e293b; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .btn-brico { background: #1e293b; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .btn-brico:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(30, 41, 59, 0.3); background: #0f172a; }
-
-        .lang-btn {
-            display: flex; align-items: center; gap: 8px;
-            padding: 8px 16px; border-radius: 99px;
-            border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700;
-            cursor: pointer;
-        }
-
-        .nav-container {
-            display: flex; align-items: center; justify-content: space-between;
-            width: 100%; max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; height: 5rem;
-        }
-
+        .lang-btn { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 99px; border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700; cursor: pointer; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; height: 5rem; }
         .nav-menu { position: absolute; left: 50%; transform: translateX(-50%); display: none; }
         @media (min-width: 768px) { .nav-menu { display: flex; gap: 2.5rem; } }
-
         .card-bg-1 { background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop'); }
         .card-bg-2 { background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=1000&auto=format&fit=crop'); }
         .card-bg-3 { background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop'); }
-
         #infoModal.hidden { display: none; }
         #infoModal.flex { display: flex; }
     </style>
@@ -70,21 +51,19 @@
                     <i class="fas fa-globe text-brico-accent"></i>
                     <span id="lang-label">العربية</span>
                 </button>
-                
                 <button onclick="toggleMobileMenu()" class="md:hidden text-slate-900 text-xl p-2 focus:outline-none">
                     <i class="fas fa-bars" id="menu-icon"></i>
                 </button>
-
                 <a href="https://wa.me/212661176190" class="btn-brico text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full hidden sm:block" data-key="cta-quote">Get a Quote</a>
             </div>
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-stone-100 px-6 py-8 space-y-6 shadow-xl">
             <div class="flex flex-col gap-6 text-[12px] font-bold uppercase tracking-widest text-stone-500">
-                <a href="index.html" class="text-slate-900" data-key="nav-home">Home</a>
-                <a href="pricing.html" data-key="nav-catalog">Collections</a>
-                <a href="about.html" data-key="nav-about">Why PVC?</a>
-                <a href="contact.html" data-key="nav-contact">Contact</a>
+                <a href="index.html" onclick="toggleMobileMenu()" class="text-slate-900" data-key="nav-home">Home</a>
+                <a href="pricing.html" onclick="toggleMobileMenu()" data-key="nav-catalog">Collections</a>
+                <a href="about.html" onclick="toggleMobileMenu()" data-key="nav-about">Why PVC?</a>
+                <a href="contact.html" onclick="toggleMobileMenu()" data-key="nav-contact">Contact</a>
             </div>
             <a href="https://wa.me/212661176190" class="btn-brico text-white w-full block text-center py-4 text-[10px] font-bold uppercase tracking-widest rounded-full" data-key="cta-quote">Get a Quote</a>
         </div>
@@ -200,39 +179,12 @@
 
     <script>
         const translations = {
-            en: {
-                brand: "Bricoshop", "nav-home": "Home", "nav-catalog": "Collections", "nav-about": "Why PVC?", "nav-contact": "Contact", "cta-quote": "Get a Quote",
-                "hero-badge": "2026 Architectural Series", "hero-title": "The End of <br><span class='text-brico-accent'>Water Damage.</span>", "hero-desc": "Standard wood vanities fail in humid bathrooms. Bricoshop introduces 100% industrial-grade PVC furniture designed to last a lifetime in the Moroccan climate.",
-                "hero-btn-1": "Browse Catalog", "hero-btn-2": "The Science of PVC", "stat-water": "Waterproof Guarantee",
-                "why-title": "Why Bricoshop PVC?", "why-sub": "Engineered for perfection (Click to learn more)",
-                "f1-t": "Extreme Durability", "f1-d": "Unlike MDF or Wood, our PVC does not swell, rot, or attract termites. It is the strongest material for high-humidity areas.",
-                "f2-t": "Easy to Clean", "f2-d": "Non-porous surfaces mean mold and bacteria cannot grow. A simple wipe keeps your bathroom furniture looking brand new for years.",
-                "f3-t": "Luxury Finish", "f3-d": "We combine industrial strength with high-end Italian aesthetics. Matte, Glossy, and Textured finishes available.",
-                "footer-about": "Morocco's leading provider of professional PVC bathroom solutions. Durable, elegant, and forever waterproof."
-            },
-            ar: {
-                brand: "بريكوشوب", "nav-home": "الرئيسية", "nav-catalog": "المجموعات", "nav-about": "لماذا PVC؟", "nav-contact": "اتصل بنا", "cta-quote": "طلب عرض سعر",
-                "hero-badge": "سلسلة الهندسة المعمارية 2026", "hero-title": "نهاية <br><span class='text-brico-accent'>تلف المياه.</span>", "hero-desc": "تتعرض الخزائن الخشبية العادية للتلف في الحمامات الرطبة. تقدم بريكوشوب أثاث PVC صناعي بنسبة 100٪ مصمم ليدوم مدى الحياة في المناخ المغربي.",
-                "hero-btn-1": "تصفح الكتالوج", "hero-btn-2": "علم الـ PVC", "stat-water": "ضمان مقاومة الماء",
-                "why-title": "لماذا بريكوشوب PVC؟", "why-sub": "هندسة من أجل المثالية (انقر لمعرفة المزيد)",
-                "f1-t": "متانة قصوى", "f1-d": "على عكس الخشب، لا ينتفخ الـ PVC الخاص بنا ولا يتعفن أو يجذب النمل الأبيض. إنه أقوى مادة للمناطق عالية الرطوبة.",
-                "f2-t": "سهل التنظيف", "f2-d": "الأسطح غير المسامية تمنع نمو العفن والبكتيريا. مسحة بسيطة تحافظ على أثاث حمامك جديداً لسنوات.",
-                "f3-t": "لمسة فاخرة", "f3-d": "نجمع بين القوة الصناعية والجماليات الإيطالية الراقية. متوفر بلمسات مطفية، لامعة، ومزخرفة.",
-                "footer-about": "المزود الرائد في المغرب لحلول حمامات PVC الاحترافية. متينة وأنيقة ومقاومة للماء للأبد."
-            }
+            en: { brand: "Bricoshop", "nav-home": "Home", "nav-catalog": "Collections", "nav-about": "Why PVC?", "nav-contact": "Contact", "cta-quote": "Get a Quote", "hero-badge": "2026 Architectural Series", "hero-title": "The End of <br><span class='text-brico-accent'>Water Damage.</span>", "hero-desc": "Standard wood vanities fail in humid bathrooms. Bricoshop introduces 100% industrial-grade PVC furniture designed to last a lifetime in the Moroccan climate.", "hero-btn-1": "Browse Catalog", "hero-btn-2": "The Science of PVC", "stat-water": "Waterproof Guarantee", "why-title": "Why Bricoshop PVC?", "why-sub": "Engineered for perfection (Click to learn more)", "f1-t": "Extreme Durability", "f1-d": "Unlike MDF or Wood, our PVC does not swell, rot, or attract termites. It is the strongest material for high-humidity areas.", "f2-t": "Easy to Clean", "f2-d": "Non-porous surfaces mean mold and bacteria cannot grow. A simple wipe keeps your bathroom furniture looking brand new for years.", "f3-t": "Luxury Finish", "f3-d": "We combine industrial strength with high-end Italian aesthetics. Matte, Glossy, and Textured finishes available.", "footer-about": "Morocco's leading provider of professional PVC bathroom solutions. Durable, elegant, and forever waterproof." },
+            ar: { brand: "بريكوشوب", "nav-home": "الرئيسية", "nav-catalog": "المجموعات", "nav-about": "لماذا PVC؟", "nav-contact": "اتصل بنا", "cta-quote": "طلب عرض سعر", "hero-badge": "سلسلة الهندسة المعمارية 2026", "hero-title": "نهاية <br><span class='text-brico-accent'>تلف المياه.</span>", "hero-desc": "تتعرض الخزائن الخشبية العادية للتلف في الحمامات الرطبة. تقدم بريكوشوب أثاث PVC صناعي بنسبة 100٪ مصمم ليدوم مدى الحياة في المناخ المغربي.", "hero-btn-1": "تصفح الكتالوج", "hero-btn-2": "علم الـ PVC", "stat-water": "ضمان مقاومة الماء", "why-title": "لماذا بريكوشوب PVC؟", "why-sub": "هندسة من أجل المثالية (انقر لمعرفة المزيد)", "f1-t": "متانة قصوى", "f1-d": "على عكس الخشب، لا ينتفخ الـ PVC الخاص بنا ولا يتعفن أو يجذب النمل الأبيض. إنه أقوى مادة للمناطق عالية الرطوبة.", "f2-t": "سهل التنظيف", "f2-d": "الأسطح غير المسامية تمنع نمو العفن والبكتيريا. مسحة بسيطة تحافظ على أثاث حمامك جديداً لسنوات.", "f3-t": "لمسة فاخرة", "f3-d": "نجمع بين القوة الصناعية والجماليات الإيطالية الراقية. متوفر بلمسات مطفية، لامعة، ومزخرفة.", "footer-about": "المزود الرائد في المغرب لحلول حمامات PVC الاحترافية. متينة وأنيقة ومقاومة للماء للأبد." }
         };
-
         const modalInfo = {
-            en: {
-                f1: { title: "Industrial Strength", desc: "Our PVC is heat-pressed at high density, ensuring it never warps. It's 100% termite-proof and fire-retardant, lasting 5x longer than traditional wood.", icon: '<i class="fa-solid fa-shield-halved"></i>' },
-                f2: { title: "Hygienic Technology", desc: "A specialized anti-bacterial coating ensures moisture never penetrates the core. This keeps your bathroom free of hidden mold and odors forever.", icon: '<i class="fa-solid fa-droplet-slash"></i>' },
-                f3: { title: "Premium Aesthetics", desc: "Using Italian-grade foils, we offer 'Soft-Touch' matte and stone textures that are UV-resistant, so colors never fade in sunlight.", icon: '<i class="fa-solid fa-gem"></i>' }
-            },
-            ar: {
-                f1: { title: "قوة صناعية", desc: "يتم ضغط الـ PVC الخاص بنا حرارياً بكثافة عالية لضمان عدم التواءه أبداً. مقاوم للنمل الأبيض والحريق بنسبة 100٪.", icon: '<i class="fa-solid fa-shield-halved"></i>' },
-                f2: { title: "تقنية صحية", desc: "يضمن الطلاء المتخصص المضاد للبكتيريا عدم تغلغل الرطوبة أبداً، مما يحافظ على حمامك خالياً من العفن والروائح الكريهة.", icon: '<i class="fa-solid fa-droplet-slash"></i>' },
-                f3: { title: "جماليات فاخرة", desc: "باستخدام رقائق إيطالية الجودة، نقدم ملامس مطفية وحجرية 'ناعمة الملمس' مقاومة للأشعة فوق البنفسجية.", icon: '<i class="fa-solid fa-gem"></i>' }
-            }
+            en: { f1: { title: "Industrial Strength", desc: "Our PVC is heat-pressed at high density, ensuring it never warps. It's 100% termite-proof and fire-retardant.", icon: '<i class="fa-solid fa-shield-halved"></i>' }, f2: { title: "Hygienic Technology", desc: "Anti-bacterial coating ensures moisture never penetrates. This keeps your bathroom free of mold forever.", icon: '<i class="fa-solid fa-droplet-slash"></i>' }, f3: { title: "Premium Aesthetics", desc: "Using Italian-grade foils, we offer matte and stone textures that are UV-resistant.", icon: '<i class="fa-solid fa-gem"></i>' } },
+            ar: { f1: { title: "قوة صناعية", desc: "يتم ضغط الـ PVC الخاص بنا حرارياً بكثافة عالية لضمان عدم التواءه أبداً.", icon: '<i class="fa-solid fa-shield-halved"></i>' }, f2: { title: "تقنية صحية", desc: "يضمن الطلاء المتخصص المضاد للبكتيريا عدم تغلغل الرطوبة أبداً.", icon: '<i class="fa-solid fa-droplet-slash"></i>' }, f3: { title: "جماليات فاخرة", desc: "نقدم ملامس مطفية وحجرية مقاومة للأشعة فوق البنفسجية.", icon: '<i class="fa-solid fa-gem"></i>' } }
         };
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
@@ -260,19 +212,14 @@
             const htmlTag = document.getElementById('main-html');
             const langLabel = document.getElementById('lang-label');
             const navLinks = document.getElementById('nav-links');
-            
             htmlTag.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             htmlTag.setAttribute('lang', lang);
             langLabel.innerText = lang === 'ar' ? "English" : "العربية";
-            
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[lang][key]) el.innerHTML = translations[lang][key];
             });
-            
-            if (navLinks) {
-                navLinks.style.flexDirection = lang === 'ar' ? 'row-reverse' : 'row';
-            }
+            if (navLinks) navLinks.style.flexDirection = lang === 'ar' ? 'row-reverse' : 'row';
         }
 
         function openModal(id) {
