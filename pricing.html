@@ -26,7 +26,6 @@
         .nav-arrow:hover { background: #f8f8f8; scale: 1.1; }
         .arrow-left { left: -25px; }
         .arrow-right { right: -25px; }
-        /* Adjust arrows for mobile */
         @media (max-width: 768px) { .arrow-left { left: 10px; } .arrow-right { right: 10px; } }
 
         .badge-stock { background: #ecfdf5; color: #059669; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
@@ -97,8 +96,12 @@
             { id: 'AC', en: 'Luxury Accessories', ar: 'إكسسوارات فاخرة', banner: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200' }
         ];
 
-        // Image Libraries
-        const bt01Images = { 'Arctic White': 'https://i.postimg.cc/BQfd5zgm/Gemini-Generated-Image-4tehav4tehav4teh.png', 'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' };
+        // FIXED Image Libraries for BT-01
+        const bt01Images = { 
+            'Arctic White': 'https://i.postimg.cc/BQfd5zgm/Gemini-Generated-Image-4tehav4tehav4teh.png', 
+            'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 
+            'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' 
+        };
         const bt02Images = { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' };
         const bt03Images = { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' };
         const bt04Images = { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' };
@@ -108,12 +111,10 @@
         const colors_lib = { white: { name: 'Arctic White', hex: '#ffffff' }, black: { name: 'Onyx Black', hex: '#1a1a1a' }, beige: { name: 'Luxury Beige', hex: '#f5f5dc' }, gray: { name: 'Stone Gray', hex: '#78716c' } };
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
-        let currentOpenRef = null; // Track which product is open for swiping
+        let currentOpenRef = null;
 
         function getProductData(ref) {
             const parts = ref.split('-');
-            const catId = parts[0];
-            const slotNum = parseInt(parts[1]);
             let title = currentLang === 'ar' ? `سلسلة ${parts[1]}` : `Series ${parts[1]}`;
             let colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige];
             let img = 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png';
@@ -133,11 +134,8 @@
             const catId = parts[0];
             let currentNum = parseInt(parts[1]);
             let nextNum = currentNum + direction;
-            
-            // Loop logic (1 to 6 products per category)
             if (nextNum > 6) nextNum = 1;
             if (nextNum < 1) nextNum = 6;
-
             const nextRef = `${catId}-${nextNum < 10 ? '0' + nextNum : nextNum}`;
             const data = getProductData(nextRef);
             openModal(data.ref, data.title, data.img, data.colors);
@@ -179,12 +177,15 @@
                 btn.className = "w-12 h-12 rounded-full border-2 border-stone-100 transition-all shadow-md active:scale-90";
                 btn.style.backgroundColor = color.hex;
                 btn.onclick = () => {
-                    if (ref === 'BT-01') modalImg.src = bt01Images[color.name];
-                    else if (ref === 'BT-02') modalImg.src = bt02Images[color.name];
-                    else if (ref === 'BT-03') modalImg.src = bt03Images[color.name];
-                    else if (ref === 'BT-04') modalImg.src = bt04Images[color.name];
-                    else if (ref === 'SK-01') modalImg.src = sk01Images[color.name];
-                    else if (ref === 'PV-01') modalImg.src = pv01Images[color.name];
+                    let targetImg = initialImg;
+                    if (ref === 'BT-01') targetImg = bt01Images[color.name];
+                    else if (ref === 'BT-02') targetImg = bt02Images[color.name];
+                    else if (ref === 'BT-03') targetImg = bt03Images[color.name];
+                    else if (ref === 'BT-04') targetImg = bt04Images[color.name];
+                    else if (ref === 'SK-01') targetImg = sk01Images[color.name];
+                    else if (ref === 'PV-01') targetImg = pv01Images[color.name];
+                    
+                    if(targetImg) modalImg.src = targetImg;
                     
                     Array.from(swatchContainer.children).forEach(s => s.classList.remove('scale-125', 'ring-4', 'ring-teal-500'));
                     btn.classList.add('scale-125', 'ring-4', 'ring-teal-500');
