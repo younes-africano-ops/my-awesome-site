@@ -43,14 +43,15 @@
         .category-banner {
             background-size: cover;
             background-position: center;
-            height: 120px;
+            background-color: #27272a;
+            height: 140px; 
             position: relative;
         }
         .category-banner::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         }
 
         #product-modal { 
@@ -218,28 +219,30 @@
             });
         }
 
+        // Removed Stone Gray from options
         const colorOptions = [
             { name: 'Arctic White', hex: '#ffffff' },
             { name: 'Onyx Black', hex: '#1a1a1a' },
-            { name: 'Luxury Beige', hex: '#f5f5dc' },
-            { name: 'Stone Gray', hex: '#808080' }
+            { name: 'Luxury Beige', hex: '#f5f5dc' }
         ];
 
-        const sk01Images = { 'Arctic White': 'https://i.postimg.cc/DZtnmXgz/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/rpskJJZq/Gemini-Generated-Image-40513v40513v4051.png', 'Luxury Beige': 'https://i.postimg.cc/1Xh1yZmK/Gemini-Generated-Image-y8esl5y8esl5y8es.png', 'Stone Gray': 'https://i.postimg.cc/qqsVRZq5/Gemini-Generated-Image-oicpiuoicpiuoicp.png' };
-        const bt01Images = { 'Arctic White': 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png', 'Onyx Black': 'https://i.postimg.cc/WbVD6XxV/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/YSvjqVLY/Gemini-Generated-Image-2095us2095us2095.png', 'Stone Gray': 'https://i.postimg.cc/2y7SKNg3/Gemini-Generated-Image-c1wj2hc1wj2hc1wj.png' };
-        const bt02Images = { 'Arctic White': 'https://i.postimg.cc/Xq5L0pxQ/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/sXkPK3yv/Gemini-Generated-Image-n5tcjsn5tcjsn5tc.png', 'Luxury Beige': 'https://i.postimg.cc/zvqvqQFQ/Gemini-Generated-Image-mm2oinmm2oinmm2o.png', 'Stone Gray': 'https://i.postimg.cc/1tqw8b65/Gemini-Generated-Image-69msvc69msvc69ms.png' };
-        const bt03Images = { 'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png', 'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png', 'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png', 'Stone Gray': 'https://i.postimg.cc/dt0KRFHF/Gemini-Generated-Image-y7l59ry7l59ry7l5.png' };
-        const bt04Images = { 'Arctic White': 'https://i.postimg.cc/L5BSvkwQ/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/ZKbz4d1R/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/fRQXVMfW/Gemini-Generated-Image-ou47g1ou47g1ou47.png', 'Stone Gray': 'https://i.postimg.cc/yNBFb7J4/Gemini-Generated-Image-ltbjkgltbjkgltbj.png' };
+        // Removed Stone Gray images
+        const sk01Images = { 'Arctic White': 'https://i.postimg.cc/DZtnmXgz/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/rpskJJZq/Gemini-Generated-Image-40513v40513v4051.png', 'Luxury Beige': 'https://i.postimg.cc/1Xh1yZmK/Gemini-Generated-Image-y8esl5y8esl5y8es.png' };
+        const bt01Images = { 'Arctic White': 'https://i.postimg.cc/8P5vg8YP/Gemini-Generated-Image-4tehav4tehav4teh.png', 'Onyx Black': 'https://i.postimg.cc/WbVD6XxV/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/YSvjqVLY/Gemini-Generated-Image-2095us2095us2095.png' };
+        const bt02Images = { 'Arctic White': 'https://i.postimg.cc/Xq5L0pxQ/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/sXkPK3yv/Gemini-Generated-Image-n5tcjsn5tcjsn5tc.png', 'Luxury Beige': 'https://i.postimg.cc/zvqvqQFQ/Gemini-Generated-Image-mm2oinmm2oinmm2o.png' };
+        const bt03Images = { 'Arctic White': 'https://i.postimg.cc/RhKJXfVL/Gemini-Generated-Image-cclhqdcclhqdcclh.png', 'Onyx Black': 'https://i.postimg.cc/fLjhCRQz/Gemini-Generated-Image-71tjx371tjx371tj.png', 'Luxury Beige': 'https://i.postimg.cc/KYtXc8zQ/Gemini-Generated-Image-72291r72291r7229.png' };
+        const bt04Images = { 'Arctic White': 'https://i.postimg.cc/L5BSvkwQ/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/ZKbz4d1R/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/fRQXVMfW/Gemini-Generated-Image-ou47g1ou47g1ou47.png' };
 
         function renderCatalog() {
             const container = document.getElementById('market-container');
             container.innerHTML = '';
             const prefixes = ['BT', 'SK', 'PV', 'AC'];
+            
             const banners = [
-                'https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=1200',
-                'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1200',
-                'https://images.unsplash.com/photo-1560440021-33f9b867899d?w=1200',
-                'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=1200'
+                'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1200&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1620626011761-9963d7521476?q=80&w=1200&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1562254492-377a3ac576f4?q=80&w=1200&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200&auto=format&fit=crop'
             ];
 
             categoryTranslations[currentLang].forEach((cat, idx) => {
