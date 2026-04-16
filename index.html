@@ -11,7 +11,6 @@
         body { font-family: 'Outfit', sans-serif; transition: background 0.3s ease; overflow-x: hidden; }
         .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); }
         .text-brico-accent { color: #c5a059; } 
-        .bg-brico-accent { background-color: #c5a059; }
         .btn-brico { background: #1e293b; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); color: white; }
         .btn-brico:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(30, 41, 59, 0.3); background: #0f172a; }
         
@@ -29,7 +28,6 @@
         .card-bg-2 { background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=1000&auto=format&fit=crop'); }
         .card-bg-3 { background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop'); }
 
-        /* Modal & Image Logic */
         #product-modal { transition: opacity 0.2s ease, visibility 0.2s ease; z-index: 100; }
         #modal-img { transition: opacity 0.15s ease-in-out; }
     </style>
@@ -41,10 +39,14 @@
             <span class="w-10 h-10 bg-slate-900 text-white flex items-center justify-center rounded-xl text-lg italic">B</span>
             <span>Bricoshop</span>
         </a>
+
         <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
             <a href="index.html" class="text-slate-900">Home</a>
             <a href="pricing.html" class="hover:text-slate-900 transition-colors">Collections</a>
+            <a href="about.html" class="hover:text-slate-900 transition-colors">Why PVC?</a>
+            <a href="contact.html" class="hover:text-slate-900 transition-colors">Contact</a>
         </div>
+
         <button onclick="toggleLanguage()" class="border border-stone-200 px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider">
             <i class="fas fa-globe text-brico-accent mr-2"></i> <span id="lang-label">العربية</span>
         </button>
@@ -91,15 +93,15 @@
                 <h2 class="text-4xl font-bold tracking-tighter uppercase mb-4">Why Bricoshop PVC?</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="group relative min-h-[400px] flex flex-col justify-end p-10 card-bg-1 bg-cover bg-center rounded-[2.5rem] overflow-hidden">
+                <div class="group relative min-h-[400px] flex flex-col justify-end p-10 card-bg-1 bg-cover bg-center rounded-[2.5rem] overflow-hidden cursor-pointer">
                     <h3 class="text-2xl font-bold mb-3 uppercase text-white">Extreme Durability</h3>
                     <p class="text-stone-200 text-sm font-light">Our PVC does not swell or rot. Built for high-humidity areas.</p>
                 </div>
-                <div class="group relative min-h-[400px] flex flex-col justify-end p-10 card-bg-2 bg-cover bg-center rounded-[2.5rem] overflow-hidden">
+                <div class="group relative min-h-[400px] flex flex-col justify-end p-10 card-bg-2 bg-cover bg-center rounded-[2.5rem] overflow-hidden cursor-pointer">
                     <h3 class="text-2xl font-bold mb-3 uppercase text-white">Easy to Clean</h3>
                     <p class="text-stone-200 text-sm font-light">Non-porous surfaces prevent mold and bacteria growth.</p>
                 </div>
-                <div class="group relative min-h-[400px] flex flex-col justify-end p-10 card-bg-3 bg-cover bg-center rounded-[2.5rem] overflow-hidden">
+                <div class="group relative min-h-[400px] flex flex-col justify-end p-10 card-bg-3 bg-cover bg-center rounded-[2.5rem] overflow-hidden cursor-pointer">
                     <h3 class="text-2xl font-bold mb-3 uppercase text-white">Luxury Finish</h3>
                     <p class="text-stone-200 text-sm font-light">Industrial strength meets high-end Italian aesthetics.</p>
                 </div>
@@ -169,11 +171,10 @@
     </div>
 
     <script>
-        // Data and Logic copied from Pricing Page for consistency
         const products = [
             { ref: 'BT-01', title: 'KW-T004B', variants: { 'Arctic White': 'https://i.postimg.cc/zGhhPq4P/bt01-white-png.png', 'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' } },
             { ref: 'BT-02', title: 'KW-T003B', variants: { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' } },
-            { ref: 'BT-03', title: 'KW-9004W', variants: { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47' } },
+            { ref: 'BT-03', title: 'KW-9004W', variants: { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' } },
             { ref: 'BT-04', title: 'KW-9003W', variants: { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' } },
             { ref: 'SK-01', title: 'Ceramic Series 01', variants: { 'Arctic White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/8zQfqqdQ/Gemini-Generated-Image-40513v40513v4051.png' } },
             { ref: 'PV-01', title: 'PV-HD800-Pro', variants: { 'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg' } }
@@ -236,7 +237,17 @@
             products.forEach(p => Object.values(p.variants).forEach(src => { const img = new Image(); img.src = src; }));
         }
 
+        function toggleLanguage() {
+            let currentLang = localStorage.getItem('selectedLang') || 'en';
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            localStorage.setItem('selectedLang', currentLang);
+            location.reload();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            let currentLang = localStorage.getItem('selectedLang') || 'en';
+            document.getElementById('main-html').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.getElementById('lang-label').innerText = currentLang === 'en' ? 'العربية' : 'English';
             buildRibbon();
             preloadImages();
         });
