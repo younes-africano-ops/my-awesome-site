@@ -83,14 +83,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const product = urlParams.get('product');
+            const ref = urlParams.get('ref');
             const color = urlParams.get('color');
 
-            if (product && color) {
-                const categoryInput = document.getElementById('category-field');
-                const detailsInput = document.getElementById('details-field');
+            if (product) {
+                const categoryField = document.getElementById('category-field');
+                const detailsField = document.getElementById('details-field');
 
-                if (categoryInput) categoryInput.value = product;
-                if (detailsInput) detailsInput.value = `${product} - ${color}`;
+                if (categoryField) {
+                    categoryField.value = `${product} (${ref})`;
+                }
+
+                if (detailsField && color) {
+                    detailsField.value = `I am interested in the ${product} in ${color} finish. Please provide more details.`;
+                }
             }
         });
     </script>
