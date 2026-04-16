@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Luxury Dark Theme Base */
         body { 
             font-family: 'Outfit', sans-serif; 
             background-color: #0f172a; 
@@ -17,8 +16,6 @@
         }
         .text-brico-gold { color: #b79860; }
         .bg-brico-dark { background-color: #020617; }
-        
-        /* Ribbon Engine */
         .ribbon-container { overflow: hidden; position: relative; padding: 40px 0; width: 100%; }
         .ribbon-track { display: flex; width: max-content; will-change: transform; }
         .ribbon-card { 
@@ -35,18 +32,13 @@
             background: rgba(255, 255, 255, 0.07);
             box-shadow: 0 30px 60px rgba(0,0,0,0.4); 
         }
-
-        /* Hero & Sections */
         .hero-gradient { 
             background: radial-gradient(circle at top right, #1e293b, #0f172a); 
         }
         .section-divider { border-color: rgba(255, 255, 255, 0.05); }
-
-        /* Modal Customization */
         #product-modal { transition: opacity 0.4s ease; z-index: 1000; opacity: 0; visibility: hidden; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
         #product-modal.modal-active { opacity: 1; visibility: visible; }
         .modal-content { background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.1); }
-        
         .swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.2s; }
         .swatch.active { border-color: #b79860; transform: scale(1.2); }
     </style>
@@ -157,7 +149,7 @@
 
     <div id="product-modal">
         <div class="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" onclick="closeModal()"></div>
-        <div class="modal-content relative w-[95%] max-w-5xl rounded-[3rem] p-10 lg:p-16 flex flex-col lg:row gap-16 items-center shadow-2xl">
+        <div class="modal-content relative w-[95%] max-w-5xl rounded-[3rem] p-10 lg:p-16 flex flex-col lg:flex-row gap-16 items-center shadow-2xl">
             <div class="w-full lg:w-1/2 aspect-square flex items-center justify-center bg-white/5 rounded-[2rem] border border-white/5">
                 <img id="modal-img" src="" class="max-h-[85%] max-w-[85%] object-contain drop-shadow-2xl">
             </div>
@@ -168,7 +160,14 @@
                     <p class="text-[10px] font-bold uppercase text-slate-500 mb-6 tracking-[0.2em]">Available Finishes</p>
                     <div id="modal-swatches" class="flex gap-5"></div>
                 </div>
-                <a id="modal-wa-link" href="https://wa.me/212661176190" target="_blank" class="block w-full text-center bg-white text-slate-950 py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-brico-gold transition-all">Order via WhatsApp</a>
+                <div class="flex flex-col gap-4">
+                    <a id="modal-wa-link" href="https://wa.me/212661176190" target="_blank" class="block w-full text-center bg-[#25D366] text-white py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:opacity-90 transition-all">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> WhatsApp Inquiry
+                    </a>
+                    <button onclick="submitRequest()" class="block w-full text-center bg-white text-slate-950 py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-brico-gold transition-all border border-white/10">
+                        Submit Request
+                    </button>
+                </div>
             </div>
             <button onclick="closeModal()" class="absolute top-8 right-10 text-slate-500 hover:text-white transition-colors"><i class="fas fa-times text-3xl"></i></button>
         </div>
@@ -186,6 +185,8 @@
                 'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg'
             } }
         ];
+
+        let selectedColorName = "";
 
         function init() {
             ['track-1', 'track-2'].forEach((trackId, i) => {
@@ -220,6 +221,8 @@
             document.getElementById('modal-title').innerText = p.title;
             document.getElementById('modal-ref').innerText = `Ref: ${p.id}`;
             modalImg.src = Object.values(p.variants)[0];
+            selectedColorName = Object.keys(p.variants)[0];
+
             const swatchBox = document.getElementById('modal-swatches');
             swatchBox.innerHTML = '';
             Object.keys(p.variants).forEach((color, idx) => {
@@ -230,11 +233,19 @@
                     document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
                     btn.classList.add('active');
                     modalImg.src = p.variants[color];
+                    selectedColorName = color;
                 };
                 swatchBox.appendChild(btn);
             });
             document.getElementById('product-modal').classList.add('modal-active');
             document.body.style.overflow = 'hidden';
+        }
+
+        function submitRequest() {
+            const productTitle = document.getElementById('modal-title').innerText;
+            const productRef = document.getElementById('modal-ref').innerText;
+            const url = `contact.html?product=${encodeURIComponent(productTitle)}&ref=${encodeURIComponent(productRef)}&color=${encodeURIComponent(selectedColorName)}`;
+            window.location.href = url;
         }
 
         function closeModal() { document.getElementById('product-modal').classList.remove('modal-active'); document.body.style.overflow = ''; }
