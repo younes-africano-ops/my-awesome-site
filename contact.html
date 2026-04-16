@@ -1,188 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" id="main-html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get a Quote | Bricoshop Luxury PVC</title>
+    <title>Bricoshop | Luxury Concierge</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;500&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Outfit', sans-serif; transition: background 0.3s ease; }
-        h1, h2, h3 { font-family: 'Inter', sans-serif; }
-        html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
-        
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        input, select, textarea { outline: none; transition: border-color 0.3s ease; }
-        input:focus { border-color: #0d9488 !important; }
-        
-        .text-brico-accent { color: #0d9488; }
-        .lang-btn {
-            display: flex; align-items: center; gap: 8px;
-            padding: 8px 16px; border-radius: 99px;
-            border: 1px solid #e2e8f0; font-size: 12px; font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* Unified Social Icon Style */
-        .social-link {
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border: 1px solid #e5e7eb;
-            color: #1e293b;
-            border-radius: 4px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .social-link:hover {
-            background: #f8fafc;
-            border-color: #0d9488;
-            color: #0d9488;
-            transform: translateY(-2px);
-        }
+        body { font-family: 'Outfit', sans-serif; background-color: #fff; }
+        .bg-luxury { background-color: #0f172a; }
+        .text-brico { color: #c5a059; }
+        .input-line { background: transparent; border-bottom: 1px solid #e2e8f0; padding: 12px 0; outline: none; transition: 0.3s; width: 100%; font-size: 0.9rem; }
+        .input-line:focus { border-color: #c5a059; }
+        label { font-[10px]; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #94a3b8; display: block; margin-top: 25px; }
     </style>
 </head>
-<body class="bg-stone-50 text-slate-900 antialiased">
+<body class="antialiased">
 
-    <nav class="fixed w-full z-50 glass-nav border-b border-stone-200">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex-1">
-                <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase text-slate-900" data-key="brand">Bricoshop</a>
-            </div>
-
-            <div class="hidden md:flex flex-1 justify-center items-center gap-10 text-sm font-medium tracking-wide uppercase text-slate-600" id="nav-links">
-                <a href="index.html" class="hover:text-black transition-colors" data-key="nav-home">Home</a>
-                <a href="pricing.html" class="hover:text-black transition-colors" data-key="nav-catalog">Collections</a>
-                <a href="about.html" class="hover:text-black transition-colors" data-key="nav-about">Why PVC?</a>
-                <a href="contact.html" class="text-black border-b-2 border-black" data-key="nav-contact">Contact</a>
-            </div>
-            
-            <div class="flex-1 flex items-center justify-end gap-4">
-                <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50">
-                    <i class="fas fa-globe text-brico-accent"></i>
-                    <span id="lang-label">العربية</span>
-                </button>
-                <a href="https://wa.me/212661176190" target="_blank" class="bg-slate-900 text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-slate-800 transition-all" data-key="cta-quote">Get a Quote</a>
-            </div>
-        </div>
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-stone-100 px-8 h-20 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase flex items-center gap-3">
+            <span class="w-10 h-10 bg-slate-900 text-white flex items-center justify-center rounded-xl italic">B</span>
+            <span>Bricoshop</span>
+        </a>
     </nav>
 
-    <section class="pt-40 pb-24 px-6">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+    <div class="min-h-screen flex flex-col lg:flex-row">
+        <div class="w-full lg:w-2/5 bg-luxury p-12 lg:p-24 flex flex-col justify-between text-white pt-32 lg:pt-48">
             <div>
-                <h1 class="text-4xl font-bold mb-8 uppercase tracking-tighter" data-key="hero-title">Start Your <br>Transformation</h1>
-                <p class="text-lg text-slate-600 mb-12 leading-relaxed" data-key="hero-desc">Fill out the form for a detailed quote, or jump directly into a conversation with our specialists.</p>
+                <span class="text-brico font-bold tracking-[0.5em] text-[10px] uppercase mb-6 block">Concierge Service</span>
+                <h1 class="text-5xl lg:text-7xl font-bold tracking-tighter leading-none mb-8">Design your <br>dream space.</h1>
+                <p class="text-slate-400 text-sm leading-loose max-w-sm mb-12">Whether you're an architect or a homeowner, we're here to provide the finest PVC and ceramic solutions with a focus on durability and minimalist luxury.</p>
                 
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="https://wa.me/212661176190" target="_blank" class="social-link" title="WhatsApp">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                    </a>
-                    <a href="https://www.instagram.com/brico.shop2/" target="_blank" class="social-link" title="Instagram">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="https://web.facebook.com/profile.php?id=100091613435811" target="_blank" class="social-link" title="Facebook">
-                        <i class="fab fa-facebook-f text-xl"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@www.tiktok.touhami72" target="_blank" class="social-link" title="TikTok">
-                        <i class="fab fa-tiktok text-xl"></i>
-                    </a>
-                </div>
-
-                <div class="mt-12">
-                   <p class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-2" data-key="social-wa-tag">Fastest Response</p>
-                   <p class="font-bold text-xl">+212 661-176190</p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-brico"><i class="fas fa-phone"></i></div>
+                        <div><p class="text-[10px] uppercase font-bold text-slate-500">Call Us</p><p class="font-bold">+212 661 176 190</p></div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-brico"><i class="fas fa-location-dot"></i></div>
+                        <div><p class="text-[10px] uppercase font-bold text-slate-500">Showroom</p><p class="font-bold">Temara, Morocco</p></div>
+                    </div>
                 </div>
             </div>
+            <div class="mt-24">
+                <p class="text-[10px] uppercase font-bold text-slate-600 tracking-widest">© 2026 Bricoshop International</p>
+            </div>
+        </div>
 
-            <div class="bg-white p-10 shadow-sm border border-stone-200">
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="YOUR_KEY_HERE">
-                    
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="w-full lg:w-3/5 p-12 lg:p-24 bg-white pt-24 lg:pt-48">
+            <div class="max-w-xl">
+                <h2 class="text-3xl font-bold tracking-tight mb-2">Request Information</h2>
+                <p class="text-slate-400 text-sm mb-12">Fill out the details below and our team will get back to you within 24 hours.</p>
+                
+                <form action="#">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-widest mb-2" data-key="label-name">Full Name</label>
-                            <input type="text" name="name" required class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="John Doe" class="input-line">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-widest mb-2" data-key="label-phone">Phone Number</label>
-                            <input type="tel" name="phone" required class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm">
+                            <label>Phone Number</label>
+                            <input type="text" placeholder="+212 ..." class="input-line">
                         </div>
                     </div>
 
-                    <div class="mb-6">
-                        <label class="block text-[10px] font-bold uppercase tracking-widest mb-2" data-key="label-collection">Interested Collection</label>
-                        <select name="collection" id="collection-select" class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm appearance-none">
-                            </select>
-                    </div>
+                    <label>Selected Product</label>
+                    <input type="text" id="category-field" placeholder="Select from catalog..." class="input-line">
 
-                    <div class="mb-8">
-                        <label class="block text-[10px] font-bold uppercase tracking-widest mb-2" data-key="label-details">Project Details</label>
-                        <textarea name="message" rows="4" class="w-full bg-stone-50 border border-stone-200 px-4 py-3 text-sm"></textarea>
-                    </div>
+                    <label>Inquiry Details</label>
+                    <textarea id="details-field" rows="3" placeholder="Additional requirements or color preferences..." class="input-line"></textarea>
 
-                    <button type="submit" class="w-full bg-slate-900 text-white py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-slate-800 transition-all" data-key="btn-submit">Submit Request</button>
+                    <button class="mt-12 w-full bg-slate-900 text-white py-5 rounded-2xl font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl shadow-slate-200">
+                        Submit Inquiry
+                    </button>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
 
     <script>
-        const translations = {
-            en: {
-                brand: "Bricoshop", "nav-home": "Home", "nav-catalog": "Collections", "nav-about": "Why PVC?", "nav-contact": "Contact", "cta-quote": "Get a Quote",
-                "hero-title": "Start Your <br>Transformation", "hero-desc": "Fill out the form for a detailed quote, or jump directly into a conversation.",
-                "label-name": "Full Name", "label-phone": "Phone Number", "label-collection": "Interested Collection", "label-details": "Project Details",
-                "btn-submit": "Submit Request", "social-wa-tag": "Fastest Response",
-                collections: ["Bathroom Vanities", "Premium Sinks", "High-Density PVC Sheets", "Luxury Accessories", "Custom Project"]
-            },
-            ar: {
-                brand: "بريكوشوب", "nav-home": "الرئيسية", "nav-catalog": "المجموعات", "nav-about": "لماذا PVC؟", "nav-contact": "اتصل بنا", "cta-quote": "طلب عرض سعر",
-                "hero-title": "ابدأ <br>التغيير الآن", "hero-desc": "قم بتعبئة النموذج للحصول على عرض سعر مفصل، أو تواصل مباشرة معنا.",
-                "label-name": "الاسم الكامل", "label-phone": "رقم الهاتف", "label-collection": "المجموعة المطلوبة", "label-details": "تفاصيل المشروع",
-                "btn-submit": "إرسال الطلب", "social-wa-tag": "أسرع استجابة",
-                collections: ["خزائن الحمامات", "أحواض متميزة", "ألواح PVC عالية الكثافة", "إكسسوارات فاخرة", "مشروع مخصص"]
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const product = urlParams.get('product');
+            const color = urlParams.get('color');
+
+            if (product && color) {
+                const categoryInput = document.getElementById('category-field');
+                const detailsInput = document.getElementById('details-field');
+
+                if (categoryInput) categoryInput.value = product;
+                if (detailsInput) detailsInput.value = `${product} - ${color}`;
             }
-        };
-
-        let currentLang = localStorage.getItem('selectedLang') || 'en';
-
-        function applyLanguage(lang) {
-            const htmlTag = document.getElementById('main-html');
-            const collectionSelect = document.getElementById('collection-select');
-            const navLinks = document.getElementById('nav-links');
-            
-            htmlTag.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-            document.getElementById('lang-label').innerText = lang === 'ar' ? "English" : "العربية";
-
-            if (lang === 'ar') {
-                navLinks.classList.add('flex-row-reverse');
-            } else {
-                navLinks.classList.remove('flex-row-reverse');
-            }
-
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.innerHTML = translations[lang][key];
-            });
-
-            collectionSelect.innerHTML = '';
-            translations[lang].collections.forEach(item => {
-                const opt = document.createElement('option');
-                opt.value = item; opt.innerText = item;
-                collectionSelect.appendChild(opt);
-            });
-        }
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            localStorage.setItem('selectedLang', currentLang);
-            applyLanguage(currentLang);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => applyLanguage(currentLang));
+        });
     </script>
 </body>
 </html>
