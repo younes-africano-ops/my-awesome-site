@@ -36,8 +36,20 @@
 
     <nav class="fixed w-full z-50 glass-nav border-b border-stone-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a>
-            <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50"><i class="fas fa-globe text-teal-600"></i><span id="lang-label">العربية</span></button>
+            <div class="flex-1">
+                <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a>
+            </div>
+
+            <div class="hidden md:flex items-center justify-center gap-8 flex-1">
+                <a href="index.html" class="text-[11px] font-bold uppercase tracking-[0.2em] hover:text-teal-600 transition-colors">Home</a>
+                <a href="pricing.html" class="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-600">Collection</a>
+                <a href="index.html#why-pvc" class="text-[11px] font-bold uppercase tracking-[0.2em] hover:text-teal-600 transition-colors">Why PVC</a>
+                <a href="contact.html" class="text-[11px] font-bold uppercase tracking-[0.2em] hover:text-teal-600 transition-colors">Contact</a>
+            </div>
+
+            <div class="flex-1 flex justify-end">
+                <button onclick="toggleLanguage()" class="lang-btn hover:bg-stone-50"><i class="fas fa-globe text-teal-600"></i><span id="lang-label">العربية</span></button>
+            </div>
         </div>
     </nav>
 
@@ -95,7 +107,11 @@
             { id: 'AC', en: 'Luxury Accessories', ar: 'إكسسوارات فاخرة', banner: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200' }
         ];
 
-        const bt01Images = { 'Arctic White': 'https://i.postimg.cc/zGhhPq4P/bt01-white-png.png', 'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' };
+        const bt01Images = { 
+            'Arctic White': 'https://i.postimg.cc/zGhhPq4P/bt01-white-png.png', 
+            'Onyx Black': 'https://i.postimg.cc/1R8YSPMY/bt01-black-png.png', 
+            'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' 
+        };
         const bt02Images = { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' };
         const bt03Images = { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' };
         const bt04Images = { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' };
@@ -146,7 +162,7 @@
             if (ref === 'SK-01') { img = sk01Images['Arctic White']; title = "Ceramic Series 01"; }
             if (ref === 'PV-01') { img = pv01Images['Arctic White']; title = "PV-HD800-Pro"; colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige, colors_lib.gray]; }
             if (ref === 'AC-01') { img = ac01Images['Cerulean Blue']; title = "Classic Set"; colorSet = [colors_lib.blue, colors_lib.yellow, colors_lib.pink]; }
-            if (ref === 'AC-02') { img = ac02Images['Cerulean Blue']; title = "Luxury Set 2"; colorSet = [colors_lib.blue, colors_lib.yellow, colors_lib.pink]; }
+            if (ref === 'AC-02') { img = ac02Images['Cerulean Blue']; title = "Luxury Set 2"; colorSet = [colors_lib.blue, protectors_lib.yellow, colors_lib.pink]; }
             if (ref === 'AC-03') { img = ac03Images['Cerulean Blue']; title = "Modern Set 3"; colorSet = [colors_lib.blue, colors_lib.yellow, colors_lib.pink]; }
 
             return { ref, title, img, colors: colorSet };
