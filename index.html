@@ -10,132 +10,135 @@
     <style>
         body { 
             font-family: 'Outfit', sans-serif; 
-            background-color: #0f172a; 
             color: #ffffff; 
-            overflow-x: hidden; 
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #1e293b; 
+            background: 
+                radial-gradient(circle at 90% 10%, rgba(183, 152, 96, 0.4), transparent 50%),
+                linear-gradient(rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.6)),
+                url('https://images.unsplash.com/photo-1428592953211-077101b2021b?q=80&w=2000&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
-        .text-brico-gold { color: #b79860; }
-        .bg-brico-dark { background-color: #020617; }
+
+        .text-brico-gold { color: #d4af37; }
         .ribbon-container { overflow: hidden; position: relative; padding: 40px 0; width: 100%; }
         .ribbon-track { display: flex; width: max-content; will-change: transform; }
+
         .ribbon-card { 
             width: 300px; flex-shrink: 0; margin: 0 15px; 
-            background: rgba(255, 255, 255, 0.03); 
+            background: rgba(255, 255, 255, 0.1); 
             border-radius: 24px; padding: 25px; 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(4px); 
         }
+
         .ribbon-card:hover { 
-            border-color: #b79860; 
+            border-color: #d4af37; 
             transform: translateY(-12px); 
-            background: rgba(255, 255, 255, 0.07);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4); 
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3); 
         }
-        .hero-gradient { 
-            background: radial-gradient(circle at top right, #1e293b, #0f172a); 
-        }
-        .section-divider { border-color: rgba(255, 255, 255, 0.05); }
+
+        .section-divider { border-color: rgba(255, 255, 255, 0.1); }
+
         #product-modal { transition: opacity 0.4s ease; z-index: 1000; opacity: 0; visibility: hidden; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
         #product-modal.modal-active { opacity: 1; visibility: visible; }
-        .modal-content { background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.2s; }
-        .swatch.active { border-color: #b79860; transform: scale(1.2); }
+        .modal-content { background: rgba(30, 41, 59, 0.95); border: 1px solid #d4af37; backdrop-filter: blur(12px); }
+        .swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
+        .swatch.active { border-color: #d4af37; transform: scale(1.2); }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="h-[90px] border-b border-white/5 px-10 flex items-center justify-between bg-slate-950/80 backdrop-blur-xl fixed w-full z-50">
+    <nav class="h-[90px] border-b border-white/10 px-10 flex items-center justify-between bg-slate-900/30 backdrop-blur-md fixed w-full z-50">
         <a href="index.html" class="text-[24px] font-bold tracking-tighter uppercase flex items-center gap-2">
-            <span class="w-8 h-8 bg-brico-gold text-slate-950 flex items-center justify-center rounded-lg italic text-[18px]">B</span>
+            <span class="w-8 h-8 bg-[#d4af37] text-slate-950 flex items-center justify-center rounded-lg italic text-[18px]">B</span>
             <span class="text-white">BRICOSHOP</span>
         </a>
         <div class="hidden lg:flex gap-10">
             <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-white">Home</a>
-            <a href="pricing.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 hover:text-brico-gold transition-colors">Collections</a>
-            <a href="about.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 hover:text-brico-gold transition-colors">Why PVC?</a>
-            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 hover:text-brico-gold transition-colors">Contact</a>
+            <a href="pricing.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37] transition-colors">Collections</a>
+            <a href="about.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37] transition-colors">Why PVC?</a>
+            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37] transition-colors">Contact</a>
         </div>
-        <a href="#" class="text-[11px] font-bold text-white border border-white/10 px-5 py-2 rounded-full hover:bg-white/5 transition-all">العربية</a>
+        <a href="#" class="text-[11px] font-bold text-white border border-white/20 px-5 py-2 rounded-full hover:bg-white/10 transition-all">العربية</a>
     </nav>
 
-    <header class="hero-gradient pt-56 pb-32 px-10">
+    <header class="pt-56 pb-32 px-10 relative">
         <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-20">
             <div class="w-full lg:w-1/2">
-                <span class="inline-block bg-white/5 text-[10px] font-bold uppercase tracking-[0.3em] text-brico-gold px-5 py-2 rounded-full mb-8 border border-white/5">2026 Architectural Series</span>
+                <span class="inline-block bg-white/10 text-[10px] font-bold uppercase tracking-[0.3em] text-[#d4af37] px-5 py-2 rounded-full mb-8 border border-white/10">2026 Architectural Series</span>
                 <h1 class="text-[60px] lg:text-[90px] font-bold leading-[0.85] tracking-tighter mb-10 text-white">
-                    The End of<br> <span class="text-brico-gold">Water Damage.</span>
+                    Built for<br> <span class="text-[#d4af37]">Moisture.</span>
                 </h1>
-                <p class="text-[18px] text-slate-400 leading-relaxed mb-12 max-w-lg font-light">
-                    Standard wood vanities fail in humid environments. Bricoshop introduces 100% industrial-grade PVC furniture engineered to last decades.
+                <p class="text-[18px] text-slate-200 leading-relaxed mb-12 max-w-lg font-light">
+                    Explore our full 2026 catalog featuring high-density PVC vanities and premium ceramic sinks engineered for extreme durability.
                 </p>
-                <div class="flex items-center gap-8">
-                    <a href="pricing.html" class="bg-brico-gold text-slate-950 text-[11px] font-bold uppercase tracking-[0.3em] px-12 py-6 rounded-full hover:scale-105 transition-all">Browse Catalog</a>
-                    <div class="h-12 w-[1px] bg-white/10"></div>
-                    <div>
-                        <p class="text-[12px] font-bold uppercase text-white">Premium Quality</p>
-                        <p class="text-[10px] text-slate-500 uppercase">ISO 9001 Certified</p>
-                    </div>
-                </div>
+                <a href="pricing.html" class="bg-[#d4af37] text-slate-950 text-[11px] font-bold uppercase tracking-[0.3em] px-12 py-6 rounded-full hover:scale-105 transition-all">Full Catalog</a>
             </div>
             <div class="w-full lg:w-1/2 relative">
-                <div class="absolute -inset-4 bg-brico-gold/20 blur-[100px] rounded-full"></div>
-                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" class="relative w-full rounded-[40px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10">
+                <div class="absolute -inset-4 bg-[#d4af37]/30 blur-[100px] rounded-full"></div>
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" class="relative w-full rounded-[40px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] border border-white/20">
             </div>
         </div>
     </header>
 
-    <section class="py-24 bg-slate-950/30">
+    <section class="py-24">
         <div class="px-10 mb-10 max-w-[1400px] mx-auto">
-            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white">Bathroom Vanities</h2>
+            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white">Bathroom & Ceramic Market</h2>
         </div>
         <div class="ribbon-container">
-            <div id="track-1" class="ribbon-track"></div>
+            <div id="market-1-track" class="ribbon-track"></div>
         </div>
     </section>
 
     <section class="py-24 border-t section-divider">
         <div class="px-10 mb-10 max-w-[1400px] mx-auto">
-            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white">PVC Cabinets</h2>
+            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white">Industrial PVC Sheets</h2>
         </div>
         <div class="ribbon-container">
-            <div id="track-2" class="ribbon-track"></div>
+            <div id="market-2-track" class="ribbon-track"></div>
         </div>
     </section>
 
-    <section class="py-32 border-t section-divider bg-slate-950/50">
+    <section class="py-32 border-t section-divider bg-white/5">
         <div class="max-w-[1400px] mx-auto px-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                 <div>
-                    <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-brico-gold mb-6 block">Global Standards</span>
+                    <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-[#d4af37] mb-6 block">Global Standards</span>
                     <h2 class="text-5xl font-bold text-white uppercase tracking-tighter mb-8 leading-none">Bricoshop<br>International</h2>
-                    <p class="text-[17px] text-slate-400 leading-relaxed mb-12 font-light">
-                        We specialize in premium PVC bathroom fixtures designed to withstand the toughest conditions. Visit our showroom to explore our latest collections in person.
+                    <p class="text-[17px] text-slate-200 leading-relaxed mb-12 font-light">
+                        Specializing in premium PVC bathroom fixtures, Bricoshop offers solutions designed to withstand high-humidity environments.
                     </p>
                     <div class="space-y-8">
                         <div class="flex items-center gap-6 group">
-                            <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-brico-gold transition-colors">
-                                <i class="fas fa-location-dot text-brico-gold text-xl"></i>
+                            <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 group-hover:border-[#d4af37] transition-colors">
+                                <i class="fas fa-location-dot text-[#d4af37] text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1">Showroom</p>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Main Showroom</p>
                                 <p class="text-white font-medium">Lot 142, Industrial Zone, Casablanca, Morocco</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-6 group">
-                            <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-brico-gold transition-colors">
-                                <i class="fas fa-phone text-brico-gold text-xl"></i>
+                            <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 group-hover:border-[#d4af37] transition-colors">
+                                <i class="fas fa-phone text-[#d4af37] text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1">Direct Line</p>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Direct Assistance</p>
                                 <p class="text-white font-medium">+212 661-176190</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border border-white/10">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" class="w-full h-[500px] object-cover opacity-80">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border border-white/20 h-[450px]">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover opacity-80">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 </div>
             </div>
         </div>
@@ -143,75 +146,82 @@
 
     <footer class="py-20 border-t section-divider">
         <div class="max-w-[1400px] mx-auto text-center">
-            <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-600">© 2026 Bricoshop. Defining Modern Interiors.</p>
+            <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400">© 2026 Bricoshop. Defining Modern Interiors.</p>
         </div>
     </footer>
 
     <div id="product-modal">
-        <div class="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-slate-900/80" onclick="closeModal()"></div>
         <div class="modal-content relative w-[95%] max-w-5xl rounded-[3rem] p-10 lg:p-16 flex flex-col lg:flex-row gap-16 items-center shadow-2xl">
-            <div class="w-full lg:w-1/2 aspect-square flex items-center justify-center bg-white/5 rounded-[2rem] border border-white/5">
+            <div class="w-full lg:w-1/2 aspect-square flex items-center justify-center bg-white/10 rounded-[2rem] border border-white/10">
                 <img id="modal-img" src="" class="max-h-[85%] max-w-[85%] object-contain drop-shadow-2xl">
             </div>
             <div class="w-full lg:w-1/2 text-left">
-                <p id="modal-ref" class="text-brico-gold text-[11px] font-bold uppercase tracking-[0.4em] mb-4"></p>
+                <p id="modal-ref" class="text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.4em] mb-4"></p>
                 <h2 id="modal-title" class="text-5xl font-bold uppercase text-white mb-10 tracking-tighter leading-none"></h2>
                 <div class="mb-12">
-                    <p class="text-[10px] font-bold uppercase text-slate-500 mb-6 tracking-[0.2em]">Available Finishes</p>
+                    <p class="text-[10px] font-bold uppercase text-slate-300 mb-6 tracking-[0.2em]">Available Finishes</p>
                     <div id="modal-swatches" class="flex gap-5"></div>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <a id="modal-wa-link" href="https://wa.me/212661176190" target="_blank" class="block w-full text-center bg-[#25D366] text-white py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:opacity-90 transition-all">
+                    <a id="modal-wa-link" href="#" target="_blank" class="block w-full text-center bg-[#25D366] text-white py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:opacity-90 transition-all">
                         <i class="fab fa-whatsapp mr-2 text-lg"></i> WhatsApp Inquiry
                     </a>
-                    <button onclick="submitRequest()" class="block w-full text-center bg-white text-slate-950 py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-brico-gold transition-all border border-white/10">
+                    <button onclick="submitRequest()" class="block w-full text-center bg-white text-slate-950 py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-[#d4af37] transition-all border border-white/10">
                         Submit Request
                     </button>
                 </div>
             </div>
-            <button onclick="closeModal()" class="absolute top-8 right-10 text-slate-500 hover:text-white transition-colors"><i class="fas fa-times text-3xl"></i></button>
+            <button onclick="closeModal()" class="absolute top-8 right-10 text-slate-300 hover:text-white transition-colors"><i class="fas fa-times text-3xl"></i></button>
         </div>
     </div>
 
     <script>
-        const colors_lib = { 'Arctic White': '#ffffff', 'Onyx Black': '#1a1a1a', 'Luxury Beige': '#f5f5dc', 'Stone Gray': '#78716c' };
+        const colors_lib = { 
+            'Arctic White': '#ffffff', 
+            'Onyx Black': '#1a1a1a', 
+            'Luxury Beige': '#f5f5dc', 
+            'Stone Gray': '#78716c' 
+        };
+
         const products = [
             { id: 'BT-01', title: 'KW-T004B', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/zGhhPq4P/bt01-white-png.png', 'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' } },
             { id: 'BT-02', title: 'KW-T003B', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' } },
-            { id: 'PV-PRO', title: 'PV-HD800-Pro', market: 2, variants: { 
-                'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 
-                'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg',
-                'Luxury Beige': 'https://i.postimg.cc/Jnvn0SGB/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg',
-                'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg'
-            } }
+            { id: 'BT-03', title: 'KW-9004W', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' } },
+            { id: 'BT-04', title: 'KW-9003W', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' } },
+            { id: 'SK-01', title: 'Ceramic Series 01', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/8zQfqqdQ/Gemini-Generated-Image-40513v40513v4051.png', 'Luxury Beige': 'https://i.postimg.cc/5tfYtLkv/Gemini-Generated-Image-y8esl5y8esl5y8es.png' } },
+            { id: 'PV-01', title: 'PV-HD800-Pro', market: 2, variants: { 'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg', 'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg', 'Luxury Beige': 'https://i.postimg.cc/zXN0kR9c/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg' } }
         ];
 
         let selectedColorName = "";
 
         function init() {
-            ['track-1', 'track-2'].forEach((trackId, i) => {
-                const track = document.getElementById(trackId);
-                const items = products.filter(p => p.market === (i + 1));
-                const html = items.map(p => `
-                    <div class="ribbon-card" onclick="openModal('${p.id}')">
-                        <div class="aspect-square bg-white rounded-2xl mb-8 flex items-center justify-center p-6 shadow-inner">
-                            <img src="${Object.values(p.variants)[0]}" class="max-h-full max-w-full object-contain">
-                        </div>
-                        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Ref: ${p.id}</h3>
-                        <p class="text-[16px] font-bold uppercase tracking-tight text-white mt-2">${p.title}</p>
+            renderMarket('market-1-track', 1);
+            renderMarket('market-2-track', 2);
+            setInterval(() => moveTrack('market-1-track', 1.0), 30);
+            setInterval(() => moveTrack('market-2-track', 0.8), 30);
+        }
+
+        function renderMarket(trackId, marketId) {
+            const track = document.getElementById(trackId);
+            const items = products.filter(p => p.market === marketId);
+            const html = items.map(p => `
+                <div class="ribbon-card" onclick="openModal('${p.id}')">
+                    <div class="aspect-square bg-white rounded-2xl mb-8 flex items-center justify-center p-6 shadow-inner">
+                        <img src="${Object.values(p.variants)[0]}" class="max-h-full max-w-full object-contain">
                     </div>
-                `).join('');
-                track.innerHTML = items.length > 1 ? (html + html + html) : html;
-            });
-            if (products.filter(p => p.market === 1).length > 1) setInterval(() => moveTrack('track-1', 1.2), 30);
+                    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Ref: ${p.id}</h3>
+                    <p class="text-[16px] font-bold uppercase tracking-tight text-white mt-2">${p.title}</p>
+                </div>
+            `).join('');
+            track.innerHTML = html + html + html;
         }
 
         function moveTrack(trackId, amount) {
             const track = document.getElementById(trackId);
             const matrix = new WebKitCSSMatrix(window.getComputedStyle(track).transform);
-            let newX = matrix.m41 + amount;
-            if (newX <= -(track.scrollWidth/3 * 2)) newX += track.scrollWidth/3;
-            else if (newX >= 0) newX -= track.scrollWidth/3;
+            let newX = matrix.m41 - amount;
+            if (Math.abs(newX) >= track.scrollWidth / 3) newX = 0;
             track.style.transform = `translateX(${newX}px)`;
         }
 
@@ -220,9 +230,6 @@
             const modalImg = document.getElementById('modal-img');
             document.getElementById('modal-title').innerText = p.title;
             document.getElementById('modal-ref').innerText = `Ref: ${p.id}`;
-            modalImg.src = Object.values(p.variants)[0];
-            selectedColorName = Object.keys(p.variants)[0];
-
             const swatchBox = document.getElementById('modal-swatches');
             swatchBox.innerHTML = '';
             Object.keys(p.variants).forEach((color, idx) => {
@@ -234,21 +241,22 @@
                     btn.classList.add('active');
                     modalImg.src = p.variants[color];
                     selectedColorName = color;
+                    const msg = `Inquiry for: ${p.title} (${p.id}) in ${color}.`;
+                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${encodeURIComponent(msg)}`;
                 };
                 swatchBox.appendChild(btn);
+                if(idx === 0) btn.click();
             });
             document.getElementById('product-modal').classList.add('modal-active');
             document.body.style.overflow = 'hidden';
         }
 
-        function submitRequest() {
-            const productTitle = document.getElementById('modal-title').innerText;
-            const productRef = document.getElementById('modal-ref').innerText;
-            const url = `contact.html?product=${encodeURIComponent(productTitle)}&ref=${encodeURIComponent(productRef)}&color=${encodeURIComponent(selectedColorName)}`;
-            window.location.href = url;
-        }
-
         function closeModal() { document.getElementById('product-modal').classList.remove('modal-active'); document.body.style.overflow = ''; }
+        function submitRequest() {
+            const title = document.getElementById('modal-title').innerText;
+            const ref = document.getElementById('modal-ref').innerText;
+            window.location.href = `contact.html?product=${encodeURIComponent(title)}&ref=${encodeURIComponent(ref)}&color=${encodeURIComponent(selectedColorName)}`;
+        }
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
