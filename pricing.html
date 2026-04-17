@@ -50,7 +50,6 @@
 
     <div id="product-modal" class="fixed inset-0 flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/95 backdrop-blur-2xl" onclick="closeModal()"></div>
-        
         <div class="relative bg-white w-full max-w-7xl overflow-visible rounded-[3rem] p-6 md:p-12 lg:p-16">
             <button class="nav-arrow arrow-left" onclick="navigateProduct(-1)"><i class="fas fa-chevron-left text-slate-900"></i></button>
             <button class="nav-arrow arrow-right" onclick="navigateProduct(1)"><i class="fas fa-chevron-right text-slate-900"></i></button>
@@ -96,19 +95,40 @@
             { id: 'AC', en: 'Luxury Accessories', ar: 'إكسسوارات فاخرة', banner: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200' }
         ];
 
-        // BT-01 updated with the new Arctic White image link
-        const bt01Images = { 
-            'Arctic White': 'https://i.postimg.cc/zGhhPq4P/bt01-white-png.png', 
-            'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 
-            'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' 
-        };
+        const bt01Images = { 'Arctic White': 'https://i.postimg.cc/zGhhPq4P/bt01-white-png.png', 'Onyx Black': 'https://i.postimg.cc/hvDtfGfp/Gemini-Generated-Image-7m7hsy7m7hsy7m7h.png', 'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' };
         const bt02Images = { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' };
         const bt03Images = { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' };
         const bt04Images = { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' };
         const sk01Images = { 'Arctic White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/8zQfqqdQ/Gemini-Generated-Image-40513v40513v4051.png', 'Luxury Beige': 'https://i.postimg.cc/5tfYtLkv/Gemini-Generated-Image-y8esl5y8esl5y8es.png' };
         const pv01Images = { 'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg', 'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg', 'Luxury Beige': 'https://i.postimg.cc/zXN0kR9c/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg' };
         
-        const colors_lib = { white: { name: 'Arctic White', hex: '#ffffff' }, black: { name: 'Onyx Black', hex: '#1a1a1a' }, beige: { name: 'Luxury Beige', hex: '#f5f5dc' }, gray: { name: 'Stone Gray', hex: '#78716c' } };
+        const ac01Images = {
+            'Cerulean Blue': 'https://i.postimg.cc/CxX16tp2/Gemini-Generated-Image-lhkgjqlhkgjqlhkg.png',
+            'Solar Yellow': 'https://i.postimg.cc/htc9jk7Y/Gemini-Generated-Image-dvrkhrdvrkhrdvrk-(1).png',
+            'Blush Pink': 'https://i.postimg.cc/L6p3GYv8/Gemini-Generated-Image-ogbfcvogbfcvogbf.png'
+        };
+
+        const ac02Images = {
+            'Cerulean Blue': 'https://i.postimg.cc/cCXN3Kck/Gemini-Generated-Image-8dzdkj8dzdkj8dzd.png',
+            'Solar Yellow': 'https://i.postimg.cc/GmB1BmT9/Gemini-Generated-Image-gvkah3gvkah3gvka.png',
+            'Blush Pink': 'https://i.postimg.cc/4yrQBPwT/Gemini-Generated-Image-dt0yfwdt0yfwdt0y.png'
+        };
+
+        const ac03Images = {
+            'Cerulean Blue': 'https://i.postimg.cc/tg7Cjn62/Gemini-Generated-Image-zem36zem36zem36z.png',
+            'Solar Yellow': 'https://i.postimg.cc/SNhBSGmh/Gemini-Generated-Image-1dpvug1dpvug1dpv.png',
+            'Blush Pink': 'https://i.postimg.cc/vHsJYvGH/Gemini-Generated-Image-3v880u3v880u3v88.png'
+        };
+        
+        const colors_lib = { 
+            white: { name: 'Arctic White', hex: '#ffffff' }, 
+            black: { name: 'Onyx Black', hex: '#1a1a1a' }, 
+            beige: { name: 'Luxury Beige', hex: '#f5f5dc' }, 
+            gray: { name: 'Stone Gray', hex: '#78716c' },
+            blue: { name: 'Cerulean Blue', hex: '#0070f3' },
+            yellow: { name: 'Solar Yellow', hex: '#ffd700' },
+            pink: { name: 'Blush Pink', hex: '#ffb6c1' }
+        };
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
         let currentOpenRef = null;
@@ -125,6 +145,9 @@
             if (ref === 'BT-04') { img = bt04Images['Arctic White']; title = "KW-9003W"; }
             if (ref === 'SK-01') { img = sk01Images['Arctic White']; title = "Ceramic Series 01"; }
             if (ref === 'PV-01') { img = pv01Images['Arctic White']; title = "PV-HD800-Pro"; colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige, colors_lib.gray]; }
+            if (ref === 'AC-01') { img = ac01Images['Cerulean Blue']; title = "Classic Set"; colorSet = [colors_lib.blue, colors_lib.yellow, colors_lib.pink]; }
+            if (ref === 'AC-02') { img = ac02Images['Cerulean Blue']; title = "Luxury Set 2"; colorSet = [colors_lib.blue, colors_lib.yellow, colors_lib.pink]; }
+            if (ref === 'AC-03') { img = ac03Images['Cerulean Blue']; title = "Modern Set 3"; colorSet = [colors_lib.blue, colors_lib.yellow, colors_lib.pink]; }
 
             return { ref, title, img, colors: colorSet };
         }
@@ -184,6 +207,9 @@
                     else if (ref === 'BT-04') targetImg = bt04Images[color.name];
                     else if (ref === 'SK-01') targetImg = sk01Images[color.name];
                     else if (ref === 'PV-01') targetImg = pv01Images[color.name];
+                    else if (ref === 'AC-01') targetImg = ac01Images[color.name];
+                    else if (ref === 'AC-02') targetImg = ac02Images[color.name];
+                    else if (ref === 'AC-03') targetImg = ac03Images[color.name];
                     
                     if(targetImg) modalImg.src = targetImg;
                     
