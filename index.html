@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="main-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bricoshop | Premium PVC & Ceramics</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { 
@@ -24,8 +24,9 @@
             background-position: center;
         }
 
+        html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
         .serif { font-family: 'Playfair Display', serif; }
-        .text-brico-gold { color: #d4af37; }
+        
         .ribbon-container { overflow: hidden; position: relative; padding: 20px 0; width: 100%; }
         .ribbon-track { display: flex; width: max-content; will-change: transform; }
 
@@ -47,19 +48,32 @@
 
         .section-divider { border-color: rgba(255, 255, 255, 0.1); }
 
+        .map-container {
+            filter: grayscale(1) contrast(1.1) brightness(0.9) invert(0.9) hue-rotate(180deg);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.5s ease;
+        }
+        .map-container:hover { filter: grayscale(0.5) contrast(1); border-color: #d4af37; }
+
         #product-modal { transition: opacity 0.4s ease; z-index: 1000; opacity: 0; visibility: hidden; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
         #product-modal.modal-active { opacity: 1; visibility: visible; }
-        .modal-content { background: rgba(30, 41, 59, 0.95); border: 1px solid #d4af37; backdrop-filter: blur(12px); }
+        .modal-content { background: rgba(8, 8, 8, 0.98); border: 1px solid #d4af37; backdrop-filter: blur(12px); }
         .swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
         .swatch.active { border-color: #d4af37; transform: scale(1.2); }
 
-        /* Corporate Bottom Section Style */
         .corporate-footer {
             background: rgba(8, 8, 8, 0.95);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             padding: 100px 24px;
             margin-top: 60px;
         }
+
+        .social-icon {
+            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
+            color: white; text-decoration: none;
+        }
+        .social-icon:hover { border-color: #d4af37; color: #d4af37; transform: translateY(-5px); background: rgba(212, 175, 55, 0.1); }
     </style>
 </head>
 <body class="antialiased">
@@ -70,25 +84,27 @@
             <span class="text-white">BRICOSHOP</span>
         </a>
         <div class="hidden lg:flex gap-10">
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-white">Home</a>
-            <a href="pricing.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37] transition-colors">Collections</a>
-            <a href="about.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37] transition-colors">Why PVC?</a>
-            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37] transition-colors">Contact</a>
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-[#d4af37]" data-key="nav-home">Home</a>
+            <a href="pricing.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37]" data-key="nav-coll">Collections</a>
+            <a href="about.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37]" data-key="nav-pvc">Why PVC?</a>
+            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37]" data-key="nav-cont">Contact</a>
         </div>
-        <button onclick="toggleLanguage()" class="text-[11px] font-bold text-white border border-white/20 px-5 py-2 rounded-full hover:bg-white/10 transition-all">العربية</button>
+        <button onclick="toggleLanguage()" class="text-[11px] font-bold text-white border border-white/20 px-5 py-2 rounded-full hover:bg-white/10 transition-all">
+            <span id="lang-btn-text">العربية</span>
+        </button>
     </nav>
 
     <header class="pt-56 pb-20 px-10 relative">
         <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-20">
             <div class="w-full lg:w-1/2">
-                <span class="inline-block bg-white/10 text-[10px] font-bold uppercase tracking-[0.3em] text-[#d4af37] px-5 py-2 rounded-full mb-8 border border-white/10">2026 Architectural Series</span>
-                <h1 class="text-[60px] lg:text-[90px] font-bold leading-[0.85] tracking-tighter mb-10 text-white">
+                <span class="inline-block bg-white/10 text-[10px] font-bold uppercase tracking-[0.3em] text-[#d4af37] px-5 py-2 rounded-full mb-8 border border-white/10" data-key="hero-tag">2026 Architectural Series</span>
+                <h1 class="text-[60px] lg:text-[90px] font-bold leading-[0.85] tracking-tighter mb-10 text-white" id="hero-title">
                     Built for<br> <span class="text-[#d4af37]">Moisture.</span>
                 </h1>
-                <p class="text-[18px] text-slate-200 leading-relaxed mb-12 max-w-lg font-light">
+                <p class="text-[18px] text-slate-200 leading-relaxed mb-12 max-w-lg font-light" data-key="hero-desc">
                     Explore our full 2026 catalog featuring high-density PVC vanities and premium ceramic sinks engineered for extreme durability.
                 </p>
-                <a href="pricing.html" class="bg-[#d4af37] text-slate-950 text-[11px] font-bold uppercase tracking-[0.3em] px-12 py-6 rounded-full hover:scale-105 transition-all">Full Catalog</a>
+                <a href="pricing.html" class="bg-[#d4af37] text-slate-950 text-[11px] font-bold uppercase tracking-[0.3em] px-12 py-6 rounded-full hover:scale-105 transition-all" data-key="hero-btn">Full Catalog</a>
             </div>
             <div class="w-full lg:w-1/2 relative">
                 <div class="absolute -inset-4 bg-[#d4af37]/30 blur-[100px] rounded-full"></div>
@@ -99,7 +115,7 @@
 
     <section class="pt-12 pb-2">
         <div class="px-10 mb-4 max-w-[1400px] mx-auto">
-            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white">Bathroom Vanities & Sinks</h2>
+            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white" data-key="market-1-title">Bathroom Vanities & Sinks</h2>
         </div>
         <div class="ribbon-container">
             <div id="market-1-track" class="ribbon-track"></div>
@@ -108,7 +124,7 @@
 
     <section class="pt-2 pb-12 border-t section-divider">
         <div class="px-10 mb-4 mt-12 max-w-[1400px] mx-auto">
-            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white">PVC Sheets & Accessories</h2>
+            <h2 class="text-4xl font-bold uppercase tracking-tighter text-white" data-key="market-2-title">PVC Sheets & Accessories</h2>
         </div>
         <div class="ribbon-container">
             <div id="market-2-track" class="ribbon-track"></div>
@@ -116,72 +132,89 @@
     </section>
 
     <section class="corporate-footer">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center px-10">
-            <div>
-                <span class="text-[#d4af37] text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Global Heritage</span>
-                <h2 class="text-4xl md:text-6xl serif italic mb-8 leading-tight">World-Class Standards.<br>Unbeatable Value.</h2>
-                <p class="text-white/50 text-lg leading-relaxed mb-8">
-                    Bricoshop represents the pinnacle of luxury PVC engineering. We curate our collection by sourcing premium materials and finished products from elite manufacturers across multiple countries, ensuring our clients receive diverse international styles and superior durability.
-                </p>
-                <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-10">
-                    <div>
-                        <h4 class="text-[#d4af37] text-2xl serif italic mb-2">Price Leader</h4>
-                        <p class="text-white/40 text-xs uppercase tracking-widest">Guaranteed best market pricing for premium fixtures.</p>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-stretch px-10">
+            <div class="flex flex-col justify-center">
+                <span class="text-[#d4af37] text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block" data-key="corp-tag">Global Heritage</span>
+                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-8 leading-tight" data-key="contact-info-title">Visit Our Showroom</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-map-marker-alt text-[#d4af37] mt-1"></i>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                <strong class="text-white block mb-1">Location</strong>
+                                34°03'59.5"N 6°47'44.0"W<br>Industrial Zone, Rabat-Salé-Kénitra
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-clock text-[#d4af37]"></i>
+                            <p class="text-slate-300 text-sm">Mon - Sat: 09:00 - 19:00</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="text-[#d4af37] text-2xl serif italic mb-2">Global Import</h4>
-                        <p class="text-white/40 text-xs uppercase tracking-widest">A curated selection from the world's top PVC engineers.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-phone-alt text-[#d4af37]"></i>
+                            <p class="text-slate-300 text-sm">+212 661 176 190</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-envelope text-[#d4af37]"></i>
+                            <p class="text-slate-300 text-sm">contact@bricoshop.ma</p>
+                        </div>
                     </div>
                 </div>
+                <div class="mb-10">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-6" data-key="social-tag">Follow the Craft</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.tiktok.com/@www.tiktok.touhami72?_r=1&_t=ZS-94DV6qrHGtj" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/brico.shop2?igsh=MXRycmVzbHZtaTAzOA==" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1EuTNtw9mX/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="https://www.google.com/maps?q=34.066528,-6.795556" target="_blank" class="bg-[#d4af37] text-slate-950 text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-5 rounded-xl hover:scale-105 transition-all">Get Directions</a>
+                    <a href="contact.html" class="border border-white/20 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-5 rounded-xl hover:bg-white/10 transition-all">Book Consultation</a>
+                </div>
             </div>
-            <div class="relative rounded-3xl overflow-hidden aspect-video lg:aspect-square">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200" class="w-full h-full object-cover opacity-60">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <div class="relative group">
+                <div class="absolute -inset-4 bg-[#d4af37]/20 blur-[60px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="map-container relative h-full min-h-[450px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3306.452749454131!2d-6.795556!3d34.066528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sma!4v1713440000000!5m2!1sen!2sma" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="py-20 border-t section-divider">
         <div class="max-w-[1400px] mx-auto text-center">
-            <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400">© 2026 Bricoshop. Defining Modern Interiors.</p>
+            <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400" data-key="footer-text">© 2026 Bricoshop. Defining Modern Interiors.</p>
         </div>
     </footer>
 
     <div id="product-modal">
         <div class="absolute inset-0 bg-slate-900/80" onclick="closeModal()"></div>
         <div class="modal-content relative w-[95%] max-w-5xl rounded-[3rem] p-10 lg:p-16 flex flex-col lg:flex-row gap-16 items-center shadow-2xl">
-            <div class="w-full lg:w-1/2 aspect-square flex items-center justify-center bg-white/10 rounded-[2rem] border border-white/10">
+            <div class="w-full lg:w-1/2 aspect-square flex items-center justify-center bg-white/10 rounded-[2rem]">
                 <img id="modal-img" src="" class="max-h-[85%] max-w-[85%] object-contain drop-shadow-2xl">
             </div>
             <div class="w-full lg:w-1/2 text-left">
                 <p id="modal-ref" class="text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.4em] mb-4"></p>
                 <h2 id="modal-title" class="text-5xl font-bold uppercase text-white mb-10 tracking-tighter leading-none"></h2>
                 <div class="mb-12">
-                    <p class="text-[10px] font-bold uppercase text-slate-300 mb-6 tracking-[0.2em]">Available Finishes</p>
+                    <p class="text-[10px] font-bold uppercase text-slate-300 mb-6 tracking-[0.2em]" data-key="modal-finishes">Available Finishes</p>
                     <div id="modal-swatches" class="flex gap-5"></div>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <a id="modal-wa-link" href="#" target="_blank" class="block w-full text-center bg-[#25D366] text-white py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:opacity-90 transition-all">
-                        <i class="fab fa-whatsapp mr-2 text-lg"></i> WhatsApp Inquiry
-                    </a>
-                    <button onclick="submitRequest()" class="block w-full text-center bg-white text-slate-950 py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] hover:bg-[#d4af37] transition-all border border-white/10">
-                        Submit Request
-                    </button>
+                    <a id="modal-wa-link" href="#" target="_blank" class="block w-full text-center bg-[#25D366] text-white py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em]"><i class="fab fa-whatsapp mr-2 text-lg"></i> <span data-key="modal-wa">WhatsApp Inquiry</span></a>
+                    <button onclick="submitRequest()" class="block w-full text-center bg-white text-slate-950 py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em]"><span data-key="modal-req">Submit Request</span></button>
                 </div>
             </div>
-            <button onclick="closeModal()" class="absolute top-8 right-10 text-slate-300 hover:text-white transition-colors"><i class="fas fa-times text-3xl"></i></button>
+            <button onclick="closeModal()" class="absolute top-8 right-10 text-slate-300 hover:text-white"><i class="fas fa-times text-3xl"></i></button>
         </div>
     </div>
 
     <script>
-        const colors_lib = { 
-            'Arctic White': '#ffffff', 
-            'Onyx Black': '#1a1a1a', 
-            'Luxury Beige': '#f5f5dc', 
-            'Stone Gray': '#78716c',
-            'Cerulean Blue': '#0070f3',
-            'Solar Yellow': '#ffd700',
-            'Blush Pink': '#ffb6c1'
+        const translations = {
+            en: { "nav-home": "Home", "nav-coll": "Collections", "nav-pvc": "Why PVC?", "nav-cont": "Contact", "hero-tag": "2026 Architectural Series", "hero-title": "Built for<br> <span class='text-[#d4af37]'>Moisture.</span>", "hero-desc": "Explore our full 2026 catalog featuring high-density PVC vanities and premium ceramic sinks engineered for extreme durability.", "hero-btn": "Full Catalog", "market-1-title": "Bathroom Vanities & Sinks", "market-2-title": "PVC Sheets & Accessories", "corp-tag": "Global Heritage", "contact-info-title": "Visit Our Showroom", "social-tag": "Follow the Craft", "footer-text": "© 2026 Bricoshop. Defining Modern Interiors.", "modal-finishes": "Available Finishes", "modal-wa": "WhatsApp Inquiry", "modal-req": "Submit Request", "lang-btn": "العربية" },
+            ar: { "nav-home": "الرئيسية", "nav-coll": "المجموعات", "nav-pvc": "لماذا PVC؟", "nav-cont": "اتصل بنا", "hero-tag": "سلسلة معمارية 2026", "hero-title": "مصممة<br> <span class='text-[#d4af37]'>للمقاومة.</span>", "hero-desc": "استكشف كتالوج 2026 الكامل الذي يضم خزائن PVC عالية الكثافة وأحواض سيراميك فاخرة مصممة لمتانة قصوى.", "hero-btn": "الكتالوج الكامل", "market-1-title": "خزائن الحمامات والأحواض", "market-2-title": "ألواح PVC والإكسسوارات", "corp-tag": "تراث عالمي", "contact-info-title": "تفضل بزيارة معرضنا", "social-tag": "تابعنا على منصاتنا", "footer-text": "© 2026 بريكوشوب. تحديد التصاميم الداخلية الحديثة.", "modal-finishes": "التشطيبات المتوفرة", "modal-wa": "استفسار واتساب", "modal-req": "إرسال طلب", "lang-btn": "English" }
         };
 
         const products = [
@@ -189,21 +222,33 @@
             { id: 'BT-02', title: 'KW-T003B', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' } },
             { id: 'BT-03', title: 'KW-9004W', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' } },
             { id: 'BT-04', title: 'KW-9003W', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' } },
-            { id: 'SK-01', title: 'Ceramic Series 01', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg', 'Onyx Black': 'https://i.postimg.cc/8zQfqqdQ/Gemini-Generated-Image-40513v40513v4051.png', 'Luxury Beige': 'https://i.postimg.cc/5tfYtLkv/Gemini-Generated-Image-y8esl5y8esl5y8es.png' } },
+            { id: 'SK-01', title: 'Sink Premium 01', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg' } },
+            { id: 'SK-02', title: 'KW-B003', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/qMYb367D/Gemini-Generated-Image-2c57pr2c57pr2c57.png' } },
+            { id: 'SK-03', title: '968-05 Series', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/xdq1F7QX/Gemini-Generated-Image-51qei451qei451qe.png' } },
+            { id: 'SK-04', title: '906X10 Series', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/pd7LNZVw/Gemini-Generated-Image-yf84zoyf84zoyf84.png' } },
+            { id: 'SK-05', title: '8221 Series', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/50CNfC6F/Gemini-Generated-Image-hqin9uhqin9uhqin.png' } },
+            { id: 'SK-06', title: '839HMO1 Series', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/nrfVrhDS/Gemini-Generated-Image-4g17at4g17at4g17.png' } },
+            { id: 'SK-07', title: '839CC03 Series', market: 1, variants: { 'Arctic White': 'https://i.postimg.cc/T1jdDvVk/Gemini-Generated-Image-kvevjdkvevjdkvev.png' } },
             { id: 'PV-01', title: 'PV-HD800-Pro', market: 2, variants: { 'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg', 'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg', 'Luxury Beige': 'https://i.postimg.cc/zXN0kR9c/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg' } },
-            { id: 'AC-01', title: 'Classic Set', market: 2, variants: { 'Cerulean Blue': 'https://i.postimg.cc/CxX16tp2/Gemini-Generated-Image-lhkgjqlhkgjqlhkg.png', 'Solar Yellow': 'https://i.postimg.cc/htc9jk7Y/Gemini-Generated-Image-dvrkhrdvrkhrdvrk-(1).png', 'Blush Pink': 'https://i.postimg.cc/L6p3GYv8/Gemini-Generated-Image-ogbfcvogbfcvogbf.png' } },
-            { id: 'AC-02', title: 'Luxury Set 2', market: 2, variants: { 'Cerulean Blue': 'https://i.postimg.cc/cCXN3Kck/Gemini-Generated-Image-8dzdkj8dzdkj8dzd.png', 'Solar Yellow': 'https://i.postimg.cc/GmB1BmT9/Gemini-Generated-Image-gvkah3gvkah3gvka.png', 'Blush Pink': 'https://i.postimg.cc/4yrQBPwT/Gemini-Generated-Image-dt0yfwdt0yfwdt0y.png' } },
-            { id: 'AC-03', title: 'Modern Set 3', market: 2, variants: { 'Cerulean Blue': 'https://i.postimg.cc/tg7Cjn62/Gemini-Generated-Image-zem36zem36zem36z.png', 'Solar Yellow': 'https://i.postimg.cc/SNhBSGmh/Gemini-Generated-Image-1dpvug1dpvug1dpv.png', 'Blush Pink': 'https://i.postimg.cc/vHsJYvGH/Gemini-Generated-Image-3v880u3v880u3v88.png' } }
+            { id: 'AC-01', title: 'Luxury Set 1', market: 2, variants: { 'Cerulean Blue': 'https://i.postimg.cc/tg7Cjn62/Gemini-Generated-Image-zem36zem36zem36z.png' } },
+            { id: 'AC-02', title: 'Luxury Set 2', market: 2, variants: { 'Arctic White': 'https://i.postimg.cc/L6p3GYv8/Gemini-Generated-Image-ogbfcvogbfcvogbf.png' } },
+            { id: 'AC-03', title: 'Modern Set 3', market: 2, variants: { 'Solar Yellow': 'https://i.postimg.cc/SNhBSGmh/Gemini-Generated-Image-1dpvug1dpvug1dpv.png' } }
         ];
 
+        let currentLang = localStorage.getItem('selectedLang') || 'en';
         let selectedColorName = "";
 
-        function init() {
-            renderMarket('market-1-track', 1);
-            renderMarket('market-2-track', 2);
-            setInterval(() => moveTrack('market-1-track', 1.0), 30);
-            setInterval(() => moveTrack('market-2-track', 0.8), 30);
+        function toggleLanguage() { currentLang = currentLang === 'en' ? 'ar' : 'en'; localStorage.setItem('selectedLang', currentLang); applyLanguage(); }
+
+        function applyLanguage() {
+            const isAr = currentLang === 'ar';
+            document.getElementById('main-html').setAttribute('dir', isAr ? 'rtl' : 'ltr');
+            document.getElementById('lang-btn-text').innerText = translations[currentLang]["lang-btn"];
+            document.getElementById('hero-title').innerHTML = translations[currentLang]["hero-title"];
+            document.querySelectorAll('[data-key]').forEach(el => { const key = el.getAttribute('data-key'); if (translations[currentLang][key]) el.innerText = translations[currentLang][key]; });
         }
+
+        function init() { applyLanguage(); renderMarket('market-1-track', 1); renderMarket('market-2-track', 2); setInterval(() => moveTrack('market-1-track', 1.0), 30); setInterval(() => moveTrack('market-2-track', 0.8), 30); }
 
         function renderMarket(trackId, marketId) {
             const track = document.getElementById(trackId);
@@ -238,7 +283,7 @@
             Object.keys(p.variants).forEach((color, idx) => {
                 const btn = document.createElement('div');
                 btn.className = `swatch ${idx === 0 ? 'active' : ''}`;
-                btn.style.backgroundColor = colors_lib[color];
+                btn.style.backgroundColor = (color === 'Arctic White') ? '#ffffff' : (color === 'Onyx Black' ? '#1a1a1a' : (color === 'Luxury Beige' ? '#f5f5dc' : (color === 'Stone Gray' ? '#78716c' : (color === 'Cerulean Blue' ? '#0070f3' : (color === 'Solar Yellow' ? '#ffd700' : '#ffb6c1')))));
                 btn.onclick = () => {
                     document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
                     btn.classList.add('active');
@@ -259,9 +304,6 @@
             const title = document.getElementById('modal-title').innerText;
             const ref = document.getElementById('modal-ref').innerText;
             window.location.href = `contact.html?product=${encodeURIComponent(title)}&ref=${encodeURIComponent(ref)}&color=${encodeURIComponent(selectedColorName)}`;
-        }
-        function toggleLanguage() {
-            // Logic for switching language state
         }
         document.addEventListener('DOMContentLoaded', init);
     </script>
