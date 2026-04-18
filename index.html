@@ -49,51 +49,69 @@
 
         .section-divider { border-color: rgba(255, 255, 255, 0.1); }
 
-        .map-container {
-            filter: grayscale(1) contrast(1.1) brightness(0.9) invert(0.9) hue-rotate(180deg);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            transition: all 0.5s ease;
-        }
-        .map-container:hover { filter: grayscale(0.5) contrast(1); border-color: #d4af37; }
-
+        /* MODAL & SLIDER STYLES */
         #product-modal { transition: opacity 0.4s ease; z-index: 1000; opacity: 0; visibility: hidden; position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
         #product-modal.modal-active { opacity: 1; visibility: visible; }
-        .modal-content { background: rgba(8, 8, 8, 0.98); border: 1px solid #d4af37; backdrop-filter: blur(12px); }
+        .modal-content { background: rgba(8, 8, 8, 0.98); border: 1px solid #d4af37; backdrop-filter: blur(12px); overflow-y: auto; max-height: 90vh; transition: transform 0.3s ease; }
+        
+        .fade-anim { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
         .swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
         .swatch.active { border-color: #d4af37; transform: scale(1.2); }
 
-        .corporate-footer {
-            background: rgba(8, 8, 8, 0.95);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 100px 24px;
-            margin-top: 60px;
+        /* MOBILE MENU STYLES */
+        #mobile-menu {
+            position: fixed; top: 0; right: -100%; width: 70%; height: 100%;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(15px);
+            z-index: 100; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid rgba(212, 175, 55, 0.3);
         }
-
-        .social-icon {
-            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
-            color: white; text-decoration: none;
-        }
+        #mobile-menu.active { right: 0; }
+        
+        .corporate-footer { background: rgba(8, 8, 8, 0.95); border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 100px 24px; margin-top: 60px; }
+        .social-icon { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s; color: white; text-decoration: none; }
         .social-icon:hover { border-color: #d4af37; color: #d4af37; transform: translateY(-5px); background: rgba(212, 175, 55, 0.1); }
+
+        @media (max-width: 768px) {
+            #product-modal.modal-active ~ nav { display: none; }
+            .modal-content { width: 100%; height: 100%; max-height: 100vh; border-radius: 0; padding: 40px 20px; display: block; }
+            #modal-img { width: 100%; height: auto; }
+            .mobile-close-btn { display: block !important; }
+            .pc-close-btn { display: none !important; }
+            .nav-links-pc { display: none; }
+            .hamburger { display: block !important; }
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="h-[90px] border-b border-white/10 px-10 flex items-center justify-between bg-slate-900/30 backdrop-blur-md fixed w-full z-50">
-        <a href="index.html" class="text-[24px] font-bold tracking-tighter uppercase flex items-center gap-2">
+    <nav id="top-nav" class="h-[90px] border-b border-white/10 px-6 lg:px-10 flex items-center justify-between bg-slate-900/30 backdrop-blur-md fixed w-full z-50">
+        <a href="index.html" class="text-[20px] lg:text-[24px] font-bold tracking-tighter uppercase flex items-center gap-2">
             <span class="w-8 h-8 bg-[#d4af37] text-slate-950 flex items-center justify-center rounded-lg italic text-[18px]">B</span>
             <span class="text-white">BRICOSHOP</span>
         </a>
-        <div class="hidden lg:flex gap-10">
+        <div class="nav-links-pc hidden lg:flex gap-10">
             <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-[#d4af37]" data-key="nav-home">Home</a>
             <a href="pricing.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37]" data-key="nav-coll">Collections</a>
             <a href="about.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37]" data-key="nav-pvc">Why PVC?</a>
             <a href="contact.html" class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-200 hover:text-[#d4af37]" data-key="nav-cont">Contact</a>
         </div>
-        <button onclick="toggleLanguage()" class="text-[11px] font-bold text-white border border-white/20 px-5 py-2 rounded-full hover:bg-white/10 transition-all">
-            <span id="lang-btn-text">العربية</span>
-        </button>
+        <div class="flex items-center gap-4">
+            <button onclick="toggleLanguage()" class="text-[10px] font-bold text-white border border-white/20 px-4 py-2 rounded-full hover:bg-white/10">
+                <span id="lang-btn-text">العربية</span>
+            </button>
+            <button onclick="toggleMenu()" class="hamburger hidden text-white text-2xl px-2"><i class="fas fa-bars"></i></button>
+        </div>
     </nav>
+
+    <div id="mobile-menu" class="flex flex-col p-12 gap-8">
+        <button onclick="toggleMenu()" class="self-end text-white text-3xl mb-8"><i class="fas fa-times"></i></button>
+        <a href="index.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-[#d4af37]" data-key="nav-home">Home</a>
+        <a href="pricing.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-white" data-key="nav-coll">Collections</a>
+        <a href="about.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-white" data-key="nav-pvc">Why PVC?</a>
+        <a href="contact.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-white" data-key="nav-cont">Contact</a>
+    </div>
 
     <header class="pt-56 pb-20 px-10 relative">
         <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-20">
@@ -173,15 +191,11 @@
                         <a href="https://www.facebook.com/share/1EuTNtw9mX/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
-                <div class="flex gap-4">
-                    <a href="https://www.google.com/maps/place/34%C2%B003'59.5%22N+6%C2%B047'44.0%22W" target="_blank" class="bg-[#d4af37] text-slate-950 text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-5 rounded-xl hover:scale-105 transition-all">Get Directions</a>
-                    <a href="contact.html" class="border border-white/20 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-5 rounded-xl hover:bg-white/10 transition-all">Book Consultation</a>
-                </div>
             </div>
             <div class="relative group">
                 <div class="absolute -inset-4 bg-[#d4af37]/20 blur-[60px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 <div class="map-container relative h-full min-h-[450px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.391157147774!2d-6.7977443!3d34.0665278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAzJzU5LjUiTiA2wrA0Nyc0NC4wIlc!5e0!3m2!1sen!2sma!4v1713000000000!5m2!1sen!2sma" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3305.820845347209!2d-6.7977416!3d34.0665306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzTCsDAzJzU5LjUiTiA2wrA0Nyc0NC4wIlc!5e0!3m2!1sen!2sma!4v1713000000000!5m2!1sen!2sma" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -195,11 +209,11 @@
 
     <div id="product-modal">
         <div class="absolute inset-0 bg-slate-900/80" onclick="closeModal()"></div>
-        <div class="modal-content relative w-[95%] max-w-5xl rounded-[3rem] p-10 lg:p-16 flex flex-col lg:flex-row gap-16 items-center shadow-2xl">
+        <div class="modal-content relative w-[95%] max-w-5xl rounded-[3rem] p-10 lg:p-16 flex flex-col lg:flex-row gap-16 items-center shadow-2xl" id="modal-inner">
             <div class="w-full lg:w-1/2 aspect-square flex items-center justify-center bg-white/10 rounded-[2rem]">
-                <img id="modal-img" src="" class="max-h-[85%] max-w-[85%] object-contain drop-shadow-2xl">
+                <img id="modal-img" src="" class="max-h-[85%] max-w-[85%] object-contain drop-shadow-2xl fade-anim">
             </div>
-            <div class="w-full lg:w-1/2 text-left">
+            <div class="w-full lg:w-1/2 text-left fade-anim">
                 <p id="modal-ref" class="text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.4em] mb-4"></p>
                 <h2 id="modal-title" class="text-5xl font-bold uppercase text-white mb-10 tracking-tighter leading-none"></h2>
                 <div class="mb-12">
@@ -209,9 +223,10 @@
                 <div class="flex flex-col gap-4">
                     <a id="modal-wa-link" href="#" target="_blank" class="block w-full text-center bg-[#25D366] text-white py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em]"><i class="fab fa-whatsapp mr-2 text-lg"></i> <span data-key="modal-wa">WhatsApp Inquiry</span></a>
                     <button onclick="submitRequest()" class="block w-full text-center bg-white text-slate-950 py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em]"><span data-key="modal-req">Submit Request</span></button>
+                    <button onclick="closeModal()" class="mobile-close-btn hidden block w-full text-center border border-white/20 text-white py-6 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] mt-2">Back to Catalog</button>
                 </div>
             </div>
-            <button onclick="closeModal()" class="absolute top-8 right-10 text-slate-300 hover:text-white"><i class="fas fa-times text-3xl"></i></button>
+            <button onclick="closeModal()" class="pc-close-btn absolute top-8 right-10 text-slate-300 hover:text-white"><i class="fas fa-times text-3xl"></i></button>
         </div>
     </div>
 
@@ -240,8 +255,10 @@
         ];
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
-        let selectedColorName = "";
+        let currentProductIndex = 0;
+        let touchStartX = 0;
 
+        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('active'); }
         function toggleLanguage() { currentLang = currentLang === 'en' ? 'ar' : 'en'; localStorage.setItem('selectedLang', currentLang); applyLanguage(); }
 
         function applyLanguage() {
@@ -256,8 +273,35 @@
             applyLanguage(); 
             renderMarket('market-1-track', 1); 
             renderMarket('market-2-track', 2); 
-            setInterval(() => moveTrack('market-1-track', 3.0, true), 30); 
-            setInterval(() => moveTrack('market-2-track', 3.0, false), 30); 
+            setInterval(() => moveTrack('market-1-track', 2.0, true), 30); 
+            setInterval(() => moveTrack('market-2-track', 2.0, false), 30); 
+            
+            // KEYBOARD NAVIGATION
+            window.addEventListener('keydown', (e) => {
+                if (!document.getElementById('product-modal').classList.contains('modal-active')) return;
+                if (e.key === "ArrowRight") navigateProduct(1);
+                if (e.key === "ArrowLeft") navigateProduct(-1);
+                if (e.key === "Escape") closeModal();
+            });
+
+            // TOUCH SWIPE
+            const modalInner = document.getElementById('modal-inner');
+            modalInner.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+            modalInner.addEventListener('touchend', e => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) navigateProduct(diff > 0 ? 1 : -1);
+            });
+        }
+
+        function navigateProduct(direction) {
+            currentProductIndex = (currentProductIndex + direction + products.length) % products.length;
+            const p = products[currentProductIndex];
+            
+            // Animation reset
+            const elements = document.querySelectorAll('.fade-anim');
+            elements.forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; });
+            
+            openModal(p.id);
         }
 
         function renderMarket(trackId, marketId) {
@@ -277,6 +321,7 @@
 
         function moveTrack(trackId, amount, moveRight) {
             const track = document.getElementById(trackId);
+            if(!track) return;
             const matrix = new WebKitCSSMatrix(window.getComputedStyle(track).transform);
             let newX = moveRight ? matrix.m41 + amount : matrix.m41 - amount;
             const singleSectionWidth = (track.scrollWidth / 3);
@@ -287,21 +332,23 @@
 
         function openModal(id) {
             const p = products.find(prod => prod.id === id);
+            currentProductIndex = products.indexOf(p);
+            
             const modalImg = document.getElementById('modal-img');
             document.getElementById('modal-title').innerText = p.title;
             document.getElementById('modal-ref').innerText = `Ref: ${p.id}`;
             const swatchBox = document.getElementById('modal-swatches');
             swatchBox.innerHTML = '';
+            
             Object.keys(p.variants).forEach((color, idx) => {
                 const btn = document.createElement('div');
                 btn.className = `swatch ${idx === 0 ? 'active' : ''}`;
-                btn.style.backgroundColor = (color === 'Arctic White') ? '#ffffff' : (color === 'Onyx Black' ? '#1a1a1a' : (color === 'Luxury Beige' ? '#f5f5dc' : (color === 'Stone Gray' ? '#78716c' : (color === 'Cerulean Blue' ? '#0070f3' : (color === 'Solar Yellow' ? '#ffd700' : '#ffb6c1')))));
+                btn.style.backgroundColor = getHex(color);
                 btn.onclick = () => {
                     document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
                     btn.classList.add('active');
                     modalImg.src = p.variants[color];
-                    selectedColorName = color;
-                    const msg = `Inquiry for: ${p.title} (${p.id}) in ${color}.`;
+                    const msg = `Inquiry: ${p.title} (${p.id}) - ${color}`;
                     document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${encodeURIComponent(msg)}`;
                 };
                 swatchBox.appendChild(btn);
@@ -309,13 +356,24 @@
             });
             document.getElementById('product-modal').classList.add('modal-active');
             document.body.style.overflow = 'hidden';
+            if(window.innerWidth <= 768) document.getElementById('top-nav').style.display = 'none';
         }
 
-        function closeModal() { document.getElementById('product-modal').classList.remove('modal-active'); document.body.style.overflow = ''; }
+        function getHex(c) {
+            const colors = { 'Arctic White': '#ffffff', 'Onyx Black': '#1a1a1a', 'Luxury Beige': '#f5f5dc', 'Stone Gray': '#78716c', 'Cerulean Blue': '#0070f3', 'Solar Yellow': '#ffd700' };
+            return colors[c] || '#ffb6c1';
+        }
+
+        function closeModal() { 
+            document.getElementById('product-modal').classList.remove('modal-active'); 
+            document.body.style.overflow = ''; 
+            document.getElementById('top-nav').style.display = 'flex';
+        }
+
         function submitRequest() {
             const title = document.getElementById('modal-title').innerText;
             const ref = document.getElementById('modal-ref').innerText;
-            window.location.href = `contact.html?product=${encodeURIComponent(title)}&ref=${encodeURIComponent(ref)}&color=${encodeURIComponent(selectedColorName)}`;
+            window.location.href = `contact.html?product=${encodeURIComponent(title)}&ref=${encodeURIComponent(ref)}`;
         }
         document.addEventListener('DOMContentLoaded', init);
     </script>
