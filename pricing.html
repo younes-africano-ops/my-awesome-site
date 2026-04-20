@@ -10,7 +10,6 @@
     <style>
         :root { --gold: #d4af37; --vantablack: #080808; }
         
-        /* RESTORED ORIGINAL BACKGROUND */
         body { 
             font-family: 'Outfit', sans-serif; 
             color: #ffffff; 
@@ -31,10 +30,16 @@
         .serif { font-family: 'Playfair Display', serif; }
         html[dir="rtl"] body { font-family: 'Noto Sans Arabic', sans-serif; }
 
-        /* Navigation */
         .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        /* Catalog Grid */
+        #mobile-menu {
+            position: fixed; top: 0; right: -100%; width: 75%; height: 100%;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);
+            z-index: 100; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        #mobile-menu.active { right: 0; }
+
         .category-section {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
@@ -54,13 +59,19 @@
         }
         .market-card:hover { border-color: var(--gold); transform: translateY(-8px); background: rgba(255,255,255,0.08); }
 
-        /* LUXURY MODAL UPGRADES */
+        .corporate-footer {
+            background: rgba(8, 8, 8, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 100px 24px;
+            margin-top: 100px;
+        }
+
         #product-modal { 
             transition: visibility 0.5s, opacity 0.5s;
             visibility: hidden; opacity: 0; 
             z-index: 1000;
             background-color: var(--vantablack);
-            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png'); /* Subtle texture */
+            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png'); 
         }
         #product-modal.active { visibility: visible; opacity: 1; }
         
@@ -75,17 +86,6 @@
         .luxury-img-container {
             filter: drop-shadow(0 25px 50px rgba(0,0,0,0.8));
             position: relative;
-        }
-        /* Floor shadow to make products look real */
-        .luxury-img-container::after {
-            content: '';
-            position: absolute;
-            bottom: 20px; left: 50%;
-            width: 60%; height: 20px;
-            background: rgba(0,0,0,0.6);
-            filter: blur(25px);
-            transform: translateX(-50%);
-            z-index: -1;
         }
 
         .nav-arrow {
@@ -103,6 +103,12 @@
         .btn-gold:hover { transform: scale(1.02); filter: brightness(1.1); }
 
         .badge-stock { color: var(--gold); border: 1px solid var(--gold); padding: 4px 12px; border-radius: 20px; font-size: 9px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; }
+
+        @media (max-width: 768px) {
+            .nav-arrow { display: none !important; }
+            .modal-inner { padding: 40px 20px; }
+            #modal-img { max-height: 40vh; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -111,18 +117,27 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex-1"><a href="index.html" class="text-2xl font-bold tracking-tighter uppercase italic">Bricoshop</a></div>
             <div class="hidden md:flex items-center justify-center gap-10 flex-1">
-                <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.3em] hover:text-white/50 transition-colors">Home</a>
-                <a href="pricing.html" class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#d4af37]">Collection</a>
-                <a href="about.html" class="text-[10px] font-bold uppercase tracking-[0.3em] hover:text-white/50 transition-colors">Why PVC</a>
-                <a href="contact.html" class="text-[10px] font-bold uppercase tracking-[0.3em] hover:text-white/50 transition-colors">Contact</a>
+                <a href="index.html" class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-white/50 transition-colors">Home</a>
+                <a href="pricing.html" class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">Collection</a>
+                <a href="about.html" class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-white/50 transition-colors">Why PVC</a>
+                <a href="contact.html" class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-white/50 transition-colors">Contact</a>
             </div>
-            <div class="flex-1 flex justify-end">
+            <div class="flex-1 flex justify-end items-center gap-4">
                 <button onclick="toggleLanguage()" class="text-[10px] font-bold border border-white/10 px-6 py-2 rounded-full hover:bg-white/5 transition-all"><span id="lang-label">العربية</span></button>
+                <button onclick="toggleMenu()" class="md:hidden text-white text-2xl px-2"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </nav>
 
-    <main class="pt-40 pb-20 px-6 max-w-7xl mx-auto">
+    <div id="mobile-menu" class="flex flex-col p-12 gap-8">
+        <button onclick="toggleMenu()" class="self-end text-white text-3xl mb-8"><i class="fas fa-times"></i></button>
+        <a href="index.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-white">Home</a>
+        <a href="pricing.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-[#d4af37]">Collection</a>
+        <a href="about.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-white">Why PVC</a>
+        <a href="contact.html" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest text-white">Contact</a>
+    </div>
+
+    <main class="pt-40 pb-10 px-6 max-w-7xl mx-auto">
         <header class="mb-20 text-center">
             <span class="text-[#d4af37] text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">Excellence in PVC</span>
             <h1 class="text-5xl md:text-7xl serif italic mb-6" data-key="page-title">The 2026 Collection</h1>
@@ -130,12 +145,27 @@
         <div id="market-container" class="space-y-6"></div>
     </main>
 
+    <section class="corporate-footer">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div>
+                <span class="text-[#d4af37] text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Global Heritage</span>
+                <h2 class="text-4xl md:text-6xl serif italic mb-8 leading-tight" data-key="corp-title">World-Class Standards.<br>Unbeatable Value.</h2>
+                <p class="text-white/50 text-lg leading-relaxed mb-8" data-key="corp-desc">
+                    Bricoshop represents the pinnacle of luxury PVC engineering.
+                </p>
+            </div>
+            <div class="relative rounded-3xl overflow-hidden aspect-video lg:aspect-square">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200" class="w-full h-full object-cover opacity-60">
+            </div>
+        </div>
+    </section>
+
     <div id="product-modal" class="fixed inset-0 flex items-center justify-center">
         <button onclick="closeModal()" class="absolute top-10 right-10 z-[1100] text-white/30 hover:text-white transition-all">
             <i class="fas fa-times text-3xl"></i>
         </button>
 
-        <div class="modal-inner w-full h-full flex items-center justify-center p-6 md:p-20">
+        <div class="modal-inner w-full h-full flex items-center justify-center p-6 md:p-20" id="modal-swipe-area">
             <button class="nav-arrow absolute left-8 hidden lg:flex" onclick="navigateProduct(-1)"><i class="fas fa-chevron-left"></i></button>
             <button class="nav-arrow absolute right-8 hidden lg:flex" onclick="navigateProduct(1)"><i class="fas fa-chevron-right"></i></button>
 
@@ -151,7 +181,7 @@
                         <p id="modal-id" class="text-[11px] font-bold tracking-[0.4em] text-white/30 uppercase"></p>
                     </div>
 
-                    <div class="py-10 border-y border-white/5">
+                    <div id="modal-options-container" class="py-10 border-y border-white/5">
                         <p class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/40 mb-6">Explore Finish Options</p>
                         <div id="modal-color-swatches" class="flex gap-4 justify-center lg:justify-start"></div>
                     </div>
@@ -160,9 +190,7 @@
                         <a id="modal-wa-link" href="#" target="_blank" class="flex items-center justify-center bg-[#25D366] text-black py-5 rounded-xl hover:brightness-110 transition-all">
                             <i class="fab fa-whatsapp text-2xl"></i>
                         </a>
-                        <a id="modal-request-link" href="contact.html" class="btn-gold flex items-center justify-center py-5 rounded-xl text-[11px] uppercase">
-                            Submit Request
-                        </a>
+                        <a id="modal-request-link" href="contact.html" class="btn-gold flex items-center justify-center py-5 rounded-xl text-[11px] uppercase">Submit Request</a>
                     </div>
                 </div>
             </div>
@@ -171,31 +199,49 @@
 
     <script>
         const translations = {
-            en: { "page-title": "The 2026 Collection", "in-stock": "Available", "ref-label": "SERIES: " },
-            ar: { "page-title": "مجموعة 2026", "in-stock": "متوفر", "ref-label": "سلسلة: " }
+            en: { "page-title": "The 2026 Collection", "ref-label": "SERIES: " },
+            ar: { "page-title": "مجموعة 2026", "ref-label": "سلسلة: " }
         };
 
         const productImages = {
             'BT-01': { 'Arctic White': 'https://i.postimg.cc/zGhhPq4P/bt01-white-png.png', 'Onyx Black': 'https://i.postimg.cc/1R8YSPMY/bt01-black-png.png', 'Luxury Beige': 'https://i.postimg.cc/4xJN6B4Z/bt01-beige-png.png' },
-            'BT-02': { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png', 'Onyx Black': 'https://i.postimg.cc/L4BctRJ9/Gemini-Generated-Image-bqe5a9bqe5a9bqe5.png', 'Luxury Beige': 'https://i.postimg.cc/WzXYQNZJ/Gemini-Generated-Image-1sfp7b1sfp7b1sfp.png' },
-            'BT-03': { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png', 'Onyx Black': 'https://i.postimg.cc/sX1MpKc1/Gemini-Generated-Image-monuismonuismonu.png', 'Luxury Beige': 'https://i.postimg.cc/yNLJg20T/Gemini-Generated-Image-ou47g1ou47g1ou47.png' },
-            'BT-04': { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png', 'Onyx Black': 'https://i.postimg.cc/C1y19DpR/KW-9003W-(2).png', 'Luxury Beige': 'https://i.postimg.cc/8cNCzS5T/Gemini-Generated-Image-72291r72291r7229.png' },
-            'SK-01': { 'Arctic White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg' },
-            'SK-02': { 'Arctic White': 'https://i.postimg.cc/qMYb367D/Gemini-Generated-Image-2c57pr2c57pr2c57.png' },
-            'SK-03': { 'Arctic White': 'https://i.postimg.cc/xdq1F7QX/Gemini-Generated-Image-51qei451qei451qe.png' },
-            'SK-04': { 'Arctic White': 'https://i.postimg.cc/pd7LNZVw/Gemini-Generated-Image-yf84zoyf84zoyf84.png' },
-            'SK-05': { 'Arctic White': 'https://i.postimg.cc/50CNfC6F/Gemini-Generated-Image-hqin9uhqin9uhqin.png' },
-            'SK-06': { 'Arctic White': 'https://i.postimg.cc/nrfVrhDS/Gemini-Generated-Image-4g17at4g17at4g17.png' },
-            'SK-07': { 'Arctic White': 'https://i.postimg.cc/T1jdDvVk/Gemini-Generated-Image-kvevjdkvevjdkvev.png' },
-            'PV-01': { 'Arctic White': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg', 'Onyx Black': 'https://i.postimg.cc/NG6xLj5N/Whats-App-Image-2026-01-19-at-16-37-28-(4).jpg', 'Stone Gray': 'https://i.postimg.cc/hjx1LSM1/Whats-App-Image-2026-01-19-at-16-37-29-(1).jpg', 'Luxury Beige': 'https://i.postimg.cc/zXN0kR9c/Whats-App-Image-2026-02-23-at-10-23-01-PM-(1).jpg' },
-            'AC-01': { 'Cerulean Blue': 'https://i.postimg.cc/CxX16tp2/Gemini-Generated-Image-lhkgjqlhkgjqlhkg.png', 'Solar Yellow': 'https://i.postimg.cc/htc9jk7Y/Gemini-Generated-Image-dvrkhrdvrkhrdvrk-(1).png', 'Blush Pink': 'https://i.postimg.cc/L6p3GYv8/Gemini-Generated-Image-ogbfcvogbfcvogbf.png' },
-            'AC-02': { 'Arctic White': 'https://i.postimg.cc/L6p3GYv8/Gemini-Generated-Image-ogbfcvogbfcvogbf.png', 'Onyx Black': 'https://i.postimg.cc/htc9jk7Y/Gemini-Generated-Image-dvrkhrdvrkhrdvrk-(1).png', 'Luxury Beige': 'https://i.postimg.cc/CxX16tp2/Gemini-Generated-Image-lhkgjqlhkgjqlhkg.png' },
-            'AC-03': { 'Arctic White': 'https://i.postimg.cc/CxX16tp2/Gemini-Generated-Image-lhkgjqlhkgjqlhkg.png', 'Onyx Black': 'https://i.postimg.cc/htc9jk7Y/Gemini-Generated-Image-dvrkhrdvrkhrdvrk-(1).png', 'Luxury Beige': 'https://i.postimg.cc/L6p3GYv8/Gemini-Generated-Image-ogbfcvogbfcvogbf.png' }
+            'BT-02': { 'Arctic White': 'https://i.postimg.cc/ZYcRsG9t/Gemini-Generated-Image-8j5nn08j5nn08j5n.png' },
+            'BT-03': { 'Arctic White': 'https://i.postimg.cc/PxcPKZ3z/Untitled-design.png' },
+            'BT-04': { 'Arctic White': 'https://i.postimg.cc/8z0sB9yC/kw-9003w.png' },
+            'SK-01': { 'White': 'https://i.postimg.cc/sxMZrz0D/Whats-App-Image-2026-04-13-at-6-19-54-PM-(1).jpg' },
+            'SK-02': { 'White': 'https://i.postimg.cc/qMYb367D/Gemini-Generated-Image-2c57pr2c57pr2c57.png' },
+            'SK-03': { 'White': 'https://i.postimg.cc/xdq1F7QX/Gemini-Generated-Image-51qei451qei451qe.png' },
+            'SK-04': { 'White': 'https://i.postimg.cc/pd7LNZVw/Gemini-Generated-Image-yf84zoyf84zoyf84.png' },
+            'SK-05': { 'White': 'https://i.postimg.cc/50CNfC6F/Gemini-Generated-Image-hqin9uhqin9uhqin.png' },
+            'SK-06': { 'White': 'https://i.postimg.cc/nrfVrhDS/Gemini-Generated-Image-4g17at4g17at4g17.png' },
+            'SK-07': { 'White': 'https://i.postimg.cc/T1jdDvVk/Gemini-Generated-Image-kvevjdkvevjdkvev.png' },
+            // PVC MASTER SHEETS SECTION
+            'PV-01': { 'HD800-Pro': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg' },
+            'PV-02': { 'Terroir 65/40': 'https://i.postimg.cc/kG1gy01s/0-(1).jpg' },
+            'PV-03': { 'Terroir 65/40': 'https://i.postimg.cc/hvJf63Rs/33.jpg' },
+            'PV-04': { 'Terroir 65/40': 'https://i.postimg.cc/HWKJXHbL/44.jpg' },
+            'PV-05': { 'Terroir 65/40': 'https://i.postimg.cc/HWKJXHbL/44.jpg' },
+            'PV-06': { 'Terroir 65/40': 'https://i.postimg.cc/Z5P0Gd2w/88.jpg' },
+            'PV-07': { 'Porte 65/40': 'https://i.postimg.cc/Cxfxj6jg/55-(1).jpg' },
+            'PV-08': { 'Porte 65/40': 'https://i.postimg.cc/y8CkpPQW/66.jpg' },
+            'PV-09': { 'Porte 65/40': 'https://i.postimg.cc/6pxyb0jL/77.jpg' },
+            'PV-10': { 'Porte 65/40': 'https://i.postimg.cc/K8g8nsn1/99-(1).jpg' },
+            'PV-11': { 'Terroir 50/36': 'https://i.postimg.cc/7L8YXMVF/12.jpg' },
+            'PV-12': { 'Porte 50/36': 'https://i.postimg.cc/wB8TFcVt/11-(3).jpg' },
+            // ACCESSORIES
+            'AC-01': { 'Chrome Silver': 'https://i.postimg.cc/J0wVhV8P/Gemini-Generated-Image-3v880u3v880u3v88.png' },
+            'AC-02': { 'Chrome Silver': 'https://i.postimg.cc/J0wVhV8P/Gemini-Generated-Image-3v880u3v880u3v88.png' },
+            'AC-03': { 'Onyx': 'https://i.postimg.cc/23RZT6Db/Gemini-Generated-Image-ogbfcvogbfcvogbf.png' },
+            'AC-04': { 'Chrome': 'https://i.postimg.cc/x1GKxKqq/Gemini-Generated-Image-dt0yfwdt0yfwdt0y.png' },
+            'AC-05': { 'Mirror': 'https://i.postimg.cc/rsxwgNgp/Gemini-Generated-Image-uacg8euacg8euacg.png' },
+            'AC-06': { 'Mirror': 'https://i.postimg.cc/tTGfWd1k/Gemini-Generated-Image-ynv7zhynv7zhynv7.png' },
+            'AC-07': { 'Mirror': 'https://i.postimg.cc/tTdc51PK/Gemini-Generated-Image-x0f6djx0f6djx0f6.png' },
+            'AC-08': { 'Mirror': 'https://i.postimg.cc/BZgyPKJ3/Gemini-Generated-Image-dby9kldby9kldby9.png' }
         };
 
         const colors_lib = { 
-            white: { name: 'Arctic White', hex: '#ffffff' }, black: { name: 'Onyx Black', hex: '#1a1a1a' }, beige: { name: 'Luxury Beige', hex: '#d2b48c' }, gray: { name: 'Stone Gray', hex: '#78716c' },
-            blue: { name: 'Cerulean Blue', hex: '#0070f3' }, yellow: { name: 'Solar Yellow', hex: '#ffd700' }, pink: { name: 'Blush Pink', hex: '#ffb6c1' }
+            white: { name: 'Arctic White', hex: '#ffffff' }, 
+            gold_metal: { name: 'Luxury Gold', hex: '#d4af37' }
         };
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
@@ -203,32 +249,27 @@
         let currentModalIndex = -1;
 
         function getProductData(ref) {
-            let title = `Collection ${ref.split('-')[1]}`;
+            let title = `Collection ${ref}`;
             let colorSet = [colors_lib.white];
-            if (ref.startsWith('BT')) {
-                colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige];
+            
+            if (ref.startsWith('PV')) {
+                const num = parseInt(ref.split('-')[1]);
+                if (num === 1) title = "PV-HD800-Pro";
+                else if (num >= 2 && num <= 6) title = "Salle de Bain Terroir (65/40)";
+                else if (num >= 7 && num <= 10) title = "Salle de Bain Porte (65/40)";
+                else if (num === 11) title = "Salle de Bain Terroir (50/36)";
+                else if (num === 12) title = "Salle de Bain Porte (50/36)";
+                colorSet = [{ name: Object.keys(productImages[ref])[0], hex: '#d4af37' }];
+            } else if (ref.startsWith('BT')) {
                 if (ref === 'BT-01') title = "KW-T004B";
                 else if (ref === 'BT-02') title = "KW-T003B";
                 else if (ref === 'BT-03') title = "KW-9004W";
                 else if (ref === 'BT-04') title = "KW-9003W";
-            } 
-            else if (ref.startsWith('SK')) {
-                if (ref === 'SK-01') title = "Sink Premium 01";
-                else if (ref === 'SK-02') title = "KW-B003";
-                else if (ref === 'SK-03') title = "968-05 Series";
-                else if (ref === 'SK-04') title = "906X10 Series";
-                else if (ref === 'SK-05') title = "8221 Series";
-                else if (ref === 'SK-06') title = "839HMO1 Series";
-                else if (ref === 'SK-07') title = "839CC03 Series";
-            }
-            else if (ref === 'PV-01') { 
-                title = "PV-HD800-Pro"; 
-                colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige, colors_lib.gray]; 
-            }
-            else if (ref.startsWith('AC')) {
-                if (ref === 'AC-01') { title = "Luxury Set 1"; colorSet = [colors_lib.blue, colors_lib.yellow, colors_lib.pink]; }
-                else if (ref === 'AC-02') { title = "Luxury Set 2"; colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige]; }
-                else if (ref === 'AC-03') { title = "Modern Set 3"; colorSet = [colors_lib.white, colors_lib.black, colors_lib.beige]; }
+            } else if (ref.startsWith('AC')) {
+                if (ref === 'AC-05') title = "Mirror 8073";
+                else if (ref === 'AC-06') title = "Mirror 8097";
+                else if (ref === 'AC-07') title = "Mirror 8045";
+                else if (ref === 'AC-08') title = "Mirror 8069";
             }
             return { ref, title, colors: colorSet };
         }
@@ -238,34 +279,27 @@
             container.innerHTML = '';
             allProductsFlat = [];
             const categories = [
-                { id: 'BT', en: 'Bathroom Vanities', ar: 'خزائن الحمامات', count: 4 },
-                { id: 'SK', en: 'Premium Sinks', ar: 'أحواض متميزة', count: 7 },
-                { id: 'PV', en: 'PVC Master Sheets', ar: 'ألواح PVC الماستر', count: 1 },
-                { id: 'AC', en: 'Luxury Accessories', ar: 'إكسسوارات فاخرة', count: 3 }
+                { id: 'BT', en: 'Bathroom Vanities', ar: 'خزائن الحمامات', count: 4, start: 1 },
+                { id: 'SK', en: 'Premium Sinks', ar: 'أحواض متميزة', count: 7, start: 1 },
+                { id: 'PV', en: 'PVC Master Sheets', ar: 'ألواح PVC الماستر', count: 12, start: 1 },
+                { id: 'AC', en: 'Luxury Accessories', ar: 'إكسسوارات فاخرة', count: 8, start: 1 }
             ];
             categories.forEach(cat => {
                 const section = document.createElement('div');
-                section.className = "category-section overflow-hidden";
-                section.innerHTML = `
-                    <div class="p-8 cursor-pointer flex justify-between items-center" onclick="this.parentElement.classList.toggle('active')">
-                        <h2 class="text-xl serif italic tracking-widest uppercase">${currentLang === 'ar' ? cat.ar : cat.en}</h2>
-                        <i class="fas fa-plus text-[10px] opacity-30"></i>
-                    </div>
-                    <div class="category-content p-8 pt-0"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="grid-${cat.id}"></div></div>`;
+                section.className = "category-section overflow-hidden active";
+                section.innerHTML = `<div class="p-8 cursor-pointer flex justify-between items-center" onclick="this.parentElement.classList.toggle('active')"><h2 class="text-xl serif italic tracking-widest uppercase">${currentLang === 'ar' ? cat.ar : cat.en}</h2><i class="fas fa-plus text-[10px] opacity-30"></i></div><div class="category-content p-8 pt-0"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="grid-${cat.id}"></div></div>`;
                 container.appendChild(section);
                 const grid = document.getElementById(`grid-${cat.id}`);
-                for(let i=1; i<=cat.count; i++) {
-                    const ref = `${cat.id}-0${i}`;
+                for(let i=cat.start; i<=cat.count; i++) {
+                    const ref = `${cat.id}-${i < 10 ? '0'+i : i}`;
                     const data = getProductData(ref);
                     allProductsFlat.push(data);
                     const idx = allProductsFlat.length - 1;
-                    const initialImg = (productImages[ref] && productImages[ref][data.colors[0].name]) ? productImages[ref][data.colors[0].name] : '';
+                    const thumbImg = productImages[ref] ? productImages[ref][Object.keys(productImages[ref])[0]] : '';
                     const card = document.createElement('div');
                     card.className = "market-card p-8 text-center cursor-pointer";
                     card.onclick = () => openModal(idx);
-                    card.innerHTML = `<div class="aspect-square mb-6 flex items-center justify-center"><img src="${initialImg}" class="max-h-full object-contain"></div>
-                        <h3 class="text-[11px] font-bold uppercase tracking-widest mb-1">${data.title}</h3>
-                        <span class="text-[9px] text-white/20 block">${ref}</span>`;
+                    card.innerHTML = `<div class="aspect-square mb-6 flex items-center justify-center"><img src="${thumbImg}" class="max-h-full object-contain"></div><h3 class="text-[11px] font-bold uppercase tracking-widest mb-1">${data.title}</h3><span class="text-[9px] text-white/20 block">${ref}</span>`;
                     grid.appendChild(card);
                 }
             });
@@ -274,47 +308,30 @@
         function openModal(index) {
             currentModalIndex = index;
             const p = allProductsFlat[index];
-            const modal = document.getElementById('product-modal');
             const modalImg = document.getElementById('modal-img');
+            const swatches = document.getElementById('modal-color-swatches');
             document.getElementById('modal-title').innerText = p.title;
             document.getElementById('modal-id').innerText = `${translations[currentLang]['ref-label']}${p.ref}`;
-            const swatches = document.getElementById('modal-color-swatches');
             swatches.innerHTML = '';
             p.colors.forEach((color, i) => {
                 const btn = document.createElement('button');
-                btn.className = "w-8 h-8 rounded-full border border-white/10 transition-all hover:scale-110";
+                btn.className = "w-8 h-8 rounded-full border border-white/10";
                 btn.style.backgroundColor = color.hex;
                 btn.onclick = () => {
-                    modalImg.style.opacity = '0';
-                    setTimeout(() => {
-                        modalImg.src = productImages[p.ref][color.name];
-                        modalImg.style.opacity = '1';
-                    }, 200);
-                    Array.from(swatches.children).forEach(s => s.classList.remove('ring-2', 'ring-[#d4af37]', 'ring-offset-4', 'ring-offset-black'));
-                    btn.classList.add('ring-2', 'ring-[#d4af37]', 'ring-offset-4', 'ring-offset-black');
-                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=Inquiry: ${p.title} (${p.ref}) in ${color.name}`;
-                    document.getElementById('modal-request-link').href = `contact.html?product=${p.title}&ref=${p.ref}&color=${color.name}`;
+                    modalImg.src = productImages[p.ref][color.name];
+                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=Inquiry: ${p.title} (${p.ref})`;
                 };
                 swatches.appendChild(btn);
                 if(i === 0) btn.click();
             });
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.getElementById('product-modal').classList.add('active');
         }
 
-        function navigateProduct(step) {
-            let n = (currentModalIndex + step + allProductsFlat.length) % allProductsFlat.length;
-            openModal(n);
-        }
-
-        function closeModal() { document.getElementById('product-modal').classList.remove('active'); document.body.style.overflow = ''; }
+        function closeModal() { document.getElementById('product-modal').classList.remove('active'); }
         function toggleLanguage() { currentLang = currentLang === 'en' ? 'ar' : 'en'; localStorage.setItem('selectedLang', currentLang); location.reload(); }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('main-html').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-            document.getElementById('lang-label').innerText = currentLang === 'en' ? "العربية" : "English";
-            renderCatalog();
-        });
+        function navigateProduct(step) { currentModalIndex = (currentModalIndex + step + allProductsFlat.length) % allProductsFlat.length; openModal(currentModalIndex); }
+        document.addEventListener('DOMContentLoaded', () => { renderCatalog(); });
+        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('active'); }
     </script>
 </body>
 </html>
