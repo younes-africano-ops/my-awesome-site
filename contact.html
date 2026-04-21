@@ -15,7 +15,7 @@
             padding: 0;
             overflow-x: hidden;
             background-color: #1e293b; 
-            /* Exact background from index.html */
+            /* Exact background from original design */
             background: 
                 radial-gradient(circle at 90% 10%, rgba(183, 152, 96, 0.4), transparent 50%),
                 linear-gradient(rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.6)),
@@ -61,6 +61,17 @@
 </head>
 <body class="antialiased">
 
+    <div id="success-popup" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-slate-950/90 backdrop-blur-md">
+        <div class="text-center p-10 contact-card max-w-sm">
+            <div class="w-20 h-20 bg-brico/20 text-brico rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-3xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-2 uppercase tracking-tighter">Request Sent</h2>
+            <p class="text-slate-400 text-sm mb-8">We have received your inquiry and will contact you via WhatsApp shortly.</p>
+            <button onclick="closeSuccess()" class="w-full border border-white/20 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition-colors">Close</button>
+        </div>
+    </div>
+
     <nav class="fixed w-full z-50 glass-nav hidden md:block">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex-1"><a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">Bricoshop</a></div>
@@ -92,36 +103,42 @@
             </div>
 
             <div class="w-full md:w-1/2 contact-card p-8 md:p-12">
-                <form class="space-y-6">
+                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                    <input type="hidden" name="access_key" value="ef440d90-28c6-4d6a-8080-bb6f220bc415">
+                    <input type="hidden" name="subject" value="New Website Inquiry - Bricoshop">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                     <div>
                         <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 block">Full Name</label>
-                        <input type="text" placeholder="Your Name" class="input-line">
+                        <input type="text" name="name" placeholder="Your Name" required class="input-line">
                     </div>
 
                     <div>
                         <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 block">WhatsApp / Phone</label>
-                        <input type="tel" placeholder="+212 ..." class="input-line">
+                        <input type="tel" name="phone" placeholder="+212 ..." required class="input-line">
                     </div>
 
                     <div>
                         <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 block">Selected Product</label>
-                        <input type="text" id="category-field" placeholder="Select from catalog..." class="input-line">
+                        <input type="text" name="requested_product" id="category-field" placeholder="Select from catalog..." class="input-line">
                     </div>
 
                     <div>
                         <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 block">Inquiry Details</label>
-                        <textarea id="details-field" rows="3" placeholder="Additional requirements..." class="input-line"></textarea>
+                        <textarea name="message" id="details-field" rows="3" placeholder="Additional requirements..." class="input-line"></textarea>
                     </div>
 
-                    <button class="w-full bg-brico text-slate-950 py-5 rounded-2xl font-bold uppercase text-[11px] tracking-[0.3em] hover:scale-[1.02] transition-all active:scale-95 shadow-xl">
+                    <button type="submit" class="w-full bg-brico text-slate-950 py-5 rounded-2xl font-bold uppercase text-[11px] tracking-[0.3em] hover:scale-[1.02] transition-all active:scale-95 shadow-xl">
                         Submit Inquiry
                     </button>
+                    <p id="result" class="text-center text-[10px] font-bold uppercase tracking-widest mt-4"></p>
                 </form>
-            </div>
+                </div>
         </div>
     </div>
 
     <script>
+        // Restored Language State and Product Transfer Logic
         let currentLang = localStorage.getItem('selectedLang') || 'en';
 
         function toggleLanguage() {
@@ -131,6 +148,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            // Restore Product Transfer Logic
             const urlParams = new URLSearchParams(window.location.search);
             const product = urlParams.get('product');
             const ref = urlParams.get('ref');
@@ -145,6 +163,50 @@
 
             document.getElementById('main-html').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
         });
+
+        // FORM INTEGRATION LOGIC START
+        const form = document.getElementById('contact-form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          result.innerHTML = "Submitting Inquiry...";
+
+            fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        // On success, show the special popup
+                        document.getElementById('success-popup').style.display = 'flex';
+                        form.reset();
+                    } else {
+                        console.log(response);
+                        result.innerHTML = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Something went wrong. Please try again.";
+                })
+                .then(function() {
+                    setTimeout(() => { result.innerHTML = ""; }, 4000);
+                });
+        });
+
+        function closeSuccess() {
+            document.getElementById('success-popup').style.display = 'none';
+        }
+        // FORM INTEGRATION LOGIC END
     </script>
 </body>
 </html>
