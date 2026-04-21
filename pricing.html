@@ -178,7 +178,10 @@
                     <div>
                         <span class="badge-stock mb-6 inline-block">Official Bricoshop Selection</span>
                         <h2 id="modal-title" class="text-5xl md:text-7xl serif italic leading-tight text-white mb-2"></h2>
-                        <p id="modal-id" class="text-[11px] font-bold tracking-[0.4em] text-white/30 uppercase"></p>
+                        <div class="flex flex-col gap-1">
+                            <p id="modal-id" class="text-[11px] font-bold tracking-[0.4em] text-white/30 uppercase"></p>
+                            <p id="modal-price" class="text-2xl font-bold text-[#d4af37]"></p>
+                        </div>
                     </div>
 
                     <div id="modal-options-container" class="py-10 border-y border-white/5">
@@ -199,8 +202,8 @@
 
     <script>
         const translations = {
-            en: { "page-title": "The 2026 Collection", "ref-label": "SERIES: " },
-            ar: { "page-title": "مجموعة 2026", "ref-label": "سلسلة: " }
+            en: { "page-title": "The 2026 Collection", "ref-label": "SERIES: ", "currency": "DH" },
+            ar: { "page-title": "مجموعة 2026", "ref-label": "سلسلة: ", "currency": "درهم" }
         };
 
         const productImages = {
@@ -215,23 +218,20 @@
             'SK-05': { 'White': 'https://i.postimg.cc/50CNfC6F/Gemini-Generated-Image-hqin9uhqin9uhqin.png' },
             'SK-06': { 'White': 'https://i.postimg.cc/nrfVrhDS/Gemini-Generated-Image-4g17at4g17at4g17.png' },
             'SK-07': { 'White': 'https://i.postimg.cc/T1jdDvVk/Gemini-Generated-Image-kvevjdkvevjdkvev.png' },
-            // PVC MASTER SHEETS SECTION
             'PV-01': { 'HD800-Pro': 'https://i.postimg.cc/6p9bBGcC/Whats-App-Image-2026-01-19-at-16-37-29-(2).jpg' },
-            'PV-02': { 'Terroir 65/40': 'https://i.postimg.cc/kG1gy01s/0-(1).jpg' },
-            'PV-03': { 'Terroir 65/40': 'https://i.postimg.cc/hvJf63Rs/33.jpg' },
-            'PV-04': { 'Terroir 65/40': 'https://i.postimg.cc/HWKJXHbL/44.jpg' },
-            'PV-05': { 'Terroir 65/40': 'https://i.postimg.cc/HWKJXHbL/44.jpg' },
-            'PV-06': { 'Terroir 65/40': 'https://i.postimg.cc/Z5P0Gd2w/88.jpg' },
-            'PV-07': { 'Porte 65/40': 'https://i.postimg.cc/Cxfxj6jg/55-(1).jpg' },
-            'PV-08': { 'Porte 65/40': 'https://i.postimg.cc/y8CkpPQW/66.jpg' },
-            'PV-09': { 'Porte 65/40': 'https://i.postimg.cc/6pxyb0jL/77.jpg' },
-            'PV-10': { 'Porte 65/40': 'https://i.postimg.cc/K8g8nsn1/99-(1).jpg' },
-            'PV-11': { 'Terroir 50/36': 'https://i.postimg.cc/7L8YXMVF/12.jpg' },
-            'PV-12': { 'Porte 50/36': 'https://i.postimg.cc/wB8TFcVt/11-(3).jpg' },
-            // ACCESSORIES
-            'AC-01': { 'Chrome Silver': 'https://i.postimg.cc/J0wVhV8P/Gemini-Generated-Image-3v880u3v880u3v88.png' },
-            'AC-02': { 'Chrome Silver': 'https://i.postimg.cc/J0wVhV8P/Gemini-Generated-Image-3v880u3v880u3v88.png' },
-            'AC-03': { 'Onyx': 'https://i.postimg.cc/23RZT6Db/Gemini-Generated-Image-ogbfcvogbfcvogbf.png' },
+            'PV-02': { 'Luxury Beige': 'https://i.postimg.cc/Vk7TK74d/0-(1).jpg' },
+            'PV-03': { 'Luxury Beige': 'https://i.postimg.cc/hvJf63Rs/33.jpg' },
+            'PV-04': { 'Luxury Beige': 'https://i.postimg.cc/HWKJXHbL/44.jpg' },
+            'PV-05': { 'Luxury Beige': 'https://i.postimg.cc/Cxfxj6jg/55-(1).jpg' },
+            'PV-06': { 'Luxury Beige': 'https://i.postimg.cc/y8CkpPQW/66.jpg' },
+            'PV-07': { 'Luxury Beige': 'https://i.postimg.cc/6pxyb0jL/77.jpg' },
+            'PV-08': { 'Luxury Beige': 'https://i.postimg.cc/Z5P0Gd2w/88.jpg' },
+            'PV-09': { 'Luxury Beige': 'https://i.postimg.cc/K8g8nsn1/99-(1).jpg' },
+            'PV-10': { 'Luxury Beige': 'https://i.postimg.cc/wB8TFcVt/11-(3).jpg' },
+            'PV-11': { 'Luxury Beige': 'https://i.postimg.cc/7L8YXMVF/12.jpg' },
+            'PV-12': { 'Luxury Beige': 'https://i.postimg.cc/HWKJXHbL/44.jpg' },
+            'AC-01': { 'Gold': 'https://i.postimg.cc/tg7Cjn62/Gemini-Generated-Image-zem36zem36zem36z.png' },
+            'AC-02': { 'Silver': 'https://i.postimg.cc/L6p3GYv8/Gemini-Generated-Image-ogbfcvogbfcvogbf.png' },
             'AC-04': { 'Chrome': 'https://i.postimg.cc/x1GKxKqq/Gemini-Generated-Image-dt0yfwdt0yfwdt0y.png' },
             'AC-05': { 'Mirror': 'https://i.postimg.cc/rsxwgNgp/Gemini-Generated-Image-uacg8euacg8euacg.png' },
             'AC-06': { 'Mirror': 'https://i.postimg.cc/tTGfWd1k/Gemini-Generated-Image-ynv7zhynv7zhynv7.png' },
@@ -241,7 +241,8 @@
 
         const colors_lib = { 
             white: { name: 'Arctic White', hex: '#ffffff' }, 
-            gold_metal: { name: 'Luxury Gold', hex: '#d4af37' }
+            gold_metal: { name: 'Luxury Gold', hex: '#d4af37' },
+            beige: { name: 'Luxury Beige', hex: '#f5f5dc' }
         };
 
         let currentLang = localStorage.getItem('selectedLang') || 'en';
@@ -250,28 +251,35 @@
 
         function getProductData(ref) {
             let title = `Collection ${ref}`;
+            let price = "Contact for Price";
             let colorSet = [colors_lib.white];
             
-            if (ref.startsWith('PV')) {
+            if (ref.startsWith('BT')) {
+                if (ref === 'BT-01') { title = "KW-T004B-"; price = "1600"; colorSet = [colors_lib.white, {name: 'Onyx Black', hex: '#1a1a1a'}, colors_lib.beige]; }
+                else if (ref === 'BT-02') { title = "KW-T003B-"; price = "1660"; }
+                else if (ref === 'BT-03') { title = "KW-9004W"; price = "1200"; }
+                else if (ref === 'BT-04') { title = "KW-9003W"; price = "1200"; }
+            } else if (ref.startsWith('SK')) {
+                if (ref === 'SK-01') { title = "KW-B004"; price = "1100"; }
+                else if (ref === 'SK-02') { title = "KW-B003"; price = "1100"; }
+                else if (ref === 'SK-03') { title = "968-05 Series"; price = "800"; }
+                else if (ref === 'SK-04') { title = "906X10 Series"; price = "600"; }
+                else if (ref === 'SK-05') { title = "8221 Series"; price = "600"; }
+                else if (ref === 'SK-06') { title = "839HMO1 Series"; price = "800"; }
+                else if (ref === 'SK-07') { title = "839CC03 Series"; price = "800"; }
+            } else if (ref.startsWith('AC')) {
+                if (ref === 'AC-05') { title = "Mirror 8073"; price = "600"; }
+                else if (ref === 'AC-06') { title = "Mirror 8097"; price = "500"; }
+                else if (ref === 'AC-07') { title = "Mirror 8045"; price = "700"; }
+                else if (ref === 'AC-08') { title = "Mirror 8069"; price = "600"; }
+            } else if (ref.startsWith('PV')) {
                 const num = parseInt(ref.split('-')[1]);
                 if (num === 1) title = "PV-HD800-Pro";
-                else if (num >= 2 && num <= 6) title = "Salle de Bain Terroir (65/40)";
-                else if (num >= 7 && num <= 10) title = "Salle de Bain Porte (65/40)";
-                else if (num === 11) title = "Salle de Bain Terroir (50/36)";
-                else if (num === 12) title = "Salle de Bain Porte (50/36)";
-                colorSet = [{ name: Object.keys(productImages[ref])[0], hex: '#d4af37' }];
-            } else if (ref.startsWith('BT')) {
-                if (ref === 'BT-01') title = "KW-T004B";
-                else if (ref === 'BT-02') title = "KW-T003B";
-                else if (ref === 'BT-03') title = "KW-9004W";
-                else if (ref === 'BT-04') title = "KW-9003W";
-            } else if (ref.startsWith('AC')) {
-                if (ref === 'AC-05') title = "Mirror 8073";
-                else if (ref === 'AC-06') title = "Mirror 8097";
-                else if (ref === 'AC-07') title = "Mirror 8045";
-                else if (ref === 'AC-08') title = "Mirror 8069";
+                else if (num === 2) title = "Salle de Bain Terroir (65/40)";
+                else title = `Master Sheet ${num}`;
+                colorSet = [colors_lib.beige];
             }
-            return { ref, title, colors: colorSet };
+            return { ref, title, price, colors: colorSet };
         }
 
         function renderCatalog() {
@@ -292,14 +300,25 @@
                 const grid = document.getElementById(`grid-${cat.id}`);
                 for(let i=cat.start; i<=cat.count; i++) {
                     const ref = `${cat.id}-${i < 10 ? '0'+i : i}`;
+                    if (!productImages[ref]) continue;
                     const data = getProductData(ref);
                     allProductsFlat.push(data);
                     const idx = allProductsFlat.length - 1;
-                    const thumbImg = productImages[ref] ? productImages[ref][Object.keys(productImages[ref])[0]] : '';
+                    const thumbImg = productImages[ref][Object.keys(productImages[ref])[0]];
                     const card = document.createElement('div');
                     card.className = "market-card p-8 text-center cursor-pointer";
                     card.onclick = () => openModal(idx);
-                    card.innerHTML = `<div class="aspect-square mb-6 flex items-center justify-center"><img src="${thumbImg}" class="max-h-full object-contain"></div><h3 class="text-[11px] font-bold uppercase tracking-widest mb-1">${data.title}</h3><span class="text-[9px] text-white/20 block">${ref}</span>`;
+                    
+                    const priceDisplay = isNaN(data.price) ? data.price : `${data.price} ${translations[currentLang].currency}`;
+                    
+                    card.innerHTML = `
+                        <div class="aspect-square mb-6 flex items-center justify-center">
+                            <img src="${thumbImg}" class="max-h-full object-contain">
+                        </div>
+                        <h3 class="text-[11px] font-bold uppercase tracking-widest mb-1">${data.title}</h3>
+                        <span class="text-[14px] text-[#d4af37] font-bold block mb-2">${priceDisplay}</span>
+                        <span class="text-[9px] text-white/20 block">${ref}</span>
+                    `;
                     grid.appendChild(card);
                 }
             });
@@ -312,14 +331,19 @@
             const swatches = document.getElementById('modal-color-swatches');
             document.getElementById('modal-title').innerText = p.title;
             document.getElementById('modal-id').innerText = `${translations[currentLang]['ref-label']}${p.ref}`;
+            
+            const priceVal = isNaN(p.price) ? p.price : `${p.price} ${translations[currentLang].currency}`;
+            document.getElementById('modal-price').innerText = priceVal;
+
             swatches.innerHTML = '';
             p.colors.forEach((color, i) => {
                 const btn = document.createElement('button');
                 btn.className = "w-8 h-8 rounded-full border border-white/10";
                 btn.style.backgroundColor = color.hex;
                 btn.onclick = () => {
-                    modalImg.src = productImages[p.ref][color.name];
-                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=Inquiry: ${p.title} (${p.ref})`;
+                    modalImg.src = productImages[p.ref][color.name] || Object.values(productImages[p.ref])[0];
+                    const msg = `Inquiry: ${p.title} (${p.ref}) - ${color.name} - Price: ${priceVal}`;
+                    document.getElementById('modal-wa-link').href = `https://wa.me/212661176190?text=${encodeURIComponent(msg)}`;
                 };
                 swatches.appendChild(btn);
                 if(i === 0) btn.click();
